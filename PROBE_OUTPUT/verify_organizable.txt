@@ -1,5 +1,5 @@
   T depth-2 tree slice             organizable: True   (18 classes)
-  R Prop irred2 (paper says yes)   organizable: False  (23 classes)   <-- CONTRADICTS EXPECTATION
+  R Prop irred2 (paper: NOT coprime-layered) organizable: False  (23 classes)
   S semiprimes pq                  organizable: False  (18 classes)
   M multiples of 6                 organizable: True   (12 classes)
 

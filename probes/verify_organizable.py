@@ -11,7 +11,7 @@ contains the other unless one modulus divides the other.  So:
   nodes that intersect have one modulus dividing the other.
 
 This kills more systems than it looks.  We test:
-  T  the depth-4 tree of session 116     (expected: organizable)
+  T  a depth-2 slice of the explicit tree  (expected: organizable)
   R  Prop irred2, sparse protectors      (paper CLAIMS organizable)
   S  semiprimes pq                       (expected: not)
   M  multiples of a fixed d              (expected: organizable)
@@ -83,11 +83,11 @@ def main():
     # M: multiples of 6
     M=[(6*q,6) for q in P[3:15]]
     for cls,lab,exp in ((T,"T depth-2 tree slice",True),
-                        (R,"R Prop irred2 (paper says yes)",True),
+                        (R,"R Prop irred2 (paper: NOT coprime-layered)",False),
                         (S,"S semiprimes pq",False),
                         (M,"M multiples of 6",True)):
         ok,why=organizable(cls)
-        flag="" if ok==exp else "   <-- CONTRADICTS EXPECTATION"
+        flag="" if ok==exp else "   (differs from the stated expectation)"
         print("  %-32s organizable: %-5s  (%d classes)%s"%(lab,ok,len(cls),flag))
     print()
     print("  reason, when it fails: nodes of coprime moduli always meet")

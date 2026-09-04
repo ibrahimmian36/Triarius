@@ -95,7 +95,7 @@ def main():
        % (max(r for _,r in rs), len(over)))
 
     print()
-    print("3. contrast: session 99 measured SUB-systems with "
+    print("3. contrast: the SUB-system measurements with "
           "r well above 1")
     sub=[p for p in primes_upto(int(X**0.5)) if p > int(X**0.05)]
     g=1.0

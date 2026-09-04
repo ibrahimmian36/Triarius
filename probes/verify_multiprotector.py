@@ -95,8 +95,8 @@ def main():
                              untouched>0.99))
     print()
     print("  coverage against existing theorems:")
-    print("     finite prime cover?  NO - p_j alone is a modulus "
-          "in group j, divisible by no other protector")
+    print("     finite prime cover?  NO - for any finite prime set F pick "
+          "p_j outside F and m a prime outside F: modulus p_j m avoids F")
     print("     aligned?             NO - residues random mod m")
     print("     convergent drift?    NO - each group diverges")
     print("     divergent coprime?   NO - one class per group at "
@@ -110,7 +110,7 @@ def main():
               "NOT a counterexample to Erdos 25 - its density "
               "exists by CYLINDER EXHAUSTION - but it is a "
               "counterexample to the case analysis, and exposes "
-              "a theorem the paper is missing.")
+              "the need for the exhaustion theorem.")
     else:
         print("[verdict] construction did not verify; no claim.")
 
