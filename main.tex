@@ -1,0 +1,2708 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1.1in]{geometry}
+\usepackage{microtype}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Zhat}{\widehat{\mathbb{Z}}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\dlog}{\delta_{\log}}
+\newcommand{\cU}{\widehat{U}}
+\newcommand{\Ahat}{\widehat{A}}
+\newcommand{\Kh}{\widehat{K}}
+
+\title{A profinite reduction of Erd\H{o}s Problem 25}
+\author{Ibrahim Mian \qquad Shayaan Siddique\\[2pt]
+\normalsize Millennium Research\\[2pt]
+\normalsize \texttt{\{ibby,shayaan\}@millenniumresearch.ai}\\
+\normalsize \texttt{ibrahimnmian@gmail.com}, \texttt{shayaansiddique02@gmail.com}}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Let $1\le n_1<n_2<\cdots$ be integers with residues $a_i$, and
+let $A$ be the set of integers $n$ such that for every $i$ either
+$n<n_i$ or $n\not\equiv a_i\pmod{n_i}$.  Erd\H{o}s asked whether
+$A$ must have a logarithmic density.  We recast the question in
+the profinite completion $\Zhat$, where each class is a ball of
+Haar measure $1/n_i$ and the survivors have a Haar measure $\nu$
+that always exists, and prove unconditionally that the upper
+logarithmic density of $A$ is at most $\nu$, so that the problem
+is the reverse inequality.  We prove the reverse inequality in
+a series of regimes: convergent drift;
+pairwise incompatible, pairwise coprime, aligned and boundedly
+misaligned systems; systems admitting a cylinder decomposition;
+and, through reduction theorems -- exhaustion of dying
+cylinders, confinement to protectors of summable measure, and a
+theorem for coprime-layered trees of cylinders proved by a
+martingale argument -- systems of divergent drift, positive
+survivor measure and unbounded misalignment whose classes are
+organised along nested protectors, pairwise coprime protectors,
+or protectors that are the pairwise products of a set of primes,
+each under explicit hypotheses on the layers.
+A second-moment condition, with a lemma restoring the zero--one
+law for families whose indices do not escape to infinity, gives
+a sufficient condition for $\nu=0$.  We exhibit the step of the
+Davenport--Erd\H{o}s argument that shifted residues break, refute
+four natural routes by explicit construction, bound a fifth, and show that every
+system is majorised by a saturated one whose classes are the
+maximal holes of its survivor set.  What remains is stated as
+a checklist that a counterexample must pass in full
+and, without congruences, as a question about a closed subset of
+$\Zhat$ of positive measure whose maximal holes have divergent
+total measure.  The problem is not resolved here.
+\end{abstract}
+
+\noindent\textit{2020 Mathematics Subject Classification.} 11B05, 11N35.\\
+\textit{Keywords.} Sets of multiples, logarithmic density,
+congruence systems, profinite integers, Davenport--Erd\H{o}s.
+
+
+\section{Introduction}\label{sec:intro}
+
+Let $1\le n_1<n_2<\cdots$ be a strictly increasing sequence of
+integers and let $a_i\in\mathbb{Z}$ be arbitrary.  The $i$th
+class kills the set
+\[
+  K_i=\{x\ge n_i:\ x\equiv a_i\ (\mathrm{mod}\ n_i)\},
+\]
+and the survivor set is $A=\N\setminus\bigcup_i K_i$.  We write
+$\delta(E)$ for the natural density of a set $E$ when it exists,
+and $\dlog(E)$ for its logarithmic density.  Erd\H{o}s
+asked whether $A$ must possess a logarithmic density,
+\[
+  \dlog(A)=\lim_{X\to\infty}\frac{1}{\log X}\sum_{m\in A,\ m<X}\frac1m .
+\]
+The truncation $x\ge n_i$ is essential: without it each class is
+a full residue class and the question becomes a statement about
+sets of multiples only in the aligned case.
+
+When every $a_i\equiv0$ the killed set is a set of multiples and
+the answer is affirmative by the theorem of Davenport and
+Erd\H{o}s \cite{DE1936,DE1951}; see \cite{Hall} for a modern
+account.  The general problem has resisted precisely because
+shifting the residues destroys the divisibility structure that
+their proof consumes.  Our purpose is to say exactly what that
+destruction costs, to prove as much of the statement as survives
+it, and to isolate what remains.
+
+We do not claim the individual ingredients are deep.  The
+profinite upper bound is elementary; the regime results rest on
+the Chinese remainder theorem, Davenport--Erd\H{o}s and a
+standard Tauberian argument.  What we offer is an
+accounting: the step of the classical proof that misalignment
+breaks, a weighted form of Davenport--Erd\H{o}s that survives
+it, the regimes and reductions under which the reverse
+inequality is recovered, a single uniform statement whose truth would settle the
+rest, and four natural approaches shown by
+explicit construction not to work, together with a bound on a
+fifth, the most natural attempt at a counterexample.
+
+\subsection*{Results}
+Sections~\ref{sec:profinite} and~\ref{sec:upper} set up the
+profinite framework and prove the unconditional half of the
+problem (Theorem~\ref{thm:upper}), together with the threshold
+convention and the restriction lemma by which systems pass to
+cylinders.  Section~\ref{sec:lemmas} records two lemmas on sets
+of multiples (Lemmas~\ref{lem:tail} and~\ref{lem:weight}), the
+second a weighted form of Davenport--Erd\H{o}s.
+Section~\ref{sec:regimes} proves the reverse inequality for
+convergent drift, incompatible systems, translated systems and
+finitely many aligned channels (Theorems~\ref{thm:conv},
+\ref{thm:H}, \ref{thm:transl}, \ref{thm:chan}), proves $\nu=0$
+under coprime divergence (Theorem~\ref{thm:D}), and gives the
+second-moment criterion for $\nu=0$ (Theorem~\ref{thm:quasi},
+Lemma~\ref{lem:escape}).  Section~\ref{sec:destop} exhibits the
+step of the Davenport--Erd\H{o}s argument that shifted residues
+break (Proposition~\ref{prop:break}).  Section~\ref{sec:cyl}
+proves what survives it: bounded misalignment and cylinder
+decompositions (Theorems~\ref{thm:bounded}, \ref{thm:cyl},
+\ref{thm:cylapp}).  Section~\ref{sec:reductions} contains the
+reduction theorems: exhaustion and saturation
+(Theorems~\ref{thm:exhaust}, \ref{thm:sat}), summable protectors
+(Theorem~\ref{thm:confined}), coprime-layered trees
+(Theorem~\ref{thm:tree}), and coprime and pairwise-product
+protectors (Theorems~\ref{thm:coprot}, \ref{thm:overlap}).
+Section~\ref{sec:reduction} gives a uniform statement that
+suffices for the rest (Theorem~\ref{thm:reduction}), its
+excursion form, and the checklist and closed-set question in
+which we leave the problem.  Section~\ref{sec:routes} refutes
+four routes by construction and bounds a fifth;
+Section~\ref{sec:verification} describes the verification.  We emphasise at the
+outset that the problem is \emph{not} resolved here.
+
+\medskip\noindent\textbf{The problem in the literature.}
+The question is Problem~25 on the Erd\H{o}s problems
+site~\cite{Bloom}, listed as open, and as
+a special case of Problem~486, in which several residues may be
+excluded modulo each $n$; its statement has been formalised in
+Lean.  Tenenbaum has recorded that Erd\H{o}s was much interested
+in whether the Davenport--Erd\H{o}s theorem extends to non-zero
+residues, and that he himself has thought about it without
+finding a promising starting point~\cite{TaoThread}.  A
+neighbouring question, Problem~281, asks: if $n_1<n_2<\cdots$ is
+such that for every choice of residues the integers avoiding all
+the classes have density $0$, must there be, for every
+$\varepsilon>0$, a $k$ such that for every choice of residues the
+integers avoiding the first $k$ classes have density below
+$\varepsilon$?  It was settled affirmatively in 2026 by Rogers'
+theorem, which reduces the density to the aligned case, together
+with the 1936 Davenport--Erd\H{o}s result there; it does not bear
+on the existence of the density.  The
+only prior progress on Problem~25 itself that we know of is a
+2026 note of Chojecki~\cite{Choj26}, which proves the two
+cases of convergent drift and pairwise coprime moduli --
+Theorems~\ref{thm:conv} and~\ref{thm:D} below -- and reduces the
+general problem to a uniform harmonic estimate for the finite
+``quotient sieves'' by which each class is first reached, noting
+as obstructions that the tail union admits no vanishing
+logarithmic bound and that prime-power towers create transient
+spikes; those two obstructions are, respectively, the failure of
+the union bound under divergent drift and
+Proposition~\ref{prop:spike} of this paper.  Apart from those two
+theorems we have found no prior source for the results below;
+the weighted Davenport--Erd\H{o}s lemma in particular is an
+elementary variant of the classical Dirichlet-series proof and
+we claim no more for it than its use here.  We note also
+where the neighbouring literature stops.  The lower bounds on
+the density of integers left uncovered by a system of congruences
+-- the inequality of Filaseta, Ford, Konyagin, Pomerance and
+Yu~\cite{FFKPY}, a product term less a pairwise-dependence
+correction, and Hough's relative form of the local
+lemma~\cite{Hough} -- concern the density of the periodic set
+uncovered by finitely many classes, that is the profinite
+measure $\nu$ of the present paper.  They bound $\nu$ from
+below; the open half of Problem~25 is a lower bound on the
+integer survivors at scales far below the period, and no
+estimate of that kind appears in this literature.  Erd\H{o}s's
+own criterion~\cite{Er48} for a set of multiples to have a
+natural density -- that integers whose least divisor in the set
+lies in $(n^{1-\varepsilon},n]$ be rare -- is the multiples-set
+form of the top-octave phenomenon that Proposition~\ref{prop:spike}
+controls here.  The theory of Behrend sequences -- sets of
+multiples of full density -- is the aligned case's version of
+the question when $\nu=0$, and it is instructive how hard even
+that is.  Hall and Tenenbaum~\cite{HT92} and
+Tenenbaum~\cite{Ten96} obtain sharp criteria only for block
+sequences, in the form of Borel--Cantelli conditions whose exponent
+$(1-\log2)/\bigl(1-(1+\log\log2)/\log2\bigr)\approx3.57$
+measures the dependence among the events; the method conditions on the product $n_k$ of an
+integer's prime factors below $\exp\exp k$ and iterates bounds
+on the conditional probability of a new divisor, which is the
+multiplicative counterpart of the cylinder filtration in
+Theorem~\ref{thm:tree}.  Tenenbaum describes effective general
+criteria as very difficult, if not hopeless.  For shifted
+classes, sufficient conditions for $\nu=0$ are given here by
+the cruder second-moment route of Theorems~\ref{thm:D}
+and~\ref{thm:quasi} and Lemma~\ref{lem:escape}; the open half of
+Problem~25 concerns $\nu>0$, a case which for sets of multiples
+is entirely Davenport--Erd\H{o}s's and has no counterpart in
+that literature.
+
+\section{The profinite framework}\label{sec:profinite}
+
+Write $\Zhat=\varprojlim \mathbb{Z}/m\mathbb{Z}$ for the
+profinite integers with normalised Haar measure $\mu$.
+
+\begin{definition}
+To the class $(n,a)$ associate the ball
+$B(n,a)=a+n\Zhat\subseteq\Zhat$, which is clopen with
+$\mu(B(n,a))=1/n$.  Write $B_i=B(n_i,a_i)$ and
+\[
+  \cU=\bigcup_i B_i,\qquad \Ahat=\Zhat\setminus\cU,\qquad \nu=\mu(\Ahat).
+\]
+Throughout, a subscript on $\nu$ names the subsystem whose
+survivor measure is meant -- the first $N$ classes ($\nu_N$),
+the classes of modulus at most $X$ ($\nu_X$), a cylinder
+($\nu_c$, $\nu_C$), a set of classes or groups ($\nu_T$,
+$\nu_J$) -- and a prime marks a reduced system.  A system is a
+\emph{set} of classes: no ball is listed twice,
+a repetition killing nothing new.  Several classes may share a
+modulus, a slight widening of the problem in which Erd\H{o}s's
+case is that of strictly increasing moduli; the reductions of
+Section~\ref{sec:reductions} produce systems of this wider kind.  Since a modulus
+$n$ carries at most $n$ residues, a system has at most $n$
+classes of modulus $n$, so bounded modulus still means finitely
+many classes, and an infinite system has unbounded moduli.  We reserve the hat $\cU$ for this subset of $\Zhat$
+and write $U=\bigcup_i K_i\subseteq\N$ for the set of killed
+integers; likewise $\Ahat\subseteq\Zhat$ is the profinite
+survivor set and $A\subseteq\N$ the integer one.  The profinite
+and integer objects are never identified.
+\end{definition}
+
+Since $\cU$ is open, $\mu(\cU)$ exists, and therefore
+\emph{$\nu$ always exists}, with no hypothesis on the system.  This is the
+first gain of the profinite viewpoint: the candidate value of
+the answer is available before anything has been proved.
+
+\begin{lemma}\label{lem:compat}
+Two classes $(n,a)$ and $(n',a')$ have a common solution if and
+only if $a\equiv a'\pmod{\gcd(n,n')}$, and this holds if and
+only if $B(n,a)\cap B(n',a')\ne\emptyset$.  A family of classes
+is pairwise compatible if and only if it has a simultaneous
+solution \emph{in $\Zhat$}, equivalently if and only if the
+corresponding balls have a common point.  For infinite families
+that solution need not be an integer; see
+Remark~\ref{rem:notaligned}.
+\end{lemma}
+
+\begin{proof}
+The first assertion is the two-modulus case of the Chinese
+remainder theorem.  For the second, note that
+$\Zhat\cong\prod_p\mathbb{Z}_p$ and a ball is the product of its
+$p$-adic components.  In $\mathbb{Z}_p$ balls are ultrametric:
+if two intersect then one contains the other.  Hence any finite
+pairwise-intersecting family has a ball of smallest radius,
+which is contained in all the others, so the family has the
+finite intersection property; compactness of $\mathbb{Z}_p$
+then gives a nonempty intersection in each coordinate.
+\end{proof}
+
+\begin{definition}
+A \emph{channel} is a pairwise compatible family of classes; by
+Lemma~\ref{lem:compat} this is exactly a family of balls sharing
+a common point of $\Zhat$.  A channel is \emph{aligned} if that
+common point may be taken in $\mathbb{Z}$, i.e.\ if there is an
+integer $c$ with $a_i\equiv c\pmod{n_i}$ for all its members.
+The \emph{drift} of a family is $\sum 1/n_i$.
+\end{definition}
+
+\begin{remark}\label{rem:notaligned}
+The two notions coincide for finite families, where the Chinese
+remainder theorem produces an integer solution modulo the lcm,
+but not in general.  An infinite channel has a common point of
+$\Zhat$, and $\Zhat$ is uncountable while $\mathbb{Z}$ is
+countable, so a coherent sequence of residues modulo $2^k$ may
+be chosen avoiding every integer; the resulting family is
+pairwise compatible but aligned to no integer.  The distinction
+is not cosmetic: the translation argument of
+Theorem~\ref{thm:transl} requires an integer, so it applies to
+aligned channels only.
+\end{remark}
+
+\section{The unconditional half}\label{sec:upper}
+
+\begin{theorem}\label{thm:upper}
+For every system, $\overline{\delta}_{\log}(A)\le\nu$.  No
+hypothesis on the moduli or residues is required.
+\end{theorem}
+
+\begin{proof}
+Fix $N$ and let $A_N$ be the survivor set of the first $N$
+classes.  The truncated condition $x\equiv a_i$ and $x\ge n_i$
+differs from the profinite condition $x\in B_i$ only at
+$x=a_i\bmod n_i$ when that representative is smaller than $n_i$,
+so the two survivor sets of the first $N$ classes differ by at
+most $N$ integers.  A finite set has density zero, and the
+profinite survivor set of finitely many classes is a finite
+union of residue classes, hence periodic; so $A_N$ has a natural
+density and a logarithmic density, both equal to
+$\nu_N:=\mu(\Zhat\setminus\bigcup_{i\le N}B_i)$.  Since
+$A\subseteq A_N$ we get $\overline{\delta}_{\log}(A)\le\nu_N$
+for every $N$, and $\nu_N\downarrow\nu$ by continuity of measure
+from above.
+\end{proof}
+
+\begin{corollary}\label{cor:nuzero}
+If $\nu=0$ then $\dlog(A)$ exists and equals $0$.
+\end{corollary}
+
+\begin{proof}
+By Theorem~\ref{thm:upper}, $\overline{\delta}_{\log}(A)\le\nu=0$,
+and logarithmic densities are non-negative.
+\end{proof}
+
+\medskip\noindent\textbf{Thresholds.}
+Passing to a cylinder, as we shall do repeatedly, changes the
+point at which a class begins to kill.  A \emph{threshold
+system} consists of classes $(n_i,a_i;t_i)$, the class killing
+the integers $x\ge t_i$ with $x\equiv a_i\pmod{n_i}$, where
+$1\le t_i\le n_i$ and, for some constant $M'$ and all but
+finitely many $i$, $t_i\ge n_i/M'$.  The systems of the
+introduction are the case $t_i=n_i$.  Thresholds are invisible
+to every profinite quantity, since balls do not see them.  On
+the integer side they enter in exactly four ways.  A finite
+head remains periodic up to finitely many integers.  The
+harmonic sum of a class over $[1,X]$ is at most
+$(\log X+1)/n_i+1/t_i\le(\log X+1+M')/n_i$, so every tail
+bound of the form $\sum_{\text{tail}}(\log X+O(1))/n_i$ keeps
+its shape with a larger constant.  And a class whose induced
+condition is a pure divisibility $m\mid y$ is unchanged by a
+threshold at most $m$, since the only multiple of $m$ below $m$
+is $0$.  Finally, a class of modulus $n$ lying inside a cylinder
+of modulus $d$ kills only integers $x\ge t_i\ge n/M'\ge d/M'$,
+so its kills lie in $C\cap[d/M',\infty)$, whose harmonic sum up
+to $X$ is at most $(\log X+\log M'+M')/d$: the tail bounds of
+Section~\ref{sec:reductions}, which sum such quantities over cylinders, keep their
+shape with a larger constant.  Every result of this paper is
+stated for standard systems and holds for threshold systems with
+the same proof, thresholds entering only through these four
+facts: Theorems~\ref{thm:upper} and~\ref{thm:D} through the
+first, Theorem~\ref{thm:conv} and Lemma~\ref{lem:tail} through
+the second, Theorem~\ref{thm:bounded} through the third, and
+Theorems~\ref{thm:exhaust}, \ref{thm:confined} and
+Lemma~\ref{lem:light} through the fourth, with the system's
+constant $M'$ in place of $1$.  Induced systems arise in two
+ways only.  Theorems~\ref{thm:bounded}, \ref{thm:cyl}
+and~\ref{thm:cylapp} restrict to the cylinders of one fixed
+modulus $M$, and Lemma~\ref{lem:restrict} gives those induced
+systems the constant $2MM'$; the tree theorem restricts to the
+finitely many cells of one fixed depth, each with its own such
+constant.  No argument restricts repeatedly with unbounded
+moduli: the reduction theorems of
+Section~\ref{sec:reductions} act on the original system, and the
+fourth fact bounds their tail kills by the original thresholds.
+The correspondence between a system and an induced one holds up
+to the finitely many integers below the cylinder's modulus,
+which no density sees.
+
+\begin{lemma}[Restriction]\label{lem:restrict}
+Let $c+M\mathbb{Z}$ be a cylinder with $0\le c<M$ and write
+$x=c+My$, $y\ge1$.  A class
+$(n,a;t)$ either misses the cylinder, when
+$\gcd(n,M)\nmid a-c$, or becomes in $y$ the class of modulus
+$m=n/\gcd(n,M)$, with the residue determined by $a$ and $c$, and
+threshold $t'=\max\bigl(1,\lceil(t-c)/M\rceil\bigr)\le m$.  For
+all but finitely many classes $t'\ge m/(2MM')$, so the induced
+family is a threshold system, and, apart from the finitely
+many integers below $M$, the integers of the cylinder surviving
+the original system are exactly $c+My$ for $y$ surviving the
+induced one.
+\end{lemma}
+
+\begin{proof}
+The congruence $c+My\equiv a\pmod n$ has a solution iff
+$\gcd(n,M)\mid a-c$, and then its solutions form one class
+modulo $m$.  The condition $c+My\ge t$ is $y\ge(t-c)/M$, and
+$(t-c)/M\le n/M\le m$.  Since $t\ge n/M'$ for all but finitely
+many classes, $t'\ge n/(MM')-1\ge m/(MM')-1\ge m/(2MM')$ once
+$m\ge2MM'$, which excludes only the finitely many classes with
+$n\le 2M^2M'$ (finitely many, a system having at most $n$
+classes of modulus $n$).  The last sentence is the definition of the
+induced system.
+\end{proof}
+
+\begin{remark}[Rogers' theorem]\label{rem:rogers}
+The measure $\nu$ is largest when all residues vanish.  A
+theorem communicated by Rogers and published only in
+Halberstam and Roth~\cite[Ch.~V]{HaRo66} -- see Tao's
+exposition~\cite{TaoRogers} -- states that in a finite cyclic
+group the union of cosets $a_j+H_j$ is at least as large as the
+union of the subgroups $H_j$.  Applied in $\mathbb{Z}/L_N\mathbb{Z}$
+to the first $N$ classes and letting $N\to\infty$, it gives
+$\nu\le\nu_{\mathrm{al}}$, where $\nu_{\mathrm{al}}$ is the profinite survivor measure
+of the aligned system, which by Davenport--Erd\H{o}s is the
+logarithmic density of the integers divisible by no modulus.
+With Theorem~\ref{thm:upper} the chain
+$\overline{\delta}_{\log}(A)\le\nu\le\nu_{\mathrm{al}}=\dlog\{m:\ n_i\nmid m
+\ \forall i\}$ shows that the survivors of \emph{any} residue
+choice have upper logarithmic density at most the logarithmic
+density of the non-multiples of the same moduli.
+The inequality runs the wrong way for the open half of the
+problem, which is a lower bound on the survivors.
+\end{remark}
+
+So every system whose survivors vanish in measure is settled by
+the upper bound alone, with no further hypothesis; the open
+problem lives entirely in the range $\nu>0$.
+
+The whole content of Erd\H{o}s's question is therefore the
+reverse inequality
+$\underline{\delta}_{\log}(A)\ge\nu$, which asserts that the
+classes beyond any finite head destroy no more than their own
+measure.
+
+\section{Two lemmas on sets of multiples}\label{sec:lemmas}
+
+We isolate two facts used in Sections~\ref{sec:regimes}--\ref{sec:reductions}.  Write $M(D)$
+for the set of positive multiples of members of $D$, and
+$D^{(N)}$ for the $N$ smallest members of $D$.
+
+\begin{lemma}[Vanishing tails]\label{lem:tail}
+Let $D$ be a set of moduli and let $D_1\subseteq D_2\subseteq
+\cdots$ be any increasing exhaustion of $D$ by finite sets.
+Then $\dlog\bigl(M(D)\setminus M(D_N)\bigr)\to0$ as
+$N\to\infty$.  In particular this holds for $D_N=D^{(N)}$, the
+$N$ smallest members.
+\end{lemma}
+
+\begin{proof}
+Each $M(D_N)$ is a finite union of sets of multiples, hence
+periodic, so it has a natural density $\delta(M(D_N))$, and
+these increase with $N$ because the sets do.  The family
+$(D_N)$ is cofinal in the directed family of finite subsets of
+$D$: every finite $F\subseteq D$ lies in some $D_N$, since
+$F$ is finite and the $D_N$ exhaust $D$.  Therefore
+\[
+  \lim_N\delta\bigl(M(D_N)\bigr)
+  \ =\ \sup_{F\subseteq D\ \text{finite}}\delta\bigl(M(F)\bigr)
+  \ =\ \dlog\bigl(M(D)\bigr),
+\]
+the last equality being the theorem of Davenport and Erd\H{o}s
+\cite{DE1936,DE1951} (see \cite[Ch.~0]{Hall}), which in
+particular gives that $M(D)$ has a logarithmic density.  Note
+that the limit is thus the same for every exhaustion, not only
+for the one by the $N$ smallest members.
+
+The union
+\[
+  M(D)=M(D_N)\ \sqcup\ \bigl(M(D)\setminus M(D_N)\bigr)
+\]
+is disjoint, and logarithmic density is finitely additive on
+disjoint sets whenever two of the three quantities exist; here
+$M(D)$ and $M(D_N)$ both have logarithmic densities, so the
+difference set has one, equal to
+$\dlog(M(D))-\delta(M(D_N))$, which tends to $0$.
+\end{proof}
+
+\begin{lemma}[Weighted Davenport--Erd\H{o}s]\label{lem:weight}
+Let $\varphi:\N\to[0,1]$ satisfy $\varphi(d)\le\varphi(n)$
+whenever $d\mid n$.  Then
+$\lim_{X\to\infty}\frac{1}{\log X}\sum_{n\le X}\varphi(n)/n$
+exists.
+\end{lemma}
+
+\begin{proof}
+If $\varphi\equiv0$ the assertion is trivial, so assume
+$\varphi(n_0)>0$ for some $n_0$; then
+$F(\sigma):=\sum_{n\ge1}\varphi(n)n^{-\sigma}>0$ for
+$\sigma>1$, and division by $F$ below is legitimate.  The series
+converges absolutely for $\sigma>1$ since $\varphi\le1$.
+Monotonicity gives
+\[
+  \sum_{d\mid n}\varphi(d)\Lambda(n/d)
+  \ \le\ \varphi(n)\sum_{d\mid n}\Lambda(n/d)
+  \ =\ \varphi(n)\log n,
+\]
+the inequality that drives the Davenport--Erd\H{o}s argument and
+which reappears as \eqref{eq:lemma1} below.
+Multiplying by $n^{-\sigma}$ and summing, the left side is the
+Dirichlet convolution $F(\sigma)\cdot(-\zeta'/\zeta)(\sigma)$
+and the right side is $-F'(\sigma)$, so
+\[
+  -F'(\sigma)\ \ge\ F(\sigma)\Bigl(-\frac{\zeta'}{\zeta}\Bigr)
+  (\sigma),
+  \qquad\text{i.e.}\qquad
+  \frac{d}{d\sigma}\log\frac{F(\sigma)}{\zeta(\sigma)}\ \le\ 0 .
+\]
+Hence $F/\zeta$ is non-increasing on $(1,\infty)$ and takes
+values in $[0,1]$, so $L=\lim_{\sigma\to1^+}F(\sigma)/\zeta(\sigma)$
+exists.  Since $(\sigma-1)\zeta(\sigma)\to1$ we get
+$(\sigma-1)F(\sigma)\to L$, and as the coefficients $\varphi(n)$
+are non-negative, Karamata's Tauberian theorem for the
+Laplace--Stieltjes transform of the non-decreasing function
+$t\mapsto\sum_{\log n\le t}\varphi(n)/n$ (see
+\cite[Ch.~II.7]{Tenenbaum}) converts $(\sigma-1)F(\sigma)\to L$
+into $\sum_{n\le X}\varphi(n)/n\sim L\log X$, the stated
+logarithmic mean.  Note that
+nothing beyond $0\le\varphi\le1$ and divisibility-monotonicity
+was used; in particular $\varphi$ need not be an indicator
+function, which is the case of Davenport--Erd\H{o}s.
+\end{proof}
+
+\section{Five regimes in which the reverse inequality holds}\label{sec:regimes}
+
+\begin{theorem}[Convergent drift]\label{thm:conv}
+If $\sum_i 1/n_i<\infty$ then $\dlog(A)$ exists and equals
+$\nu$, for every choice of residues.
+\end{theorem}
+
+\begin{proof}
+We first record the harmonic union bound, which is what the
+logarithmic setting requires: a bound on natural density would
+not suffice, since a set of small natural density can carry
+large logarithmic mass.
+
+The elements of $K_i$ below $X$ are at least $n_i$ and lie in an
+arithmetic progression of modulus $n_i$, so the $j$th of them is
+at least $j\,n_i$; hence
+\[
+  \frac{1}{\log X}\sum_{x\in K_i,\ x\le X}\frac1x
+  \ \le\ \frac{1}{n_i\log X}\sum_{j\le X/n_i}\frac1j
+  \ \le\ \frac{1}{n_i}\Bigl(1+\frac{1}{\log X}\Bigr).
+\]
+Summing and using $1_{\bigcup K_i}\le\sum 1_{K_i}$ pointwise,
+\[
+  \limsup_{X\to\infty}\frac{1}{\log X}
+  \sum_{x\in\bigcup_{i>N}K_i,\ x\le X}\frac1x
+  \ \le\ \sum_{i>N}\frac1{n_i}.
+\]
+
+Now given $\varepsilon>0$ choose $N$ with
+$\sum_{i>N}1/n_i<\varepsilon$.  Then $A\subseteq A_N$ and
+$A_N\setminus A\subseteq\bigcup_{i>N}K_i$, whose upper
+logarithmic density is below $\varepsilon$ by the display above.
+Since $A_N$ is periodic apart from a finite symmetric
+difference with the profinite survivor set of the first $N$
+classes, $\dlog(A_N)=\nu_N$; hence the upper and lower
+logarithmic
+densities of $A$ satisfy
+$\nu_N-\varepsilon\le\underline{\delta}_{\log}(A)
+\le\overline{\delta}_{\log}(A)\le\nu_N$, so they differ by at
+most $\varepsilon$.  As $\varepsilon$ was
+arbitrary they agree, and by Theorem~\ref{thm:upper} the common
+value is $\nu$.
+\end{proof}
+
+\begin{lemma}[Disjointness bound]\label{lem:A}
+If the classes are pairwise incompatible then
+$\sum_i 1/n_i\le 1$, and the constant $1$ is attained.
+\end{lemma}
+
+\begin{proof}
+Incompatible classes have no common solution, so the sets $K_i$
+are pairwise disjoint; each has density $1/n_i$ since truncation
+removes finitely many elements.  For any finite subfamily the
+disjoint union lies in $\N$, giving $\sum 1/n_i\le1$; take the
+supremum.  Attainment: the class $(2,0)$ together with $(12,r)$
+for the six odd $r$ is pairwise incompatible and has drift
+$\tfrac12+6\cdot\tfrac1{12}=1$.  (Before truncation these
+residue classes cover $\mathbb{Z}$; after truncation the odd
+integers below $12$ survive, which does not affect the drift
+computation.)
+\end{proof}
+
+\begin{theorem}[Incompatible systems]\label{thm:H}
+If the classes are pairwise incompatible then the natural
+density of $A$ exists and equals $1-\sum_i 1/n_i$; in
+particular $\dlog(A)$ exists and equals $\nu$.
+\end{theorem}
+
+\begin{proof}
+The $K_i$ are pairwise disjoint, so for each $N$ the density of
+$\bigcup_{i\le N}K_i$ is exactly $\sum_{i\le N}1/n_i$, giving
+$\underline{\delta}\bigl(\bigcup_i K_i\bigr)\ge\sum_{i\le N}1/n_i$
+for every $N$.  For the reverse bound, the elements of $K_i$
+below $X$ are at least $n_i$ and lie in a progression of modulus
+$n_i$, so there are at most $X/n_i$ of them; disjointness then
+gives $\bigl|\bigcup_i K_i\cap[1,X]\bigr|\le X\sum_i 1/n_i$,
+whence $\overline{\delta}\le\sum_i 1/n_i$.  By
+Lemma~\ref{lem:A} that sum converges, so upper and lower
+densities agree.
+\end{proof}
+
+\begin{theorem}[Coprime divergence]\label{thm:D}
+If some pairwise coprime subfamily has divergent drift then
+$A$ has density $0$, and $\dlog(A)=0=\nu$.
+\end{theorem}
+
+\begin{proof}
+Coprime moduli give independent kill events by the Chinese
+remainder theorem, so the survivor density through the first
+$N$ members of the subfamily is exactly $\prod(1-1/n_i)$, which
+tends to $0$ when $\sum 1/n_i$ diverges.  Above the largest of
+those $N$ moduli, $A$ is contained in each of these periodic
+sets, so $\delta(A)=0$.  The same product tends to
+$0$ in measure, so $\nu=0$.
+\end{proof}
+
+The coprime hypothesis can be replaced by a second-moment
+condition on the kills, grouped by smallest prime.
+
+\begin{theorem}[Quasi-independence]\label{thm:quasi}
+For each prime $p$ let $\Kh_p\subseteq\Zhat$ be the union of the
+balls of the classes whose modulus has smallest prime factor
+$p$.  If $\sum_p\mu(\Kh_p)=\infty$ and
+\[
+\limsup_{N\to\infty}\
+\frac{\sum_{p,p'\le N}\mu(\Kh_p\cap \Kh_{p'})}
+     {\bigl(\sum_{p\le N}\mu(\Kh_p)\bigr)^2}<\infty,
+\]
+then $\nu=0$, and hence $\dlog(A)=0$.
+\end{theorem}
+
+\begin{proof}
+Haar measure on $\Zhat=\prod_\ell\mathbb{Z}_\ell$ is the product
+of the Haar measures of the coordinates, so the coordinates are
+independent.  Every prime dividing a modulus with smallest prime
+factor $p$ is at least $p$, so $\Kh_p$ is determined by the
+coordinates at primes $\ell\ge p$.  Hence
+$E=\{x:\ x\in \Kh_p\text{ for infinitely many }p\}$ lies in the
+tail $\sigma$-algebra of the coordinates, and by Kolmogorov's
+zero--one law $\mu(E)\in\{0,1\}$.  The Kochen--Stone
+lemma~\cite{KS}, the second-moment form of Borel--Cantelli,
+gives under the two hypotheses
+$\mu(E)\ge1/\limsup_N(\cdots)>0$.  So $\mu(E)=1$.  Every point
+of $E$ lies in a ball, so the survivor set in $\Zhat$ is
+contained in $\Zhat\setminus E$ and $\nu=0$;
+Corollary~\ref{cor:nuzero} finishes.
+\end{proof}
+
+The hypothesis that $\Kh_p$ be indexed by smallest primes is
+only a way of forcing the sets to move off to infinity in the
+coordinates.  What the proof uses is the following, and it will
+be needed in a case where the index is not a prime at all.
+
+\begin{lemma}[Escaping families]\label{lem:escape}
+Let $(\Kh_j)$ be one countable family of measurable subsets of
+$\Zhat$, and for each $P$ let $\mathcal{K}_P$ be the set of its
+members determined by the coordinates at primes exceeding $P$;
+these sets decrease as $P$ grows.  Suppose
+that for every $P$ the members of $\mathcal{K}_P$ can be
+enumerated so that their measures have divergent sum and the
+second-moment ratios along some subsequence of that
+enumeration have limsup at most a constant $\rho$ independent of
+$P$.  Then almost every point of $\Zhat$
+lies in infinitely many $\Kh_j$.
+\end{lemma}
+
+\begin{proof}
+Fix $P$ and let $E_P$ be the set of points lying in infinitely
+many members of $\mathcal{K}_P$.  Kochen--Stone~\cite{KS} gives
+$\mu(E_P)\ge1/\rho$.  The families $\mathcal{K}_P$ decrease as
+$P$ grows, so the $E_P$ decrease, and $\mu(\bigcap_PE_P)
+=\lim_P\mu(E_P)\ge1/\rho>0$.  Each $E_P$ is determined by the
+coordinates above $P$, so the intersection lies in the tail
+$\sigma$-algebra and has measure $1$ by Kolmogorov's zero--one
+law.  It is contained in the set of points lying in infinitely
+many $\Kh_j$.
+\end{proof}
+
+\begin{remark}
+The distinction matters.  In Theorem~\ref{thm:quasi} the sets
+are indexed by their smallest prime and escape automatically.
+In Theorem~\ref{thm:overlap} below they are indexed by pairs of
+primes, and infinitely many of them involve any given small
+prime, so the set of points covered infinitely often is
+\emph{not} a tail event; only after discarding the pairs that
+touch the first $\pi(P)$ primes does the argument apply, and it
+is the limit over $P$ that restores the zero--one law.
+\end{remark}
+
+\begin{remark}
+Theorem~\ref{thm:D} is the case in which the subfamily's
+smallest primes are distinct and each $\Kh_p$ is a single ball:
+then $\mu(\Kh_p\cap \Kh_{p'})=\mu(\Kh_p)\mu(\Kh_{p'})$ by the Chinese
+remainder theorem and the ratio tends to $1$.  Read in
+contrapositive the theorem is a structure statement: a system
+with $\nu>0$ has either $\sum_p\mu(\Kh_p)<\infty$ -- the kills
+through each smallest prime are summable, as when the smallest
+primes of the moduli are themselves sparse -- or smallest-prime
+kills so positively correlated that the ratio is unbounded.
+The many-protector systems of Section~\ref{sec:reductions} fall on either side
+according to the sparsity of the protectors: a class $p_jm$ has
+smallest prime $\min(p_j,p(m))$, so $\Kh_p$ collects only the
+protectors $p_j\ge p$ and $\sum_p\mu(\Kh_p)\approx\sum_j\pi(p_j)/p_j$,
+convergent for exponentially sparse $p_j$ and divergent for
+polynomially sparse ones, where positive survivor measure then
+forces the correlated branch.  Divergent drift alone gives
+neither.
+\end{remark}
+
+\begin{theorem}[Translation]\label{thm:transl}
+If all classes satisfy $a_i\equiv c\pmod{n_i}$ for one fixed
+integer $c\ge0$, then $A=c+\{y:\ n_i\nmid y\ \text{for all }i\}$
+up to a finite set, where $y$ runs over the positive integers,
+and $\dlog(A)$ exists and equals $\nu$.
+\end{theorem}
+
+\begin{proof}
+For $x>c$ put $y=x-c\ge1$.  The class $(n_i,c\bmod n_i)$ kills
+$x$ iff $n_i\mid y$ and $x\ge n_i$; and if $n_i\mid y$ then
+$y\ge n_i$, so $x\ge n_i$ holds automatically, the threshold
+mattering only at $x=c$, which is excluded.  So apart from the
+finitely many $x\le c$, $x\in A$
+iff no $n_i$ divides $y$.  The set of such $y$ has a logarithmic
+density by Davenport--Erd\H{o}s, equal to the limit of the
+densities of its finite heads, which is $\nu$; translation by
+$c$ and a finite change preserve logarithmic density.
+\end{proof}
+
+\begin{remark}
+The hypothesis $c\ge0$ is necessary and the finiteness depends
+on it.  The exceptions are the integers lying below their
+class's truncation point, that is the representatives of $c$
+modulo each $n_i$.  For $c\ge0$ and $n_i>c$ that representative
+is $c$ itself, so at most $c+1$ distinct integers arise however
+many classes there are.  For $c<0$ this fails badly: with
+$c=-1$ the representative modulo $n$ is $n-1<n$, so \emph{every}
+class contributes a fresh exception and the symmetric difference
+is infinite.  Note also that an infinite aligned channel
+determines $c$ uniquely, since two aligning integers would
+differ by a multiple of arbitrarily large moduli; so $c$ cannot
+be normalised to be nonnegative.  Theorem~\ref{thm:chan} is
+therefore proved below without appealing to this theorem.
+\end{remark}
+
+\begin{theorem}[Finitely many aligned channels]\label{thm:chan}
+If the classes are a union of finitely many \emph{aligned}
+channels then $\dlog(A)$ exists and equals $\nu$.
+\end{theorem}
+
+\begin{proof}
+Let $C_1,\dots,C_r$ be the channels, $c_j$ the integer aligning
+$C_j$, and $D_j$ the set of moduli occurring in $C_j$.  We argue
+without any sign hypothesis on $c_j$, and in particular without
+invoking Theorem~\ref{thm:transl}.
+
+Fix $N$ and let $D_j^{(N)}$ consist of the
+$\min\{N,|D_j|\}$ smallest members of $D_j$, so that
+$D_j^{(N)}=D_j$ once $N\ge|D_j|$; channels with
+$D_j^{(N)}=\varnothing$ contribute nothing and are omitted from
+the maximum defining $B(N)$ below.  Let $S_N$ be the survivor
+set of the finitely many classes of the channels whose moduli
+lie in the respective $D_j^{(N)}$, each channel being a set of
+classes and the classes assigned to it exhausted by modulus.  Being a finite union
+of residue classes, $S_N$ is periodic and has a density $d_N$
+equal to its logarithmic density.
+
+We claim that for every $x$ exceeding
+$B(N):=\max_j\bigl(\max D_j^{(N)}+|c_j|\bigr)$,
+\[
+  x\in S_N\setminus A
+  \ \Longrightarrow\
+  x-c_j\in M(D_j)\setminus M\bigl(D_j^{(N)}\bigr)
+  \ \text{for some } j,
+\]
+where $M(D)$ is the set of positive multiples of members of $D$.
+Indeed such an $x$ is killed by some class $(n,a)$ of some $C_j$
+with $n\notin D_j^{(N)}$, so $n\mid x-c_j$, and $x>|c_j|$ makes
+$x-c_j$ positive, whence $x-c_j\in M(D_j)$.  And $x$ survives
+every head class, so for $x$ larger than every head modulus we
+have $m\nmid x-c_j$ for all $m\in D_j^{(N)}$, that is
+$x-c_j\notin M(D_j^{(N)})$.
+
+By Lemma~\ref{lem:tail},
+$\dlog\bigl(M(D_j)\setminus M(D_j^{(N)})\bigr)\to0$ as
+$N\to\infty$, and logarithmic density is invariant under
+translation by a fixed integer of either sign, up to discarding
+finitely many initial terms -- which the bound $B(N)$ above has
+already excluded.  Given
+$\varepsilon>0$ choose $N$ so that these $r$ quantities total
+less than $\varepsilon$.  Since $A\subseteq S_N$ and
+$S_N\setminus A$ is contained, apart from the at most $B(N)$
+integers below the bound, in
+$\bigcup_j\bigl(c_j+(M(D_j)\setminus M(D_j^{(N)}))\bigr)$, the
+upper and lower logarithmic densities of $A$ each lie within
+$\varepsilon$ of $d_N$.  As $\varepsilon$ was arbitrary,
+$\dlog(A)$ exists; and since $d_N=\nu_N\downarrow\nu$ while the
+tail bound tends to $0$, its value is $\nu$.
+\end{proof}
+
+\begin{remark}
+The hypothesis that the channels be \emph{aligned} cannot be
+dropped from the proof: by Remark~\ref{rem:notaligned} an
+infinite channel need not admit an integer translate, and
+without one Theorem~\ref{thm:transl} does not apply.  Whether
+the conclusion survives for merely compatible channels we do not
+know; such a channel has unbounded misaligned parts, beyond
+the reach of Theorem~\ref{thm:bounded}, and none of the later
+reductions is tailored to it.
+\end{remark}
+
+Two structural facts produce compatible channels, which are
+aligned when finite and so feed Theorem~\ref{thm:chan} in that
+case.  Pairwise
+coprime classes are automatically compatible, since $\gcd=1$
+makes the residue condition vacuous.  And if a subfamily has
+$\gcd(n_i,n_j)=d$ for every pair, then partitioning it by
+residue modulo $d$ yields at most $d$ channels, one for each
+residue class that actually occurs, so divergent drift for the
+family forces divergent drift for one of them, carrying at least
+$1/d$ of the total.
+
+\section{Where Davenport--Erd\H{o}s stops}\label{sec:destop}
+
+The engine of the Davenport--Erd\H{o}s argument
+\cite{DE1936} is the inequality
+\begin{equation}\label{eq:lemma1}
+  f(n)\log n\ \ge\ \sum_{d\mid n} f(d)\Lambda(n/d),
+\end{equation}
+where $f$ is the indicator of the killed set.  Its proof uses
+one property and nothing else: the killed set is closed upward
+under divisibility, so $f(d)\le f(n)$ whenever $d\mid n$, and
+the right side is at most $f(n)\sum_{d\mid n}\Lambda(n/d)=f(n)\log n$.
+
+\begin{proposition}\label{prop:break}
+Shifted classes destroy that closure, and \eqref{eq:lemma1}
+fails.  Consider the finite system with moduli
+$2\le n\le 39$ and $a_n=1$.  Then $31$ is killed while $62$ is
+not, so the killed set is not closed upward under divisibility;
+and \eqref{eq:lemma1} fails at $n=42$, where the left side is
+$0$ while the divisors $6$, $14$ and $21$ are all killed, giving
+a right side of $\log 2+\log 3+\log 7>3.7$.
+\end{proposition}
+
+\begin{remark}
+The restriction to a finite head is not a defect of the example
+but a feature of the setting.  In the full system $(n,1)$,
+$n\ge2$, every $x\ge3$ is killed by the class $n=x-1$, so
+\eqref{eq:lemma1} holds trivially with equality.  The
+Davenport--Erd\H{o}s argument is applied to the finite heads
+$U_k$ and passed to the limit, so it is exactly at the finite
+heads that \eqref{eq:lemma1} must hold, and exactly there that
+misalignment breaks it.
+\end{remark}
+
+\section{Bounded misalignment and cylinder decompositions}\label{sec:cyl}
+
+What survives is a splitting.
+
+\begin{definition}
+For a class $(n,a)$ write $n=uw$ with $\gcd(u,w)=1$ and
+$u\mid a$; call $u$ the \emph{aligned part} and the least such
+$w$ the \emph{misaligned part}.  Then
+\[
+  x\equiv a\ (\mathrm{mod}\ n)
+  \iff u\mid x \ \text{ and }\ x\equiv a\ (\mathrm{mod}\ w).
+\]
+\end{definition}
+
+\begin{theorem}\label{thm:bounded}
+If the misaligned parts all divide a fixed $M$, then $\dlog(A)$
+exists and equals $\nu$.
+\end{theorem}
+
+\begin{proof}
+Fix a residue $c$ modulo $M$ and write $C_c=\{x\equiv c\ (M)\}$.
+Since $w_i\mid M$, every $x\in C_c$ satisfies
+$x\equiv c\pmod{w_i}$, so class $i$ can kill some element of
+$C_c$ only when $a_i\equiv c\pmod{w_i}$: the cylinder
+\emph{selects} which classes act on it.  For the selected
+classes the remaining condition is $u_i\mid x$.  Writing
+\[
+  D_c=\{u_i:\ a_i\equiv c\ (\mathrm{mod}\ w_i)\},
+\]
+the killed set inside $C_c$ is therefore $M(D_c)\cap C_c$, up to
+the truncation.
+
+Let $U=\bigcup_i K_i$ be the killed integers, $U_r$ the union
+of the first $r$ of them, and
+$B_r=\max_{i\le r}n_i$.  If $x\in C_c$ lies in $U\setminus U_r$
+and $x>B_r$, then some class kills it, so $x\in M(D_c)$; and no
+class of the head kills it, so, $x$ exceeding every head
+modulus, $u_j\nmid x$ for every $u_j\in D_{c,r}$, where
+$D_{c,r}$ collects the selected $u_j$ with $j\le r$.  Hence
+\[
+  (U\setminus U_r)\cap C_c\ \subseteq\
+  \bigl(M(D_c)\setminus M(D_{c,r})\bigr)\cap C_c
+\]
+apart from the finitely many $x\le B_r$.
+
+Intersecting with $C_c$ only shrinks a set, so the upper
+logarithmic density of the left-hand side is at most that of
+$M(D_c)\setminus M(D_{c,r})$, which tends to $0$ as
+$r\to\infty$ by Lemma~\ref{lem:tail}, the sets $D_{c,r}$
+exhausting $D_c$.  Summing the $M$ cylinders,
+$\overline{\delta}_{\log}(U\setminus U_r)\to0$.
+
+Now given $\varepsilon>0$ choose $r$ with
+$\overline{\delta}_{\log}(U\setminus U_r)<\varepsilon$.  The set
+$U_r$ is a finite union of truncated progressions, hence
+periodic apart from finitely many integers, so it has a density
+$1-\nu_r$.  As $U_r\subseteq U\subseteq U_r\cup(U\setminus U_r)$,
+the upper and lower logarithmic densities of $U$ each lie within
+$\varepsilon$ of $1-\nu_r$, so they agree.  Hence $\dlog(U)$
+exists and equals $\lim_r(1-\nu_r)=1-\nu$, so $\dlog(A)$ exists
+and equals $\nu$.
+\end{proof}
+
+\begin{remark}\label{rem:gap}
+Two more obvious routes to this theorem do not work, and we
+record them because each looks plausible.  One cannot finish by
+applying Davenport--Erd\H{o}s cylinderwise: a set of multiples
+intersected with a fixed residue class modulo $M$ is not a set
+of multiples, and substituting $x=c+My$ turns divisibility into
+a congruence.  Nor does the divisibility-monotone weight
+\[
+  \varphi(x)=\tfrac1M\#\{c\bmod M:\ u_i\mid x\ \text{and}\
+  a_i\equiv c\ (\mathrm{mod}\ w_i)\ \text{for some }i\}
+\]
+suffice, though Lemma~\ref{lem:weight} does give it a
+logarithmic mean: $\varphi$ records the cylinders in which $x$
+\emph{would} be killed, whereas $x$ inhabits one cylinder, and
+the two quantities differ.  For the classes $(6,2)$, $(10,4)$,
+$(14,6)$, $(15,5)$, $(21,7)$ with $M=105$, at $X=2\cdot10^5$ one
+finds $F(X)=0.2812$, with $F$ the harmonic mass of the killed
+set defined in Section~\ref{sec:reduction}, against a logarithmic mean of $\varphi$
+equal to $0.2871$.  What makes the proof above work is that the
+cylinder \emph{selects} the acting classes, which is exactly
+what $w_i\mid M$ provides.
+\end{remark}
+
+The hypothesis can be relaxed, and the relaxation already
+reaches systems of unbounded misalignment.
+
+\begin{corollary}\label{cor:mixed}
+Suppose the classes split as $S_1\cup S_2$, where every
+misaligned part occurring in $S_1$ divides a fixed $M$, and
+$\sum_{i\in S_2}1/n_i<\infty$.  Then $\dlog(A)$ exists and
+equals $\nu$.  The misaligned parts of the system as a whole
+may be unbounded.
+\end{corollary}
+
+\begin{proof}
+Given $\varepsilon>0$ choose $N$ with
+$\sum_{i\in S_2,\ i>N}1/n_i<\varepsilon$ and let $T$ consist of
+$S_1$ together with the first $N$ members of $S_2$.  Every
+misaligned part occurring in $T$ divides
+$M'=\operatorname{lcm}(M,w_{i_1},\dots,w_{i_N})$, which is
+finite, so Theorem~\ref{thm:bounded} applies to $T$ and
+$\dlog(\operatorname{surv}T)=\nu_T$.  Now
+$A\subseteq\operatorname{surv}T$ and
+$\operatorname{surv}T\setminus A$ is contained in the union of
+the remaining members of $S_2$, whose upper logarithmic density
+is at most $\sum_{i\in S_2,\ i>N}1/n_i<\varepsilon$ by the
+harmonic bound of Theorem~\ref{thm:conv}.  Hence the upper and
+lower logarithmic densities of $A$ each lie within $\varepsilon$
+of $\nu_T$, and likewise $|\nu_T-\nu|\le\varepsilon$; let
+$\varepsilon\to0$.
+\end{proof}
+
+So unboundedness alone is not the obstruction: it must be
+unboundedness carrying divergent drift.  For the system $(n,1)$
+the misaligned parts are
+$2,3,\dots,n,\dots$, no finite $M$ exists, and the cylinder
+decomposition is infinite.
+
+A second extension reaches systems that Theorem~\ref{thm:bounded}
+and Corollary~\ref{cor:mixed} both miss.  On the cylinder
+$x\equiv c\pmod M$, write $x=c+My$; by Lemma~\ref{lem:restrict}
+the classes meeting the cylinder become a threshold system in
+$y$, the \emph{induced system} at $c$, whose survivors are
+exactly the indices of the integers of the cylinder surviving
+the original.
+
+\begin{theorem}[Cylinder decomposition]\label{thm:cyl}
+Suppose there is a modulus $M$ such that for every residue $c$
+modulo $M$ the induced system at $c$ either has profinite
+survivor measure $0$, or has bounded misaligned parts.  Then
+$\dlog(A)$ exists and equals $\nu$.
+\end{theorem}
+
+\begin{proof}
+The sets $A\cap C_c$ for $c$ modulo $M$ are disjoint with union
+$A$, and there are finitely many, so it suffices that each has a
+logarithmic density.  Fix $c$ and let $S$ be the survivor set of
+the induced system at $c$, so that $A\cap C_c=\{c+My:\ y\in S\}$.
+Then
+\[
+  \frac{1}{\log X}\sum_{t\in A\cap C_c,\ t\le X}\frac1t
+  =\frac{1}{\log X}\sum_{y\in S,\ y\le (X-c)/M}\frac{1}{c+My}
+  \ \longrightarrow\ \frac{1}{M}\,\dlog(S),
+\]
+since $1/(c+My)=\bigl(1+O(1/y)\bigr)/(My)$ and
+$\log\bigl((X-c)/M\bigr)/\log X\to1$.  By hypothesis $\dlog(S)$
+exists.  In the first case the induced system has profinite
+survivor measure $0$, so $\overline{\delta}_{\log}(S)\le0$ by
+Theorem~\ref{thm:upper} applied to that system, giving
+$\dlog(S)=0$; note that natural density $0$ would \emph{not}
+suffice here, since it does not imply vanishing logarithmic
+density.  In the second case Theorem~\ref{thm:bounded} applies and gives
+$\dlog(S)=\nu_c$, the survivor measure of the induced system.
+Summing over $c$, and using $\sum_c\nu_c/M=\nu$, gives the
+result.
+\end{proof}
+
+The hypothesis asks more than the argument needs: it is enough
+that almost every cylinder be resolved.
+
+\begin{theorem}[Approximate cylinder decomposition]\label{thm:cylapp}
+Suppose that for every $\varepsilon>0$ there is a modulus $M$
+such that the residues $c$ modulo $M$ whose induced system is
+neither of profinite survivor measure $0$ nor of bounded
+misaligned parts number fewer than $\varepsilon M$.  Then $\dlog(A)$ exists and equals $\nu$.
+\end{theorem}
+
+\begin{proof}
+Fix $\varepsilon$ and such an $M$, and split the residues into
+the resolved set $G$ and the rest $B$, with $|B|<\varepsilon M$.
+Write $C_G$ and $C_B$ for the corresponding unions of
+cylinders, so that $A=(A\cap C_G)\sqcup(A\cap C_B)$.  As in
+Theorem~\ref{thm:cyl}, $A\cap C_G$ is a finite disjoint union of
+sets each having a logarithmic density, so it has one; call it
+$g$.  And $A\cap C_B\subseteq C_B$, a union of $|B|$ residue
+classes modulo $M$, of logarithmic density $|B|/M<\varepsilon$.
+Hence
+\[
+  g\ \le\ \underline{\delta}_{\log}(A)
+   \ \le\ \overline{\delta}_{\log}(A)\ \le\ g+\varepsilon .
+\]
+The value $g$ depends on $\varepsilon$, but the gap bound does
+not; as $\varepsilon$ was arbitrary the upper and lower
+logarithmic densities agree, and since $g$ is the survivor
+measure of the resolved cylinders, which lies within
+$\varepsilon$ of $\nu$, the common value is $\nu$.
+\end{proof}
+
+\begin{remark}
+Theorem~\ref{thm:cyl} is the case $\varepsilon=0$.  The
+relaxation is reachable where the strict form is not: a fixed
+finite obstruction can touch every cylinder for small $M$ and
+only a vanishing share as $M$ grows, since a class of modulus
+$n$ meets $M/\gcd(n,M)$ of the $M$ residues.  What the relaxed
+hypothesis still demands, and what remains unproved in general,
+is that the unresolved share can be driven to $0$ at all.
+\end{remark}
+
+\begin{remark}
+Induced systems may repeat a modulus, whereas the systems of the
+introduction have strictly increasing ones.  This costs nothing:
+the proof of Theorem~\ref{thm:bounded} uses only the cylinder
+selection and Lemma~\ref{lem:tail}, neither of which refers to
+distinctness.
+
+The theorem is not vacuous, and covers a system the earlier
+results do not.  Take the doubled construction of Section~\ref{sec:routes}: its
+misaligned parts are the small primes $q$ and so are unbounded,
+and for any $M$ the classes excluded from
+Corollary~\ref{cor:mixed} are those with $q\nmid M$, whose drift
+$\sum_{q>Q}s/q$ diverges by Mertens -- so neither
+Theorem~\ref{thm:bounded} nor Corollary~\ref{cor:mixed}
+applies.  But at $M=2$ the odd cylinder carries no classes at
+all, and the even cylinder's induced system has profinite
+survivor measure $0$ -- its blocks are independent and the
+product of their factors tends to $0$ -- so
+Theorem~\ref{thm:cyl} gives its logarithmic density, which is
+$1/2$.
+\end{remark}
+
+One hope for verifying the hypothesis is that refining $M$
+might \emph{starve} cylinders of drift until they die.  It
+cannot: refinement is drift-invariant.
+
+\begin{proposition}[Drift invariance of refinement]\label{prop:driftinv}
+For every modulus $M$, the average over the $M$ cylinders of the
+induced drift equals the drift of the original system:
+\[
+  \frac1M\sum_{c\bmod M}\ \sum_{i\ \text{meeting}\ c}
+  \frac{\gcd(n_i,M)}{n_i}\ =\ \sum_i\frac1{n_i}.
+\]
+\end{proposition}
+
+\begin{proof}
+Write $g=\gcd(n_i,M)$.  The class $(n_i,a_i)$ meets the cylinder
+$c$ exactly when $g\mid a_i-c$, which happens for $M/g$ of the
+$M$ residues, and on such a cylinder its induced modulus is
+$n_i/g$, contributing induced drift $g/n_i$.  Its total
+contribution over all cylinders is therefore
+$(M/g)\cdot(g/n_i)=M/n_i$, independent of $M$.  Summing over $i$
+and dividing by $M$ gives the claim.
+\end{proof}
+
+\begin{remark}
+So refinement conserves drift on average: it cannot make every
+cylinder drift-poor, though divergent drift may concentrate on
+a small proportion of cylinders, as the doubled construction of
+Section~\ref{sec:routes} shows with $M=2$.  Whatever verifies
+the hypothesis of Theorem~\ref{thm:cylapp} must come from the
+arithmetic of the residues, not from thinning the drift.  This
+also explains why iterating the decomposition does not obviously
+terminate: the object being refined is invariant under the
+refinement.
+\end{remark}
+
+A useful special case identifies the cylinders by a coprimality
+criterion rather than by inspection.
+
+\begin{corollary}\label{cor:dense}
+Suppose there is a modulus $M$ such that, for every residue $c$
+modulo $M$, the induced system at $c$ contains a pairwise-coprime
+subfamily of divergent drift.  Then $\dlog(A)$ exists and equals
+$0$.
+\end{corollary}
+
+\begin{proof}
+Fix $c$.  By Theorem~\ref{thm:D} applied to the induced system
+at $c$, its survivor set has density $0$; the same product
+$\prod(1-1/n)\to0$ is its profinite survivor measure, which is
+therefore $0$ as well.  So every cylinder satisfies the first
+alternative of Theorem~\ref{thm:cyl}, giving that $\dlog(A)$
+exists, and each contributes $0$.
+\end{proof}
+
+\begin{remark}
+This settles the systems on which
+Proposition~\ref{prop:spike} is vacuous.  Take the moduli to be
+the even numbers, each carrying two classes, one with an even
+and one with an odd residue, the residues otherwise in
+\emph{general position} -- here and below, residues drawn
+independently and uniformly at random, statements about which
+are measurements of one such draw unless a theorem is cited.  No two moduli are
+coprime, so Theorem~\ref{thm:D} does not apply to the system
+itself; but a class $(2m,a)$ with $a$ even kills only even $x$,
+and writing $x=2y$ its condition becomes $y\equiv b\pmod m$, so
+on the even cylinder the induced moduli run over \emph{all}
+integers $m$ and contain the primes.  The classes with $a$ odd do
+the same on the odd cylinder.  Both cylinders then satisfy the
+hypothesis and the survivors vanish, as measured.
+
+The hypothesis also correctly excludes the aligned families,
+which survive: for the even moduli at residue $0$ the odd
+cylinder carries no classes at all, so it has no coprime
+subfamily of divergent drift, and the corollary does not apply --
+as it must not, since those survivors have density $1/2$.
+\end{remark}
+
+\section{Reduction theorems}\label{sec:reductions}
+
+The results so far resolve a system cylinder by cylinder.  The
+theorems of this section reduce a system to another one instead,
+and are the paper's principal positive results.  A first
+mechanism exhausts cylinders rather than resolving them.
+
+\begin{theorem}[Exhaustion as reduction]\label{thm:exhaust}
+Suppose the classes partition into groups $G_1,G_2,\dots$, where
+group $G_j$ kills only integers in a residue class
+$C_j=c_j+d_j\mathbb{Z}$, and suppose the induced system of
+$G_j$ on $C_j$ has profinite survivor measure $0$ for every $j$.
+Call $\{(d_j,c_j)\}$ the \emph{reduced system}, $A'$ its
+survivor set and $\nu'$ its survivor measure.  If $\dlog(A')$
+exists and equals $\nu'$, then $\dlog(A)$ exists and equals
+$\nu'=\nu$.
+\end{theorem}
+
+\begin{proof}
+Write $U'$ for the killed set of the reduced system, each
+reduced class $(d_j,c_j)$ being given the threshold
+$\min(d_j,\min_{i\in G_j}t_i)$, at most $d_j$ and at least
+$d_j/M'$, so that the reduced system is a threshold system with
+the same constant.  Since group $j$ kills only inside $C_j$ and only
+from its thresholds on, $U\subseteq U'$ exactly, so
+$\overline{\delta}_{\log}(U)\le\overline{\delta}_{\log}(U')$.
+Since the profinite unions of the two systems agree up to a
+null set, $\nu'=\nu$, and by hypothesis
+$\dlog(U')=1-\nu'=\lim_k\delta\bigl(\bigcup_{j\le k}C_j\bigr)$,
+the last equality because the finite unions have measures
+increasing to $1-\nu'$.  For
+the lower bound fix $k$: by Corollary~\ref{cor:nuzero} applied
+to the induced system on $C_j$, group $j$'s survivors inside
+$C_j$ have logarithmic density $0$, so
+$U\supseteq\bigcup_{j\le k}C_j$ up to a set of logarithmic
+density $0$, giving
+$\underline{\delta}_{\log}(U)\ge\delta\bigl(\bigcup_{j\le k}C_j\bigr)$
+for every $k$.  Letting $k\to\infty$ matches the upper bound.
+\end{proof}
+
+\begin{remark}
+The aligned case -- all $c_j\equiv c$ for one integer
+$c\ge0$ -- is the reduced system of Theorem~\ref{thm:transl};
+the sparse case $\sum1/d_j<\infty$ is that of
+Theorem~\ref{thm:conv}.  The theorem may be iterated: the
+reduced system may itself be exhausted by its own grouping,
+reducing further.  A \emph{tower} of depth two is exhibited
+below, evading the single-level form.
+\end{remark}
+
+\begin{remark}
+This theorem is not a curiosity: it covers a system that
+\emph{none} of the others reach, and which refutes the naive
+reduction discussed in Section~\ref{sec:reduction}.  Take sparse primes $p_j$ with
+$\sum1/p_j<\infty$, and let $G_j$ consist of the moduli $p_jm$
+with residue $\equiv1\pmod{p_j}$ and residues in general
+position modulo $m$.  Then $G_j$ kills only inside
+$C_j=\{x\equiv1\ (p_j)\}$, and within it acts as a full system
+with residues in general position, which dies.  The moduli have
+greatest common divisor $1$ and admit no finite prime cover,
+since $p_j$ itself is a modulus of $G_j$; the residues are
+misaligned; each group's drift diverges; and yet
+$\nu=\prod_j(1-1/p_j)>0$.  With
+$p_j\in\{11,197,439,691,977,1259\}$ the measured survivor
+density is $0.8995$, agreeing with the product to four
+decimals, each cylinder's survivor share is $0.0000$, and the
+complement's is $1.0000$.  So positive survivor measure against
+divergent misaligned drift does \emph{not} require a common
+factor: many protectors, one per group, suffice.
+
+Nor need the protecting cylinders be aligned.  Take three sparse
+primes $q_i$; for each, level-one classes $(q_im,c)$ with
+$c\equiv1\pmod{q_i}$ and $c$ in general position modulo $m$ --
+a misaligned family of $172$ cylinders -- and let each be
+exhausted by its own group of level-zero classes.  The
+level-zero system has gcd $1$, drift $2.26$, and $20{,}488$
+classes; its exhausted cylinders are not aligned, so a single
+application of Theorem~\ref{thm:exhaust} with the aligned
+reduced case does not reach it.  Two applications do: the
+level-zero system reduces to the level-one family, which reduces
+in turn to $\{(q_i,1)\}$, of convergent drift.  The measured
+survivor density is $0.9024$, agreeing with
+$\prod(1-1/q_i)$ to four decimals, every level-one cylinder
+having survivor share $0.0000$.
+\end{remark}
+
+Exhaustion suggests a majorant that needs no partition into
+groups.
+
+\begin{theorem}[Saturation]\label{thm:sat}
+Let $\mathcal{P}$ be the family of cylinders $C$ with
+$\mu(\Ahat\cap C)=0$ that are maximal under inclusion.  Then every
+class lies inside a member of $\mathcal{P}$; the union of
+$\mathcal{P}$ is the union of the balls up to a null set, so the
+system $\mathcal{P}$ has survivor measure $\nu$; $\mathcal{P}$ is
+\emph{saturated}, in that no proper coarsening of a member has
+null survivor measure while every cylinder of null survivor
+measure lies inside a member; and $\mathcal{P}$ admits no
+proper null coarsening, so that the reduction applied to
+$\mathcal{P}$ returns $\mathcal{P}$.  If the survivor set of $\mathcal{P}$ has
+logarithmic density equal to $\nu$, then so does $A$.
+\end{theorem}
+
+\begin{proof}
+A class $B_i$ has $\mu(\Ahat\cap B_i)=0$, and the cylinders
+containing it with null intersection form a family in which each
+coarsening divides the modulus, hence finite, so a maximal one
+exists.  Every member of $\mathcal{P}$ lies in the union of the
+balls up to a null set, meeting $\Ahat$ in a null set, which
+gives the union and the measure.  Saturation is maximality read
+twice, and since the profinite survivor set of $\mathcal{P}$ is $\Ahat$ up to a
+null set and $\mathcal{P}$ is determined by $\Ahat$ up to null sets, the reduction is
+idempotent.  For the density, a class inside $P\in\mathcal{P}$
+kills only integers at least its modulus, which is a multiple of
+$d_P$, while $P$ kills every integer at least $d_P$ in its
+residue class; so the kills of $\mathcal{P}$ contain those of the
+original exactly, $A\supseteq A_{\mathcal{P}}$, and
+$\underline{\delta}_{\log}(A)\ge\dlog(A_{\mathcal{P}})=\nu$, with
+Theorem~\ref{thm:upper} for the other inequality.
+\end{proof}
+
+\begin{remark}
+Unlike Theorem~\ref{thm:exhaust}, no partition of the classes
+into groups is involved -- the members of $\mathcal{P}$ may meet
+without nesting -- and the density statement is one-sided: the
+saturated system majorises the original, and a density for it
+passes down.  The consequence is that in attacking the problem
+one may assume the system saturated: its classes are the maximal
+holes of its survivor set, no proper coarsening is null, and any
+cylinder that dies is already inside a class.  The
+converse direction, that a density for $A$ forces one for
+$A_{\mathcal{P}}$, we have not proved and do not need.  On
+finite systems modulo $1260$ the reduction was computed exactly:
+a many-protector system of $1{,}062$ classes collapses to its two
+protectors, a coprime family of four primes is fixed, and on six
+random systems every class lies in a member, the union is
+reproduced, the reduction is idempotent and its output saturated.
+\end{remark}
+
+In the saturated form the classes are the holes of $A$, and
+Lemma~\ref{lem:escape}, read backwards, says what positive
+survivor measure forces of them.
+
+\begin{corollary}[Anchoring]\label{cor:anchor}
+Let the system be saturated with $\nu>0$, and for each $P$ let
+$\mathcal{H}_P$ be the classes whose moduli are coprime to every
+prime at most $P$, and let $\rho_P$ be the limsup of the
+second-moment ratios of $\mathcal{H}_P$ along the exhaustion by
+increasing modulus.  Then either $\sum_{\mathcal{H}_P}\mu(C)<\infty$
+for some $P$, in which case every class outside
+$\mathcal{H}_P$ lies in one of the finitely many cylinders
+$c+p\mathbb{Z}$ with $p\le P$; or $\sup_P\rho_P=\infty$.
+\end{corollary}
+
+\begin{proof}
+A class in $\mathcal{H}_P$ is determined by the coordinates at
+primes above $P$, and its points are all killed.  If the sums
+diverged for every $P$ and the $\rho_P$ were bounded by one
+constant, Lemma~\ref{lem:escape} would put almost every point in
+infinitely many classes, so $\nu=0$.  The alternative in the
+first case is the definition of $\mathcal{H}_P$: a modulus not
+coprime to the primes up to $P$ is divisible by one of them.
+\end{proof}
+
+\begin{remark}
+So a saturated system with survivors either splits, at some
+level $P$, into escapees of summable measure -- the hypothesis
+of Theorem~\ref{thm:confined} -- and classes anchored to a
+bounded family of prime cylinders, or its escapees are
+concentrated in a sense that strengthens without bound as $P$
+grows.  Writing $N(x)$ for the
+number of classes containing $x$, the second alternative says
+$\int N^2\gg(\int N)^2$ along the escapees: a set of small
+measure lies in an enormous number of holes.  That is the only
+place a counterexample can live.  We have not been able to convert
+such concentration into one of the organisations covered above.
+\end{remark}
+
+Exhaustion asks the groups to die.  They need not, if the
+cylinders confining them are sparse.
+
+\begin{theorem}[Summable protectors]\label{thm:confined}
+Suppose the classes partition into groups $G_1,G_2,\dots$, where
+group $G_j$ kills only integers in a residue class
+$C_j=c_j+d_j\mathbb{Z}$, that $\sum_j1/d_j<\infty$, and that for
+every $J$ the survivor set $A_J$ of $G_1\cup\dots\cup G_J$ has
+logarithmic density equal to its profinite survivor measure
+$\nu_J$.  Then $\dlog(A)$ exists and equals $\nu$.
+\end{theorem}
+
+\begin{proof}
+The profinite unions of the finite systems increase to that of
+the full system, so $\nu_J\downarrow\nu$, and by hypothesis
+$\dlog(A_J)=\nu_J$.  Since $A\subseteq A_J$,
+$\overline{\delta}_{\log}(A)\le\nu_J$ for every $J$, hence
+$\le\nu$.  The groups beyond $J$ kill only inside their cylinders, and
+only integers at least $d_j/M'$ by the fourth threshold fact
+($M'=1$ for a standard system); so
+$A\supseteq A_J\setminus\bigcup_{j>J}\bigl(C_j\cap[d_j/M',\infty)\bigr)$.
+A residue class modulo $d$ contributes at most
+$(\log X+\log M'+M')/d$ to the harmonic sum over $[d/M',X]$, so the union has
+upper logarithmic density at most $\sum_{j>J}1/d_j$, and
+$\underline{\delta}_{\log}(A)\ge\nu_J-\sum_{j>J}1/d_j$, which
+tends to $\nu$.
+\end{proof}
+
+\begin{remark}
+Theorem~\ref{thm:conv} is the case of singleton groups, each
+confined to its own ball, and Theorem~\ref{thm:exhaust} with
+summable protectors is the case of dying groups.  The point is
+that the groups need not die: Proposition~\ref{prop:irred2}
+below has divergent drift, positive survivor measure and no
+dying cylinder whatever, and this theorem covers it.
+\end{remark}
+
+Both reductions are instances of one structure, and that
+structure can be pushed to its limit.  A \emph{tree of
+cylinders} is a family $T$ of residue classes $c+d\mathbb{Z}$,
+$d\ge1$, containing $\mathbb{Z}$, any two of which are nested or
+disjoint, each member having finitely many maximal proper
+sub-members, its \emph{children}; a member's \emph{gap} is what
+its children leave uncovered, and its \emph{depth} is the number
+of its proper ancestors.  A system is \emph{coprime-layered} on
+$T$ if
+\begin{enumerate}
+\item[(T1)] $T$ is a tree of cylinders as just defined;
+\item[(T2)] every class is $(d_Cq,a)$ with $C=c+d_C\mathbb{Z}$ in
+$T$, $q$ prime and $a\equiv c\pmod{d_C}$: the class is
+\emph{attached} to $C$ and lies inside it;
+\item[(T3)] no class is contained in a class attached to a
+proper ancestor of its node;
+\item[(T4)] no attached prime divides the modulus of any node.
+\end{enumerate}
+Write $S_C=\sum1/q$ over the classes attached to $C$.  The
+nodes containing a point $x\in\Zhat$ form a chain, its
+\emph{branch}, and $g(x)=\sum_CS_C$ over that chain is the
+\emph{branch drift}; $g_D$ denotes the sum over the nodes of
+depth at most $D$.  Nothing here restricts the drift, the
+survivor measure, the alignment, or the depth.
+
+\begin{lemma}[Dying branches]\label{lem:dying}
+In a coprime-layered system, $\mu(\{g=\infty\}\cap
+\{\text{survivors}\})=0$.
+\end{lemma}
+
+\begin{proof}
+Fix a node $C$ of depth $D$ and a point $x\in C$ with index $t$,
+$x=c+d_Ct$.  A class attached to an ancestor $C'$ of $C$, or to
+$C$ itself, restricts on $C$ to a single residue class of $t$
+modulo its prime, because by (T4) the prime is coprime to
+$d_C/d_{C'}$; by (T3) two classes on the chain with the same
+prime restrict to different residues, and so do two classes at
+the same node with the same prime, being distinct balls with the
+same residue modulo $d_C$.  The index $t$ is
+uniformly distributed modulo any product of these primes, so the
+points of $C$ surviving the classes on the chain to $C$ have
+measure $\mu(C)\prod_q(1-k_q/q)\le\mu(C)e^{-g_D}$, with $k_q$
+the number of classes of prime $q$ on the chain.  The set
+$\{g_D>N\}$ is a union of nodes of depth at most $D$ and of
+gaps, on each of which the same bound holds with the chain to
+that cell, so $\mu(\{g_D>N\}\cap\{\text{survivors}\})\le e^{-N}$.
+Since $\{g=\infty\}\subseteq\bigcup_D\{g_D>N\}$ for every $N$,
+and the sets on the right increase with $D$, the survivors in
+$\{g=\infty\}$ have measure at most $e^{-N}$ for every $N$.
+\end{proof}
+
+\begin{lemma}[Light and heavy]\label{lem:light}
+In a coprime-layered system, for every $N>0$,
+$\underline{\delta}_{\log}(A)\ge\nu-\mu\{g>N\}$.
+\end{lemma}
+
+\begin{proof}
+Write $g_C$ for the branch drift summed to $C$ inclusive.  Call a
+class \emph{light} if $g_C\le N$ at its node, and call a node a
+\emph{first crossing} if $g_C>N$ while every proper ancestor has
+$g\le N$.  First crossings are pairwise disjoint, being
+non-nested members of $T$, and their union is exactly
+$\{g>N\}$.  The light classes have total drift
+$\sum_C\mu(C)S_C$ over nodes with $g_C\le N$, which is
+$\int\sum_{C\ni x,\ g_C\le N}S_C\,d\mu(x)\le N$, so by
+Theorem~\ref{thm:conv} their survivor set $A'$ has logarithmic
+density $\nu'\ge\nu$.  Every other class is attached to a node
+at or below a first crossing $C_j$, lies inside $C_j$, and kills
+only integers at least $d_j/M'$, by the fourth threshold fact.
+Hence $A\supseteq A'\setminus\bigcup_j(C_j\cap[d_j/M',\infty))$,
+and as in Theorem~\ref{thm:confined}
+$\underline{\delta}_{\log}(A)\ge\nu'-\sum_j1/d_j
+=\nu'-\mu\{g>N\}\ge\nu-\mu\{g>N\}$.
+\end{proof}
+
+\begin{theorem}[Coprime-layered trees]\label{thm:tree}
+For every coprime-layered system, $\dlog(A)$ exists and equals
+$\nu$.
+\end{theorem}
+
+\begin{proof}
+The upper bound is Theorem~\ref{thm:upper}.  For the lower bound
+fix $\eta,\varepsilon>0$.  Let $\mathcal{F}_D$ be the finite
+partition of $\Zhat$ into the nodes of depth $D$ and the
+residue classes composing the gaps of nodes of smaller depth,
+its \emph{cells}; each cell is a single residue class, and the
+partitions refine as $D$ grows, since a gap once formed is never
+subdivided.  The dying set $E=\{g=\infty\}$ is determined
+by the branch, hence measurable for
+$\mathcal{F}_\infty=\sigma(\bigcup_D\mathcal{F}_D)$, so by
+L\'evy's upward theorem~\cite{Williams} the conditional measure
+of $E$ in the cell containing $x$ tends to $1_E(x)$ for almost
+every $x$.  Choose $D$ so large that the cells in which the
+conditional measure of $E$ lies in $(\eta,1-\eta)$ -- the
+\emph{mixed} cells -- have total measure at most $\varepsilon$;
+call the remaining cells \emph{dying} or \emph{alive} according
+as that measure is at least $1-\eta$ or at most $\eta$.
+
+Let $C$ be an alive cell, a residue class.  The classes
+attached to $C$'s node, to its
+ancestors and to its descendants form, in the index $t$, a
+coprime-layered system with the same branch drift -- for a gap
+there are no descendants, and (T4) keeps the attached primes
+coprime to the modulus of $C$ -- whose survivor set is the index
+set of $A\cap C$ and whose survivor measure is
+$\nu_C=\mu(C\cap\{\text{survivors}\})/\mu(C)$.
+Lemma~\ref{lem:light} gives
+$\underline{\delta}_{\log}(A\cap C)\ge\mu(C)(\nu_C-\mu\{g>N\mid C\})$
+for every $N$, and letting $N\to\infty$,
+$\underline{\delta}_{\log}(A\cap C)\ge\mu(C)\nu_C-\eta\mu(C)$.
+On a dying cell, Lemma~\ref{lem:dying} gives
+$\mu(C\cap\{\text{survivors}\})\le\eta\mu(C)$.  Lower
+logarithmic density is superadditive over disjoint sets, so
+summing over the alive cells,
+\[
+\underline{\delta}_{\log}(A)\ \ge\
+\sum_{\text{alive}}\mu(C\cap\{\text{survivors}\})-\eta
+\ \ge\ \nu-\eta-\varepsilon-\eta,
+\]
+the survivors in dying cells having measure at most $\eta$ and
+those in mixed cells at most $\varepsilon$.  Let $\eta$ and
+$\varepsilon$ tend to $0$.
+\end{proof}
+
+\begin{remark}
+The theorem needs neither dying groups nor summable protectors.
+It covers, for instance, a tree whose deep cylinders retain
+measure bounded away from $0$, whose nodes carry, in a
+proportion $1/k^2$ at depth $k$, finite drifts so large that the
+total drift diverges, and along almost all of whose branches the
+drift nonetheless converges, so that a positive measure of
+survivors lies at infinite depth: the case that
+Theorems~\ref{thm:exhaust} and~\ref{thm:confined} both miss.
+Its reach is nevertheless limited, and in a way that is easy to
+misjudge: being coprime-layered is a strong hypothesis on the
+moduli, not a normalisation.
+
+\begin{proposition}[Chain constraint]\label{prop:chain}
+In a coprime-layered system, any two nodes carrying classes have
+non-coprime moduli, unless one of the moduli is $1$.
+\end{proposition}
+
+\begin{proof}
+If $d,d'>1$ are coprime then, by the Chinese remainder theorem,
+the classes $c+d\mathbb{Z}$ and $c'+d'\mathbb{Z}$ meet whatever
+$c,c'$ are, so the two nodes are not disjoint and must be
+nested; but nesting forces $d\mid d'$ or $d'\mid d$, which with
+$\gcd(d,d')=1$ makes one of them $1$.
+\end{proof}
+
+So the classes of a coprime-layered system hang off a family of
+cylinders any two of which share a factor: the moduli
+$2,10,170,\dots$ of the tree above, not the moduli
+$11,23,43,\dots$ of a family of protectors.
+Proposition~\ref{prop:irred2} is therefore \emph{not}
+coprime-layered -- its natural nodes are the distinct primes
+$p_j$, pairwise coprime -- and it is covered by
+Theorem~\ref{thm:confined} instead.  Nor are the
+semiprimes, whose nodes would be the primes $p$; they are
+covered by Theorem~\ref{thm:quasi}.  Checked by exact search
+over the legal node assignments, the depth-four tree above and
+the multiples of $6$ are coprime-layered, while those two
+systems are not.
+\end{remark}
+
+\begin{remark}\label{rem:circular}
+Lemma~\ref{lem:dying} is the only place where primality of the
+attached moduli is used, which invites the thought that allowing
+a node to carry a layer of composite moduli would extend the
+theorem.  It would not: the lemma's analogue for composite layers
+is false.  Proposition~\ref{prop:irred2} below is a system on the
+single cylinder $\mathbb{Z}$, with composite moduli, divergent
+drift and no proper reduction, whose survivor measure is
+positive; read as a layer it has $g=\infty$ everywhere and yet
+does not kill almost every point.  So without primality the
+proof of Theorem~\ref{thm:tree} collapses at its first step, and
+an extension would have to establish, for each layer, the
+reverse inequality itself.  The tree theorem is exactly as
+strong as the independence its coprimality provides.
+\end{remark}
+
+The chain constraint says which nested families the tree
+theorem reaches.  At the opposite extreme, protectors with
+pairwise coprime moduli, the difficulty disappears for a
+different reason: positive survivor measure itself produces the
+confinement.
+
+\begin{theorem}[Coprime protectors]\label{thm:coprot}
+Suppose the classes partition into groups $G_j$, where $G_j$
+consists of classes $(p_jq,a)$ with $a\equiv c_j\pmod{p_j}$ and
+$q$ prime, the moduli $p_j$ are pairwise coprime, the attached
+primes $q$ are distinct across all classes, and none of them
+divides any $p_i$.  Then $\dlog(A)$ exists and equals $\nu$,
+whatever $\sum_j1/p_j$ may be.
+\end{theorem}
+
+\begin{proof}
+Write $S_j=\sum1/q$ over the primes attached in $G_j$ and
+$\kappa_j=1-\prod(1-1/q)$, the measure of the kills of $G_j$
+inside $C_j=c_j+p_j\Zhat$ relative to $\mu(C_j)$.  Whether $x$
+lies in $C_j$ depends on $x$ modulo $p_j$; whether $x\in C_j$ is
+killed by $G_j$ depends on $x$ modulo the primes attached in
+$G_j$.  By hypothesis these coordinates are distinct across $j$,
+and the coordinates of $\Zhat$ are independent, so
+\[
+\nu=\prod_j\Bigl(1-\frac{\kappa_j}{p_j}\Bigr).
+\]
+If $\sum_j\kappa_j/p_j=\infty$ then $\nu=0$ and
+Corollary~\ref{cor:nuzero} finishes.  Otherwise, since
+$\kappa_j\ge1-e^{-S_j}\ge(1-e^{-1})\min(S_j,1)$, we get
+$\sum_j\min(S_j,1)/p_j<\infty$: the groups with $S_j\ge1$ lie on
+cylinders with $\sum1/p_j<\infty$, and the remaining groups have
+total drift $\sum S_j/p_j<\infty$.  A group with $S_j=\infty$ is
+a coprime layer of divergent drift, which dies on $C_j$ by
+Theorem~\ref{thm:D}; apply Theorem~\ref{thm:exhaust} with those
+groups and every other class as a singleton group on its own
+ball, where its induced system is the single class of modulus
+$1$ and dies trivially; this reduces each dying group to the
+class $(p_j,c_j)$ and leaves every other class unchanged.  The reduced system is covered
+by Theorem~\ref{thm:confined}, with the groups: each reduced
+class and each group with $1\le S_j<\infty$, confined to its
+$C_j$, the moduli having $\sum1/p_j<\infty$; and each remaining
+class as a singleton confined to its own ball, these measures
+summing to $\sum_{S_j<1}S_j/p_j<\infty$.  A finite union of
+these groups has finite drift, so Theorem~\ref{thm:conv} gives
+its density as its survivor measure, the hypothesis of
+Theorem~\ref{thm:confined}.
+\end{proof}
+
+\begin{remark}
+This is the shape the checklist of Section~\ref{sec:reduction}
+isolates -- protectors
+too dense to be summable, kills too sparse to be quasi-independent
+-- and the theorem says it cannot occur with coprime protectors:
+if the kills are sparse enough for survivors, the heavy
+protectors are already summable and the light classes already
+convergent.  On an instance with $61$ protectors, two of them
+carrying layers of drift $0.40$ and the rest layers of drift
+$1/(40\log^2p)$, all attached primes distinct, the product gives
+$\nu=0.94479$ against a Monte Carlo value of $0.9413$.  Distinct
+primes make a single layer of drift $1$ need primes beyond
+$10^9$, so the instance checks the formula and the split, not
+divergence; for that, a layer of drift $1.5$ on every odd prime
+has $\kappa\ge1-e^{-1.5}$, and the exact partial products
+$\prod_{p\le N}(1-\kappa/p)$ fall through $0.2492$ at $N=10^{3}$, $0.1997$ at $N=10^{4}$, $0.1680$ at $N=10^{5}$, $0.1459$ at $N=10^{6}$, to $0$ like
+$(\log N)^{-0.78}$.  What the theorem does not reach is
+protectors that share factors without nesting -- pairwise
+products $p_ip_j$, say -- where membership is neither
+independent, as here, nor a chain, as in Theorem~\ref{thm:tree}.
+\end{remark}
+
+That last case is the remaining one, and it is settled by
+Lemma~\ref{lem:escape}.
+
+\begin{theorem}[Overlapping protectors]\label{thm:overlap}
+Let $\mathcal{S}$ be a set of primes and, for every pair
+$p\ne p'$ in $\mathcal{S}$, let $G_{pp'}$ be a group of classes
+killing only inside a cylinder $C_{pp'}$ of modulus $pp'$, whose
+kills there have relative measure $\kappa_{pp'}$.  Assume that
+each group is a coprime layer of primes outside $\mathcal{S}$,
+distinct across groups, and that $\kappa_{pp'}\ge\kappa_0>0$.
+If $\sum_{p\in\mathcal{S}}1/p$ diverges and every pair occurs,
+then $\nu=0$ and $\dlog(A)=0$.  If it converges, then
+$\sum1/(pp')<\infty$ and $\dlog(A)=\nu$ by exhaustion and
+confinement.  Either way $\dlog(A)$ exists and equals $\nu$.
+\end{theorem}
+
+\begin{proof}
+In the convergent case $\sum_{p<p'}1/(pp')\le\frac12(\sum1/p)^2$
+is finite.  A group whose layer has divergent drift dies on its
+cylinder by Theorem~\ref{thm:D}; apply Theorem~\ref{thm:exhaust}
+to those groups, with every other class a singleton, reducing
+each to the class of its cylinder.  Then apply
+Theorem~\ref{thm:confined} to the reduced system with the groups
+confined to the cylinders $C_{pp'}$, of summable measure: a
+finite union of them has finite drift, so Theorem~\ref{thm:conv}
+covers it.
+Suppose then that $A:=\sum_{p\in\mathcal{S}}1/p=\infty$, and let
+$\Kh_{pp'}$ be the kills of $G_{pp'}$, so
+$\mu(\Kh_{pp'})=\kappa_{pp'}/(pp')$.  Discarding the pairs
+meeting the primes at most $P$, and the finitely many groups
+whose attached primes include one at most $P$ -- finitely many
+because each prime is attached to at most one group -- leaves a
+family determined by the coordinates above $P$, whose reciprocal
+sum still diverges, enumerated by the pairs among the first $N$
+remaining primes as $N$ grows.  For
+the second moment, two pairs sharing no prime give
+independent events, since the coordinates determining them --
+the two protector primes and the attached primes of the group,
+which lie outside $\mathcal{S}$ and are distinct across groups
+-- are disjoint; and two sharing the prime $p$ give
+$\mu(\Kh_{pp'}\cap \Kh_{pp''})\le\mu(C_{pp'}\cap C_{pp''})
+=1/(pp'p'')$.  Writing $A_N,B_N$ for $\sum1/p$ and $\sum1/p^2$
+over the first $N$ primes of $\mathcal{S}$ above $P$, and
+$M_N=(A_N^2-B_N)/2$ for the total measure of the cylinders,
+\[
+\sum_{e,f}\mu(C_e\cap C_f)=M_N+\sum_p\frac1p\Bigl[(A_N-1/p)^2-(B_N-1/p^2)\Bigr]
++\Bigl(M_N^2-\Sigma'\Bigr),
+\]
+where $e,f$ run over ordered pairs of edges of the complete
+graph on those $N$ primes, $\mu(C_e)=1/pp'$ for $e=\{p,p'\}$,
+and the three terms are as follows.  The diagonal $e=f$
+contributes $\sum_e\mu(C_e)=M_N$.  Two distinct edges
+$e=\{p,p'\}$, $f=\{p,p''\}$ sharing exactly the prime $p$ meet
+in the cylinder of modulus $pp'p''$, and summing $1/pp'p''$ over
+ordered pairs $p'\ne p''$ of primes other than $p$ gives
+$p^{-1}[(A_N-1/p)^2-(B_N-1/p^2)]$; summing over $p$ gives the
+middle term.  Disjoint edges have independent cylinders, so their
+contribution is $\sum_{e\cap f=\varnothing}\mu(C_e)\mu(C_f)$,
+which is $M_N^2$ less the products over non-disjoint ordered
+pairs, $\Sigma'=\sum_e\mu(C_e)^2+\sum_pp^{-2}[(A_N-1/p)^2-(B_N-1/p^2)]$.
+Since $\Kh_e\subseteq C_e$, the numerator for the kills is at
+most this sum; since $\mu(\Kh_e)\ge\kappa_0\mu(C_e)$, the
+denominator is at least $\kappa_0^2M_N^2$.  The middle sum is at
+most $A_N^3$, $\Sigma'\le B_N^2+A_N^2B_N$, and $M_N\sim A_N^2/2$,
+so the displayed sum is $M_N^2(1+O(1/A_N))$, and the
+second-moment ratio of the kills is at most
+$\kappa_0^{-2}(1+O(1/A_N))$.  So
+Lemma~\ref{lem:escape} applies with $\rho=2\kappa_0^{-2}$, almost
+every point lies in infinitely many $\Kh_e$, and $\nu=0$;
+Corollary~\ref{cor:nuzero} finishes.
+\end{proof}
+
+\begin{remark}
+The ratio's approach to $1$ is genuinely slow, since
+$A_N\asymp\log\log N$: over all primes up to
+$10^3,10^4,10^5,10^6,10^7$ the exact ratios are 3.72, 3.29, 3.03, 2.87, 2.74, while the
+normalised quantity $(R-1)A/4$ falls through 1.1553, 1.1345, 1.1217, 1.1129, 1.1065 toward the
+predicted $1$.  Over the same range the measure of the points
+lying in no protector at all falls through 0.4811, 0.3965, 0.3392, 0.2975, 0.2658, and at $N=10^3$
+agrees with a Monte Carlo value of $0.4767$.  The sparse
+instance $p_i$ the least prime at least $i^2$ has, at $49$
+primes, total protector measure $0.1191$ and survivor measure
+$0.9070$ against a Monte Carlo value of $0.9044$: there the sums
+converge and confinement, not this theorem, is what applies.
+\end{remark}
+
+\section{The reduction}\label{sec:reduction}
+
+Recall $U=\bigcup_i K_i\subseteq\N$.  For $k\ge1$ let
+$U_k=\bigcup_{i\le k}K_i$ and
+\[
+  F(X)=\frac{1}{\log X}\sum_{x\in U,\ x\le X}\frac1x,
+  \qquad
+  F_k(X)=\frac{1}{\log X}\sum_{x\in U_k,\ x\le X}\frac1x .
+\]
+
+\begin{theorem}\label{thm:reduction}
+If
+\[
+  \sup_{X\ge2}\bigl(F(X)-F_k(X)\bigr)\longrightarrow 0
+  \qquad (k\to\infty),
+\]
+then $\dlog(A)$ exists and equals $\nu$.
+\end{theorem}
+
+\begin{proof}
+Each $U_k$ is a finite union of truncated arithmetic
+progressions, hence periodic apart from finitely many integers,
+so $F_k(X)\to 1-\nu_k$ as $X\to\infty$.  Let $\varepsilon>0$ and
+choose $k$ with $\sup_{X\ge2}\bigl(F(X)-F_k(X)\bigr)<\varepsilon$.
+Since $U_k\subseteq U$ we have, for every $X$,
+\[
+  F_k(X)\ \le\ F(X)\ \le\ F_k(X)+\varepsilon .
+\]
+Letting $X\to\infty$ along the upper and lower limits gives
+\[
+  1-\nu_k\ \le\ \liminf_X F(X)
+  \ \le\ \limsup_X F(X)\ \le\ 1-\nu_k+\varepsilon,
+\]
+so $\limsup_X F-\liminf_X F\le\varepsilon$.  As $\varepsilon$
+was arbitrary, $\lim_X F(X)$ exists; and since it lies within
+$\varepsilon$ of $1-\nu_k$ for every such $k$, while
+$\nu_k\downarrow\nu$, that limit is $1-\nu$.  Hence
+$\dlog(A)=1-\lim_X F(X)=\nu$.
+\end{proof}
+
+It is worth recording an equivalent form in terms of window
+densities, since it moves the difficulty from an infinite tail
+to a set of scales.  For $X\ge2$ let
+\[
+  w(X)=\frac{\bigl|U\cap[X/2,X]\bigr|}{\bigl|\N\cap[X/2,X]\bigr|}
+\]
+be the killed density in the dyadic window at $X$.
+
+\begin{lemma}[Window lower bound]\label{lem:window}
+$\liminf_{X\to\infty}w(X)\ge1-\nu$.
+\end{lemma}
+
+\begin{proof}
+Fix $Y$.  The classes of modulus at most $Y$ kill a periodic set
+of density $1-\nu_Y$ whose period $L_Y$ is the lcm of those
+moduli.  A window of length $X/2$ contains
+$\lfloor X/(2L_Y)\rfloor$ full periods and a remainder shorter
+than $L_Y$, so the density of that periodic set inside the
+window is $1-\nu_Y+O(L_Y/X)$.  Since $U$ contains it,
+$w(X)\ge1-\nu_Y-O(L_Y/X)$.  Let $X\to\infty$ with $Y$ fixed to
+get $\liminf_X w\ge1-\nu_Y$, then let $Y\to\infty$ and use
+$\nu_Y\downarrow\nu$.
+\end{proof}
+
+The reverse fails: classes of modulus close to $X$ kill one
+element of the window apiece, so $w$ can reach $1$ while
+$1-\nu$ is far below (Section~\ref{sec:routes}).  Thus $w$ is pinned from below
+and free above, and the whole question is how often it escapes.
+
+For a set $E$ of real scales $X\ge1$ define its logarithmic
+density as the limit, when it exists, of
+$\frac{1}{\log Y}\int_{E\cap[1,Y]}dX/X$, with upper and lower
+versions as usual; $w(X)$ is defined for every real $X\ge2$ by
+the window $[X/2,X]\cap\N$.
+
+\begin{theorem}[Excursion form]\label{thm:excursion}
+Writing $u=\log X$ and $w(v)$ for $w(e^v)$, one has
+$F(e^u)=\frac{1}{u}\int_{v=\log 2}^{v=u} w(v)\,dv+O(1/u)$, so $\dlog(A)$ exists
+and equals $\nu$ if and only if, for every $\delta>0$, the set
+\[
+  E_\delta=\{X:\ w(X)>1-\nu+\delta\}
+\]
+has logarithmic density $0$ in the sense just defined.
+\end{theorem}
+
+\begin{proof}
+With $S(X)=\sum_{x\in U,\ x\le X}1/x$ and $Y=e^u$, integrate
+$w$ against $dX/X$ over $[2,Y]$.  A killed integer $x\le Y/2$
+lies in the window $[X/2,X]$ exactly for $X\in[x,2x]$, and the
+window then holds $X/2+O(1)$ integers, so its weight is
+$\int_x^{2x}\frac{dX}{X}\cdot\frac{1}{X/2+O(1)}
+=\frac1x+O(x^{-2})$; a killed integer in $(Y/2,Y]$ receives at
+most $\int_x^{Y}\frac{2\,dX}{X^2}\le\frac1x$, and there are at
+most $Y/2$ of them, each weighted at most $2/Y$, so they
+contribute $O(1)$.  Summing, $\int_{\log2}^u w(v)\,dv
+=S(Y)+O(1)$, the errors $O(x^{-2})$ having a convergent sum.
+(The relation is not an exact identity: for $U=\N$ one has
+$w\equiv1$ while $F=1+\gamma/\log X+o(1/\log X)$.)  Hence
+$F(e^u)=\frac{1}{u}\int_{v=\log 2}^{v=u} w(v)\,dv+O(1/u)$, whose error vanishes, so $F$
+converges precisely when $w$ has a logarithmic mean.  By
+Lemma~\ref{lem:window} the function $w-(1-\nu)$ is
+non-negative in the limit, so its average vanishes if and only
+if it is small off a set of vanishing logarithmic density, which
+is the stated condition.  Finally $\dlog(A)=1-\lim F$.
+\end{proof}
+
+One part of the excess admits a quantitative bound.  Write
+$D(Y)=\sum_{n_i\le Y}1/n_i$ and
+$h=\limsup_{Y\to\infty}D(Y)/\log Y$, the harmonic density of the
+modulus set; note that $h\le1$ when the moduli are distinct.
+
+\begin{proposition}[Spike bound]\label{prop:spike}
+Let $\sigma(X)$ denote the density in the window $[X/2,X]$ of
+the union of the kills of the classes of modulus in $(X/2,X]$,
+which bounds the contribution of those classes to $w(X)$ however
+the overlaps are apportioned.  Then for every $\delta>0$ the set
+$\{X:\ \sigma(X)>\delta\}$ has logarithmic density at most
+$(2\log2)\,h/\delta$.  In particular it has logarithmic density
+$0$ whenever $h=0$.
+\end{proposition}
+
+\begin{proof}
+A class of modulus $n\in(X/2,X]$ kills at most one element of
+$[X/2,X]$, since its elements are at least $n$ and consecutive
+ones differ by $n>X/2$.  Hence, with $N$ the number of such
+classes, $\sigma(X)\le 2N/X$.  Each of these classes
+contributes at least $1/X$ to the window drift
+$d(X)=\sum_{X/2<n_i\le X}1/n_i$, giving $N/X\le d(X)$ and
+therefore $\sigma(X)\le2d(X)$.
+
+Since $n_i\in(X/2,X]$ exactly when $X\in[n_i,2n_i)$,
+\[
+\int_1^Y d(X)\,\frac{dX}{X}
+=\sum_{n_i<Y}\frac1{n_i}\int_{n_i}^{\min(2n_i,Y)}\frac{dX}{X}
+\le(\log2)\,D(Y),
+\]
+so Markov's inequality for the measure $dX/X$ on $[1,Y]$ bounds
+$\int_{\{X\le Y:\ 2d(X)>\delta\}}dX/X$ by $(2\log2)D(Y)/\delta$,
+whose ratio to $\log Y$ has limsup $(2\log2)h/\delta$; and
+$\sigma\le2d$.
+\end{proof}
+
+\begin{remark}\label{rem:intermediate}
+The scope is exactly the spike term.  Classes of \emph{inter\-mediate}
+modulus, say $T<n_i\le X/2$, are not controlled this way:
+bounding their contribution by $\sum1/n_i$ over that range gives
+about $h\log X$, and restricting to the survivors of the
+small-modulus classes improves this only to $\nu_T\,h\log X$.
+Both are useless.  What Proposition~\ref{prop:spike} does show
+is that the mechanism of Section~\ref{sec:routes} -- fresh classes of modulus
+comparable to $X$ -- can produce excursions on a set of positive
+logarithmic density only when the moduli have positive harmonic
+density.
+
+The natural alternative also fails, and for a classical reason
+worth recording.  One might hope that the window $[X/2,X]$
+samples the union of the intermediate classes at its global
+density.  It does not: that union is periodic with period the
+lcm of the moduli involved, of size roughly $e^{X/2}$, vastly
+longer than the window.  The discrepancy is not hypothetical.
+Take the intermediate classes to be the primes $p\le X/2$ with
+residue $0$.  Their survivors inside $[X/2,X]$ are exactly the
+primes there, of density $\sim1/\log X$, whereas the global
+survivor density of the same finite system is
+$\prod_{p\le X/2}(1-1/p)\sim e^{-\gamma}/\log X$ by Mertens.  The
+window therefore over-represents survivors by a factor tending
+to $e^{\gamma}=1.781\ldots$; numerically the ratio runs
+$1.7213$, $1.7278$, $1.7342$, $1.7388$ for
+$X=2\cdot10^5,\,10^6,\,4\cdot10^6,\,1.6\cdot10^7$.  This is the
+Buchstab phenomenon, and it shows that no argument based on the
+window inheriting global densities can control the intermediate
+range.  We regard this as the precise reason that range resists,
+rather than as evidence about the answer.
+
+One might hope that the discrepancy always runs in the harmless
+direction.  In the example above the window retains \emph{more}
+survivors than the global density predicts, so the intermediate
+classes \emph{under}-kill, and under-killing cannot produce an
+excursion.  If that were general, Proposition~\ref{prop:spike}
+would control the whole excess.  It is not general.  Taking the
+classes to be the primes in $[X^{a},X^{b}]$ at residue $0$, for
+which coprimality makes the global survivor density the exact
+product $\prod(1-1/p)$, the ratio of the window survivor density
+to the global one is measured at $X=8\cdot10^6$ as
+\[
+  0.9949\ \ (a,b)=(0.15,0.35),\qquad
+  0.9107\ \ (a,b)=(0.05,0.50),
+\]
+both below $1$, against $1.0174$ and $1.0549$ for
+$(0.20,0.45)$ and $(0.25,0.50)$.  So the ratio crosses $1$ in
+both directions, as the oscillation of Buchstab's function
+suggests, and intermediate classes can genuinely over-kill.  The
+spike bound alone therefore does not control the excess.
+\end{remark}
+
+The excess admits a clean expression in terms of the quantity
+sieve theory studies.  Let $s(X)$ be the survivor density in the
+window and $\nu_X$ the profinite survivor measure of the classes
+of modulus at most $X$, and set $r(X)=s(X)/\nu_X$ -- the
+window-to-global survivor ratio, the Buchstab ratio of
+Remark~\ref{rem:intermediate}.
+
+\begin{proposition}[Reduction to the Buchstab ratio]\label{prop:ratio}
+Assume $\nu>0$.  For every $X$,
+\[
+  w(X)-(1-\nu)\ \le\ \nu\,\bigl(1-r(X)\bigr)^{+},
+\]
+so there is no excursion at all when $r(X)\ge1$.  Consequently
+$E_\delta\subseteq\{X:\ r(X)<1-\delta/\nu\}$, and $\dlog(A)$
+exists and equals $\nu$ as soon as $r\to1$ in logarithmic mean.
+\end{proposition}
+
+\begin{proof}
+The excess is $w(X)-(1-\nu)=\nu-s(X)=\nu-r(X)\nu_X$.  If
+$r(X)\ge1$ then, as $\nu_X\ge\nu$, this is at most
+$\nu-\nu_X\le0$.  If $r(X)<1$ then $r\nu_X\ge r\nu$ and the
+excess is at most $\nu(1-r)$.  The remaining statements follow
+from Theorem~\ref{thm:excursion}.
+\end{proof}
+
+\begin{remark}
+This also explains why the spike term yielded to
+Proposition~\ref{prop:spike} while the intermediate range did
+not.  A class of modulus comparable to $X$ appears in $O(1)$
+windows, so the window drifts sum to $D(Y)$ and form a budget
+that Markov's inequality can exploit.  A class of intermediate
+modulus appears in \emph{every} larger window, so no such budget
+exists and no Markov bound is available.  Numerically, among
+nine dyadic windows up to $4\cdot10^6$, a modulus of size
+$10^6$ occurs in two of them and a modulus of size $10^3$ in all
+nine.
+
+Two observations narrow what must be shown.  First, an
+excursion requires $\nu>0$: the excess is $\nu-s(X)$ and
+$s(X)\ge0$, so a system whose survivors vanish can never
+produce one.  This removes every dying system, and in particular
+disposes of the alarming ratio of
+Remark~\ref{rem:intermediate}: the prime sieve has $\nu=0$, so
+its $e^{\gamma}$ discrepancy threatens a bound, never the
+conjecture.  (At finite $X$ the quantity $\nu_X$ is still
+$e^{-\gamma}/\log X$ and far from its limit, which is easy to
+confuse with $\nu$ itself.)
+
+Second, the deviation is one-sided.  For each $N$ the survivors
+of the whole system lie inside those of the first $N$ classes,
+whose window density tends to $\nu_N$; hence
+$\limsup_X s(X)\le\nu$ and so $\limsup_X r(X)\le1$.  Combining,
+the entire remaining content of the problem is that
+\[
+  r(X)\to1\ \text{ in logarithmic mean, for systems with }\nu>0 .
+\]
+Numerically, on a system with $\nu$ known exactly the ratio sits
+at $1$ to three decimals across every window, the largest value
+being $1.000136$; by contrast the \emph{sub}-systems of
+Remark~\ref{rem:intermediate} reach $1.3297$, so the
+one-sidedness is a property of full systems and not of
+sieving in general.
+
+The surviving hypothesis $\nu>0$ is itself structural.
+
+\begin{proposition}[Structure of the open case]\label{prop:goodcyl}
+Suppose $\nu>0$ and let $\varepsilon>0$.  Then there is a
+modulus $M$ such that the residues $c$ whose cylinders are at
+least $(1-\varepsilon)$-full of survivors carry all but
+$\varepsilon$ of the survivor measure, and for each such $c$ the
+induced system at $c$ contains \emph{no} pairwise-coprime
+subfamily of divergent drift.
+\end{proposition}
+
+\begin{proof}
+The survivor set $\Zhat\setminus\cU$ is closed of measure
+$\nu>0$, so by the Lebesgue density theorem in $\Zhat$ almost
+every one of its points has cylinders about it of survivor
+proportion tending to $1$; choosing $M$ large enough along the
+divisibility order gives the first assertion.  For the second,
+fix such a $c$.  If the induced system at $c$ had a
+pairwise-coprime subfamily of divergent drift, then by
+Theorem~\ref{thm:D} its survivor measure would be $0$,
+contradicting that the cylinder is $(1-\varepsilon)$-full.
+\end{proof}
+
+\begin{remark}
+This says exactly why Theorem~\ref{thm:D} cannot reach the open
+case: the hypothesis $\nu>0$ forbids, on the very cylinders
+carrying the survivors, the coprime divergence that theorem
+needs.  The separation is sharp in practice.  For the system with moduli $p^2$, where
+$\nu=\prod_p(1-p^{-2})=6/\pi^2=0.6079\ldots$, the induced coprime
+drift on every cylinder modulo $6$ is finite, being at most
+$\sum_p6/p^2$ plus the contributions of $2$ and $3$; for the
+system of all moduli with residues in general position, where
+$\nu=0$, it diverges on every cylinder.
+\end{remark}
+
+This suggests a question.  Since $\nu>0$
+forbids a pairwise-coprime subfamily of divergent drift
+(Theorem~\ref{thm:D}), the moduli must share primes heavily; and
+if every modulus were divisible by one of finitely many primes,
+a coprime subfamily could have at most that many members.  Both
+known systems with $\nu>0$ and divergent drift -- the even
+moduli at residue $0$ and the doubled construction -- are indeed
+covered by the single prime $2$.
+
+The naive reduction -- that divergent drift with $\nu>0$ should
+force the moduli to be covered, up to a subfamily of convergent
+drift, by finitely many primes, or the residues to be aligned --
+fails: the many-protector system of the remark following
+Theorem~\ref{thm:exhaust} has $\nu>0$, divergent drift, no finite
+prime cover and misaligned residues, and its density exists by
+cylinder exhaustion.  The question that would close the problem
+is therefore the following.
+
+\medskip\noindent\textbf{Question (refined).}
+\emph{Can a system with divergent drift and $\nu>0$ pass the
+checklist below in full -- that is, satisfy the hypotheses of
+none of the theorems it names, nor reduce by finitely many
+applications of Theorem~\ref{thm:exhaust} to one that does?}
+
+\medskip\noindent
+One kind of counterexample would be an \emph{infinite tower}: a
+system each of whose reductions has divergent drift, positive
+survivor measure and misaligned residues, never terminating in a
+covered one; another would admit no proper reduction at all and
+fail every other hypothesis on the list.  Each reduction passes to the moduli of the protecting
+cylinders, which are divisors of the previous level's moduli and
+must be sparse enough that their union leaves survivors; whether
+infinitely many such levels can each carry divergent drift is
+the question.  
+
+Three constraints on any such tower are immediate.
+
+\begin{proposition}[Tower constraints]\label{prop:tower}
+In a tower of proper reductions -- each level coarsening
+infinitely many classes -- the following hold.
+\begin{enumerate}
+\item[(i)] A class of level-zero modulus $n_0$ persists for at
+most $\log_2 n_0$ levels, since each proper coarsening passes to
+a proper divisor and at least halves the modulus; at level $K$
+only classes with $n_0\ge2^K$ remain.
+\item[(ii)] No level contains a modulus equal to $1$, for that
+cylinder is all of $\mathbb{Z}$ and its exhaustion forces
+$\nu=0$.
+\item[(iii)] No non-top level consists of prime moduli, since a
+prime has no proper divisor exceeding $1$; the classes that
+persist through $K$ levels have moduli with at least $K$ prime
+factors counted with multiplicity.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Each is a direct reading of the definition of a proper
+reduction: the reduced modulus is a proper divisor of every
+modulus in its group.
+\end{proof}
+
+So an infinite tower needs, at every level, infinitely many
+classes with unboundedly long divisor chains, each level of
+divergent drift and positive survivor measure, and no level
+reducing to primes.  Attempting to build one exhibits a
+dichotomy.  Take moduli $2^{a}q$ over sparse primes $q$ and
+unbounded $a$, with residues aligned within each $q$ (the only
+arrangement leaving survivors); level $K$ has moduli
+$2^{a-K}q$, drift $\sim\sum1/q$ independent of $K$, and
+$\nu=\prod(1-1/2q)$.  If $\sum1/q<\infty$ then $\nu>0$ but
+every level has convergent drift, so the tower terminates in
+Theorem~\ref{thm:conv}.  If $\sum1/q=\infty$ then every level
+has divergent drift but $\nu=0$, and Corollary~\ref{cor:nuzero}
+settles it.  Over twenty sparse primes, $\nu=0.9535$
+with drift $0.093$ at every level; over four hundred dense
+primes, drift $2.33$ with $\nu$ at $0.29$ and falling to $0$ as
+primes are added.  The two conditions were not obtainable
+together.
+
+We offer the reason as a heuristic, not a proof: coarsening
+divides out the structure the classes share, so the moduli at
+the top of a tower tend toward pairwise coprimality, and there
+Theorem~\ref{thm:D} forces exactly this dichotomy -- divergent
+drift kills the survivors, while positive survivor measure
+forces the drift to converge.  If that heuristic could be made
+rigorous, towers would always be finite and, by the refined
+Question, the problem would close.
+
+The heuristic predicts that coarsening raises coprimality.  Under
+the canonical coarsening $n\mapsto n/p(n)$, dividing out the
+smallest prime, two measures over five levels were computed: the
+fraction of modulus pairs with gcd $1$, and the drift share of
+the largest pairwise-coprime subfamily.  For the even moduli the
+pair fraction rose from $0$ to $0.63$; for all integers from
+$0.61$ to $0.64$; for products $2^a3^bq$ from $0$ to $0.74$.  A
+family built to resist -- the multiples of $6$, sharing two
+primes -- stayed at $0$ for one step, since removing $2$ leaves
+$3$ in common, then rose to $0.59$: a system sharing $k$ primes
+needs $k$ steps, which the heuristic accommodates.  The
+coprime-subfamily share rose in every family, from between
+$0.12$ and $0.35$ to between $0.45$ and $0.75$.  This is
+empirical support for the direction of the heuristic and
+nothing more; a proof must control the rate, since a tower
+could in principle coarsen forever without ever becoming
+coprime enough.
+
+The dichotomy just described is false at a single level: the
+semiprimes have divergent reciprocal sum, no common factor, and
+every pairwise coprime subfamily convergent, since such a
+subfamily is a matching on the primes and the best matching
+$6,35,143,\dots$ converges.  Whatever closes the problem must
+come from coarsening, not from the shape of one level.  The
+following system has divergent drift, misaligned residues and
+no proper exhaustion step, and Theorem~\ref{thm:quasi} settles
+it.
+
+\begin{proposition}[Irreducible semiprimes]\label{prop:irred}
+For each prime $p$ let $M_p$ consist of the primes above $p$
+taken in increasing order until their reciprocal sum $S_p$
+reaches $1/2$, and take the classes $(pq,a_{pq})$, $q\in M_p$,
+with arbitrary residues.  Then:
+\begin{enumerate}
+\item[(i)] every cylinder $(d,c)$ with $d\ge2$ containing two
+or more classes has $d=p$ prime, its induced moduli are distinct
+primes, its induced drift is bounded, and its induced survivor
+measure is positive; so no group of two or more classes dies
+in the sense of Theorem~\ref{thm:exhaust}, and the system admits
+no proper exhaustion step, only the trivial ones in which a
+class is its own group;
+\item[(ii)] the drift diverges;
+\item[(iii)] $\nu=0$ for every choice of residues.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(i) A cylinder whose modulus has two prime factors contains only
+the class with that modulus.  For $d=p$ the classes are
+$(pq,\cdot)$ with $q\in M_p$ and $(p'p,\cdot)$ with $p\in
+M_{p'}$; the induced moduli $q$ and $p'$ are distinct primes,
+so the induced survivor measure is $\prod(1-1/\ell)$ over them,
+positive when $\sum1/\ell$ converges.  That sum is at most
+$S_p+\sum_{p':\,p\in M_{p'}}1/p'$; the first term is below
+$1/2+1/p$.  For the second, $p\in M_{p'}$ holds iff
+$\sum_{p'<q<p}1/q<1/2$, a condition that only becomes easier as
+$p'$ increases, so the admissible $p'$ are the primes in an
+interval $[p'_0,p)$, and their reciprocal sum is
+$1/p'_0+\sum_{p'_0<q<p}1/q<1/p'_0+1/2\le1$.  (ii) The drift is $\sum_pS_p/p\ge\frac12\sum_p1/p$.
+(iii) The smallest prime of $pq$ is $p$.  Writing $M_{p,c}$ for
+the $q\in M_p$ with $a_{pq}\equiv c\pmod p$ and $F_{p,c}$ for
+the event that some $q\in M_{p,c}$ has $x\equiv a_{pq}\pmod q$,
+\[
+\mu(\Kh_p)=\sum_c\frac1p\Bigl(1-\prod_{q\in M_{p,c}}(1-1/q)\Bigr)
+\ \ge\ \frac1p\sum_c\bigl(1-e^{-S_{p,c}}\bigr)
+\ \ge\ \frac{1-e^{-1/2}}{p},
+\]
+the last step because $(1-e^{-a})+(1-e^{-b})\ge1-e^{-a-b}$.  So
+$\sum_p\mu(\Kh_p)=\infty$.  For $p\ne p'$,
+$\mu(\Kh_p\cap \Kh_{p'})=\sum_{c,c'}\mu(F_{p,c}\cap F_{p',c'})/pp'$.
+Say $p<p'$, and condition on $x\equiv c\pmod p$ and
+$x\equiv c'\pmod{p'}$, an event of measure $1/pp'$.  Given it,
+$F_{p,c}\cap F_{p',c'}$ is contained in the union of three
+events.  $E_0$: $p'\in M_{p,c}$ and $a_{pp'}\equiv c'\pmod{p'}$,
+so that the witness $q=p'$ for the $p$-group is supplied by the
+conditioning itself; this can happen for only one pair $(c,c')$,
+namely $c\equiv a_{pp'}\pmod p$, $c'\equiv a_{pp'}\pmod{p'}$, and
+contributes at most $1/pp'$ in all.  $E_1$: a common witness
+$q\in M_{p,c}\cap M_{p',c'}$, $q\ne p'$, with
+$a_{pq}\equiv a_{p'q}\pmod q$; given the conditioning the
+coordinate at $q$ is still uniform, so $E_1$ has measure at most
+$\sum1/q$ over such $q$, and each $q\in M_p\cap M_{p'}$ belongs
+to exactly one pair $(c,c')$, so the $E_1$ terms total at most
+$\min(S_p,S_{p'})/pp'$.  $E_2$: two distinct witnesses
+$q\in M_{p,c}\setminus\{p'\}$ and $q''\in M_{p',c'}$ with
+$q\ne q''$; both lie outside $\{p,p'\}$ (as $M_{p'}$ lies above
+$p'$), so given the conditioning their coordinates are
+independent and uniform, and the union bound over pairs gives
+measure at most $S_{p,c}S_{p',c'}$, whose sum over $(c,c')$ is
+$S_pS_{p'}$.  Altogether
+$\mu(\Kh_p\cap \Kh_{p'})\le(S_pS_{p'}+\min(S_p,S_{p'})+1)/pp'
+\le(7/4+o(1))/pp'$, so the ratio of Theorem~\ref{thm:quasi} is
+at most $(7/4)/(1-e^{-1/2})^2+o(1)<11.4$.
+\end{proof}
+
+With $p\le150$ the system has $7{,}174$ classes on $582$ primes
+up to $4{,}253$; computed exactly, the ratio is $1.889$ at
+$N=149$ and falling from $2.159$, the least value of
+$p\,\mu(\Kh_p)$ is $0.4815$ against the bound $0.3935$, the
+largest induced drift on any cylinder is $0.886$, and the least
+induced survivor measure $0.316$.  Restricting to four sparse
+values of $p$ makes $\sum\mu(\Kh_p)=0.061$, the theorem falls
+silent as it must, and the survivors have measure at least
+$0.939$; a Monte Carlo draw of $3{,}000$ points of $\Zhat$
+returned $0.941$.  So irreducibility does not yield a
+counterexample: a top of a tower with $\sum_p\mu(\Kh_p)=\infty$
+must carry smallest-prime kills whose second-moment ratio, along
+the exhaustion by smallest prime, is unbounded.  Such correlation does \emph{not} force a
+dying cylinder.
+
+\begin{proposition}[Irreducible with survivors]\label{prop:irred2}
+Let $p_1<p_2<\cdots$ be primes with $\sum_j1/p_j<1$, let
+$S_j\to\infty$ with $\sum_jS_j/p_j=\infty$ -- for instance $p_j$
+the least prime exceeding both $p_{j-1}$ and $8j^{3/2}$, and
+$S_j=\sqrt j$ -- and let
+group $j$ consist of the classes $(p_jq,a)$ with
+$a\equiv1\pmod{p_j}$ and $a$ arbitrary modulo $q$, over primes
+$q$ outside $\{p_i\}$ taken in order until $\sum1/q$ reaches
+$S_j$.  Then the drift diverges, $\nu\ge1-\sum_j1/p_j>0$, no
+cylinder holding two or more classes has induced survivor
+measure $0$, so Theorem~\ref{thm:exhaust} admits no proper
+reduction of the system; and
+$\dlog(A)=\nu$ by Theorem~\ref{thm:confined}.
+\end{proposition}
+
+\begin{proof}
+The drift is $\sum_jS_j/p_j$.  All kills lie in $\bigcup_jC_j$
+with $C_j=\{x\equiv1\ (p_j)\}$, giving the bound on $\nu$.  A
+cylinder holding two classes has prime modulus: for $(p_j,1)$
+the induced classes have the distinct prime moduli $q$ of group
+$j$, with $\sum1/q<S_j+1$; for $(q,c)$ they have the distinct
+prime moduli $p_j$ of the groups using $q$ with $a\equiv c\pmod
+q$, with sum below $1$; in both cases the induced survivor
+measure is $\prod(1-1/\ell)>0$.  Cylinders of composite modulus
+hold at most one class.  Finally $G_1\cup\dots\cup G_J$ has
+drift $\sum_{j\le J}S_j/p_j<\infty$, so Theorem~\ref{thm:conv}
+covers it, and $\sum_j1/p_j<\infty$.
+\end{proof}
+
+With six groups the system has $5{,}964$ classes; every
+cylinder holding two or more classes has prime modulus and
+distinct prime induced moduli, the least induced survivor
+measure is $0.0633$, the largest induced drift $2.449=\sqrt6$,
+$\sum_{j\le6}1/p_j=0.1908$, and $5{,}951$ classes are
+misaligned, with misaligned parts growing without bound.
+Replacing the protectors by the first primes, so that
+$\sum1/p_j$ diverges, sends the survivors down through
+$0.487,0.432,0.391,0.359$ as $5,10,20,40$ groups are added, as
+the theorem's failure predicts.
+
+So the tower picture is incomplete in the other direction too:
+a top that no exhaustion touches can be covered by confinement,
+and the infinite protector tree that evades both -- deep
+cylinders of measure bounded away from $0$, drift divergent in
+total yet convergent along almost every branch -- is covered by
+Theorem~\ref{thm:tree}.  What a counterexample must now evade is
+the coprime-layered structure itself.  By
+Proposition~\ref{prop:chain} that structure is a genuine
+restriction: the nodes must share factors pairwise, so the
+systems it reaches are those whose classes hang off a single
+divisor chain of cylinders, one prime at a time.  Two natural
+hopes are therefore closed off.  Every system does \emph{not}
+admit a coprime-layered refinement -- the protector systems and
+the semiprimes do not, though other theorems cover them -- and
+relaxing coprimality of the layers loses the dying-branch lemma
+outright, by Remark~\ref{rem:circular}.  The shape one might then fear -- moduli
+spread across pairwise coprime cylinders with kills neither
+summable nor correlated -- is ruled out by
+Theorem~\ref{thm:coprot}, where positive survivor measure forces
+the confinement.  Nested protectors are the tree theorem's;
+pairwise coprime protectors are this one's.  Protectors that share factors
+without nesting are Theorem~\ref{thm:overlap}'s, and there the
+dichotomy is sharp: the protecting primes either have divergent
+reciprocal sum, and then almost every integer is caught, or
+convergent, and then the protectors are summable.  All three
+regimes -- nested, coprime, overlapping -- are therefore closed,
+each under the hypotheses of its theorem: finitely many children
+and coprime layers for the trees, distinct attached primes for
+the coprime protectors, every pair of the prime set with kills
+bounded below for the overlapping ones.
+What is not closed is the passage from these regimes to an
+arbitrary system.  Each theorem assumes a given organisation of
+the classes into groups with a stated relation between their
+moduli, and no result here produces such an organisation from
+nothing; the semiprimes, for instance, are covered by
+Theorem~\ref{thm:quasi} rather than by any grouping.  That is
+too generous to the organisation theorems, whose hypotheses are
+strong: Theorem~\ref{thm:coprot} wants its attached primes
+distinct across all classes, so even Proposition~\ref{prop:irred2},
+which reuses them, is covered by confinement rather than by it;
+and the semiprimes are covered by Theorem~\ref{thm:quasi} without
+any organisation at all.  The final form is therefore the
+refined Question itself, read as a checklist.
+A counterexample to the existence of the logarithmic density
+would have to satisfy all of the following at once.
+\begin{enumerate}
+\item positive survivor measure (Corollary~\ref{cor:nuzero});
+\item divergent drift (Theorem~\ref{thm:conv});
+\item no pairwise coprime subfamily of divergent drift
+(Theorem~\ref{thm:D});
+\item smallest-prime kills whose measures are summable, or whose
+second-moment ratio along the exhaustion by smallest prime is
+unbounded (Theorem~\ref{thm:quasi});
+\item on some cylinder, no pairwise coprime subfamily of
+divergent induced drift (Corollary~\ref{cor:dense});
+\item no representation as finitely many aligned channels
+(Theorems~\ref{thm:transl}, \ref{thm:chan});
+\item unbounded misaligned parts, not confined to classes of
+convergent drift (Theorem~\ref{thm:bounded},
+Corollary~\ref{cor:mixed});
+\item for some $\varepsilon_0>0$ and every modulus $M$, at least
+a proportion $\varepsilon_0$ of the cylinders modulo $M$ neither
+die nor have bounded misaligned parts (Theorems~\ref{thm:cyl},
+\ref{thm:cylapp});
+\item no grouping into dying cylinders whose reduced system has
+density equal to its survivor measure
+(Theorem~\ref{thm:exhaust}); and, by Theorem~\ref{thm:sat}, the
+same for its saturated form, so that the system may be taken
+saturated;
+\item no grouping into cylinders of summable measure with
+covered finite unions (Theorem~\ref{thm:confined});
+\item no coprime-layered structure (Theorem~\ref{thm:tree});
+\item no pairwise coprime protectors with distinct attached
+primes (Theorem~\ref{thm:coprot});
+\item no protectors running over every pair of a set of primes,
+carrying coprime layers of distinct attached primes with kills
+bounded below (Theorem~\ref{thm:overlap}).
+\end{enumerate}
+Every system known to us fails this checklist at some line.
+Whether it can be passed in full is the problem.
+
+Theorem~\ref{thm:sat} gives a sufficient form without congruences:
+a positive answer to the following question for every closed set
+would settle the problem, though a negative one need not refute
+it.
+Let $\Ahat\subseteq\Zhat$ be closed, of positive Haar measure,
+and let $\mathcal{H}$ be the cylinders meeting $\Ahat$ in a
+Haar-null set that are maximal under inclusion, of divergent
+total measure.  For an integer $x$, say $x$ is
+\emph{caught} if $x\ge d$ for some $c+d\mathbb{Z}\in\mathcal{H}$
+containing it.  Is the logarithmic density of the integers not
+caught equal to $\mu(\Ahat)$?  Corollary~\ref{cor:anchor} says the
+holes escaping any finite set of primes are either summable or
+concentrated; the theorems above settle the cases in which the holes are
+nested, pairwise coprime, or pairwise products, each under the
+hypotheses of Theorems~\ref{thm:tree}, \ref{thm:coprot}
+and~\ref{thm:overlap}.  What remains is a closed set whose holes
+are concentrated in none of those ways, and whether such a set
+exists is the form in which we leave the problem.
+
+The role of the common factor can be isolated exactly.  Take the
+odd moduli $3,5,7,\dots$ with residues in general position:
+unbounded prime support, greatest common divisor $1$, drift
+$\sim\tfrac12\log X$, and no alignment.  Its survivors decay to
+$0.0033$ at $X=4\cdot10^6$.  Now double every modulus and force
+the residues even, changing nothing except that every kill is
+confined to the even numbers: the survivors sit at $0.5016$, the
+odd numbers being structurally unreachable.  The two systems
+differ only by the protector, and only the protected one retains
+survivors.  In its first form the Question asked whether positive survivor
+measure against divergent misaligned drift always requires such
+a protector, hence a common factor; the many-protector system
+answers that in the negative, and the refined Question asks
+instead for a finite reduction.
+
+We note that the block construction of Section~\ref{sec:routes} cannot be used
+for this test: its drift grows like $s\log\log$ and reaches only
+$0.05$ over eight small primes, so neither the protected nor the
+unprotected version has killed anything at reachable scales.  In the two simplest systems with $\nu>0$ and divergent drift,
+the even moduli at residue $0$ and the doubled construction of
+Section~\ref{sec:routes}, the survivors come from a cylinder that carries no
+classes at all -- the odd numbers -- rather than from any
+cancellation among the classes
+acting there.  We know of no example of divergent drift in which a positive
+survivor measure arises from genuine cancellation on a cylinder
+whose induced drift diverges.  Whether such systems exist is itself
+open.
+
+What Proposition~\ref{prop:ratio} buys is not a proof but a
+translation: the open statement is now that a Buchstab-type
+ratio tends to $1$ on average, for arbitrary congruence systems
+rather than for sieves by primes.  The classical theory
+controls that ratio sharply in the prime case; whether it can be
+controlled here we do not know.
+\end{remark}
+
+\begin{remark}
+Theorem~\ref{thm:excursion} is an equivalence, not merely a
+sufficient condition, and it relocates the difficulty: from controlling an infinite tail
+to bounding the measure of the set of \emph{scales} at which
+fresh classes over-kill.  By
+Proposition~\ref{prop:driftinv} that control cannot come from
+an averaged count of drift, so it must come from the arithmetic
+of the residues.
+
+Heuristically, to keep $w$ elevated on a set of
+scales of positive logarithmic density one needs classes of
+modulus comparable to $X$ at a positive proportion of scales,
+hence essentially every integer as a modulus -- and such a
+system kills everything, forcing $\nu=0$ and removing the
+excursion.  This is the same self-defeating tension as in
+Remark~\ref{rem:notvacuous} and in Section~\ref{sec:routes}, appearing here a
+third time.  We have not turned it into a proof.
+\end{remark}
+
+\begin{remark}
+Theorem~\ref{thm:reduction}, by contrast, is stated as a
+sufficient condition only.  Necessity is not established here and does not follow formally: for fixed $k$ one
+has $\lim_{X}\bigl(F(X)-F_k(X)\bigr)=\nu_k-\nu$, which tends to
+$0$ with $k$ regardless, so all of the content lies in the
+supremum, and a transient excursion could in principle exceed
+the limit even when $\dlog(A)$ exists.
+\end{remark}
+
+\begin{remark}\label{rem:notvacuous}
+It is worth asking whether the hypothesis can be met at all, and
+the obvious attempt to defeat it fails for an instructive
+reason.  One would try to manufacture transient excursions with a
+block of moduli in $[N,2N]$.  Aligned at $0$ such a block is
+useless: the density of integers with a divisor in $[N,2N]$
+tends to $0$ as $N\to\infty$, by a theorem of
+Erd\H{o}s~\cite{Er36}, as Besicovitch's construction requires.
+With residues in general position the block's balls are nearly
+independent, and it kills a profinite measure $d_N$ that stays
+near $1-\prod_{N\le n\le2N}(1-1/n)\to\tfrac12$: measured on
+$\Zhat$ with random residues, $0.516$, $0.513$ and $0.507$ at
+$N=20,40,80$, against $0.426$, $0.413$ and $0.392$ for the same
+moduli aligned at $0$.  So if such a block lies beyond the head
+its fresh contribution is of order $d_N\nu_k$, giving
+\[
+  F(X)-F_k(X)\ \gtrsim\ d_N\nu_k
+  \Bigl(1-\frac{\log N}{\log X}\Bigr),
+\]
+which at $X=N^2$ is about $d_N\nu_k/2$, apparently independent
+of $k$.  But the strategy is self-defeating.  To keep this
+bounded away from $0$ for every $k$ one needs infinitely many
+blocks with $d_N$ bounded below; if the blocks use disjoint
+sets of primes, so that their kill events are independent, $J$
+of them leave survivor measure $\prod(1-d_N)\approx2^{-J}$, so
+$\nu=0$ and the conclusion of the theorem holds trivially, while
+blocks correlated by a common protector fall under
+Theorem~\ref{thm:exhaust}.  If instead
+$\nu>0$ then $\sum_j d_{N_j}<\infty$, so $d_{N_j}\to0$ and the
+bound vanishes for heads beyond $j$.  Either way the excursion
+cannot be sustained.  We do not claim this settles necessity,
+only that the natural counterexample strategy does not work.
+\end{remark}
+
+\section{Four refuted routes, and a bound on a fifth}\label{sec:routes}
+
+We record, with constructions, four natural approaches that do
+not work.  These appear to us more useful to a reader attacking
+the problem than the positive results.  The last is an attempt
+to \emph{refute} the conjecture rather than prove it.
+
+\subsection*{Divergence need not lie in a single channel}
+Split the primes into two sets $Q$ and $R$, each of divergent
+reciprocal sum, say by alternating; partition $R$ into
+consecutive blocks $P_q$ of harmonic weight $s$, one block per
+$q\in Q$, the cutoff large enough that every block holds at
+least $q$ primes; take as moduli the products $qp$ for $p\in P_q$, list each
+block in increasing order and give the class of modulus $qp_j$
+the residue $j\bmod q$, so that the residue groups are the
+arithmetic progressions of positions modulo $q$.  Classes from different
+blocks are coprime, since the block primes lie in $R$ and the
+indexing primes in $Q$, hence always compatible; classes within
+a block have $\gcd=q$ exactly.  Hence a channel contains at most one residue
+group per block, and the maximal channel decomposes as
+$\sum_q(\text{heaviest group in block }q)$.  Since the weights
+$1/p$ decrease along a block, the heaviest group is the one
+containing the first prime, and for a decreasing sequence the
+sum of every $q$th term is at most
+$1/\min P_q+\tfrac1q\sum_{p\in P_q}1/p$; dividing by $q$ and
+summing,
+\[
+  \text{maximal channel}\ \le\
+  \sum_q\frac{1}{q\,\min P_q}\ +\ s\,P(2),
+\]
+where $P(2)=\sum_p p^{-2}$ is the prime zeta value.  Both terms
+converge, the first because consecutive blocks of fixed harmonic
+weight $s$ force, by Mertens' theorem, the least prime of the
+$k$th block to exceed $\exp(e^{ks})$ up to a constant, so that
+$\sum_q1/(q\min P_q)$ is dominated by a doubly exponentially
+decaying series.  The
+total drift, meanwhile, is $\sum_q s/q$, which diverges by
+Mertens.  (The cruder bound $s\,P(2)$ alone is not correct: the
+block at $q=2$ contributes about $s/4$ on its own.)
+
+\subsection*{Bounded channels need not force death}
+Double every modulus in the previous construction and force even
+residues.  Every kill set then lies in the even numbers, so every
+odd number survives and the survivor density is at least
+$1/2$, while the drift still diverges and the channels remain
+bounded.
+
+\subsection*{The $\varepsilon$-split fails}
+The same doubled construction shows that no finite family of
+channels captures all but $\varepsilon$ of a divergent drift.
+
+\subsection*{Heilbronn--Rohrbach fails for shifted classes}
+The inequality $\delta\ge\prod(1-1/n_i)$ of Heilbronn and
+Rohrbach \cite{Heilbronn,Rohrbach}, generalised by Behrend
+\cite{Behrend} and available for sets of multiples, is false for
+shifted systems: for moduli $2,4,8$ with
+residues $0,1,3$ the survivor density is $0.125$ against a bound
+of $0.328125$.  Enumerating every system of three classes whose
+moduli are a $3$-element subset of $\{2,\dots,12\}$ and whose
+residues range independently over all residues modulo those
+moduli gives
+$\sum_{\{a<b<c\}\subset\{2,\dots,12\}}abc=53{,}130$ systems;
+computing each survivor density on the window
+$[X/2,X]$ with $X=6\cdot10^4$ -- a window, not the exact periodic
+density, so these figures are indicative -- $56.1\%$ fall below
+the bound, and the displayed system, for which the periodic
+density $1/8$ is exact, is the extreme case.  The enumeration
+is stated here in full so that it may be reproduced directly.
+
+\subsection*{Isolated transient spikes cannot make the logarithmic
+average oscillate}
+Since $\overline{\delta}_{\log}(A)\le\nu$ is unconditional
+(Theorem~\ref{thm:upper}), a counterexample would need the
+killed set to exceed its own measure in upper \emph{logarithmic}
+density, so $F$ must oscillate.  The natural attempt uses
+classes of modulus comparable to $X$: a class with
+$n\in(X/2,X]$ kills at most one element of that window, so $K$
+of them can raise the window's killed density by $2K/X$ while
+adding only $K/X$ to the drift.  Such spikes are real and large.
+Taking the class $0\bmod n$ for every $n\in(Y/2,Y]$, at
+$Y=2^{13}$, $2^{16}$, $2^{19}$, $2^{21}$, the killed density of
+the dyadic window $(2^k,2^{k+1}]$ runs, for $k=12,\dots,20$,
+through
+\[
+  1.000,\ 0.583,\ 0.527,\ 1.000,\ 0.692,\ 0.645,\ 1.000,
+  \ 0.747,\ 1.000,
+\]
+an amplitude above $0.4$.  Yet $F$ does not oscillate at all:
+evaluated at the tops $X=2^{k+1}$ of the same windows it rises
+monotonically through
+\[
+0.077,\ 0.112,\ 0.140,\ 0.194,\ 0.222,\ 0.246,\ 0.286,\ 0.308,\ 0.341.
+\]
+
+The reason is structural.  A spike occupies one dyadic window,
+of logarithmic length $\log 2$, so its excess above the
+persistent level contributes $O(1/\log X)$ to the logarithmic
+average and vanishes.  To move $F$ one would need the elevation
+sustained over a constant fraction of $\log X$; but a class of
+modulus $n$ kills density $1/n$ at \emph{every} scale above
+$n$, so a sustained elevation is permanent rather than
+transient, accumulates across scales, and drives the survivor
+density to $0$ -- whereupon $\nu=0$ and the logarithmic density
+exists trivially.  We state this last step as a heuristic, not a
+theorem: no result here quantifies how successive excursions of
+intermediate moduli interact.  What is proved is
+Proposition~\ref{prop:spike}: isolated spikes cannot move the
+logarithmic average when $h=0$.
+
+\appendix
+\section{Verification}\label{sec:verification}
+
+The numerical assertions above were checked by computation,
+deterministic except where a Monte Carlo value is quoted, in
+which case the pseudo-random seed is fixed in the program; each
+check is accompanied by a control designed to fail if the
+property being checked were absent.  The values on which the
+text's explicit assertions rest are reproduced by a single
+claims script; the Monte Carlo and window measurements quoted
+as illustration are reproduced by the individual programs named
+in the artifact.  No theorem in this paper depends on these computations:
+each is proved above, and the computations serve only to exhibit
+the explicit examples and counterexamples, and in
+Remark~\ref{rem:gap} to show why two plausible routes fail.  The programs, their outputs and this paper form a self-contained
+artifact that accompanies the manuscript; a versioned public
+copy will be deposited on publication.
+
+\medskip\noindent\textbf{Provenance of the illustrative measurements.}
+Each measurement quoted in a remark is produced by one named
+program in the artifact's \texttt{probes} directory, run without
+arguments: the many-protector and two-level-tower measurements
+of Section~\ref{sec:reductions} by \texttt{verify\_multiprotector.py} and
+\texttt{verify\_tower.py}; the window ratios and the
+intermediate-range ratios by \texttt{verify\_buchstab.py} and
+\texttt{verify\_overkill.py}; the induced-drift measurements of
+the refinement remark by \texttt{verify\_drift\_invariance.py};
+the coarsening statistics by \texttt{verify\_coarsening.py}; the
+semiprime, protector, tree and overlapping-protector instances
+by \texttt{verify\_quasi.py}, \texttt{verify\_confined.py},
+\texttt{verify\_coprime\_protectors.py}, \texttt{verify\_tree.py}
+and \texttt{verify\_overlap.py}; the node assignments of the
+chain constraint by \texttt{verify\_organizable.py}; the
+saturation reduction by \texttt{verify\_saturation.py}; the
+spike and excursion sequences of Section~\ref{sec:routes} by
+\texttt{verify\_spike\_bound.py} and \texttt{verify\_excursion2.py};
+and the coverage table by \texttt{verify\_coverage.py}.  The
+values that enter hypotheses or explicit assertions are
+re-derived by \texttt{tools/verify\_paper\_claims.py} in one run,
+whose output is archived with the artifact.  The disjointness bound
+of Lemma~\ref{lem:A} was confirmed against an exhaustive
+branch-and-bound maximum over all $104$ classes of modulus between $2$ and
+at most $14$, returning exactly $1.000000$.  The independence
+identity behind Theorem~\ref{thm:D} was checked against a direct
+sieve, and a non-coprime control deviates from it.  The
+cylinder reduction of Theorem~\ref{thm:bounded} was verified
+exactly on all non-empty cylinder-class pairs for a system with
+misaligned parts $3,5,7$ and $M=105$.  The quantities in the proof of
+Proposition~\ref{prop:irred} -- the reciprocal sums $S_p$, the
+measures $\mu(\Kh_p)$ and $\mu(\Kh_p\cap \Kh_{p'})$ by
+inclusion--exclusion over the independent prime coordinates,
+and the induced drift and survivor measure of every cylinder --
+were computed exactly for $p\le150$, with the sparse-$p$
+restriction as the control on which the theorem's hypothesis
+fails.  For Proposition~\ref{prop:irred2} the induced survivor
+measure of every multi-class cylinder, the drift, and the
+misalignment were computed exactly on the six-group truncation,
+with the divergent-protector replacement as the control.  The
+node assignments of Proposition~\ref{prop:chain} were searched
+exhaustively for four systems, confirming that the depth-four
+tree and the multiples of $6$ are coprime-layered and that the
+protector and semiprime systems are not.  For
+Theorem~\ref{thm:tree} an explicit tree of depth four --
+children $k^2$ of $k^2+1$ residues at depth $k$, attached primes
+from pools disjoint by depth and coprime to $2,5,17$, nodes of large drift in proportion $1/k^2$ -- has $617$ nodes and $23{,}361$
+classes; its survivor measure $0.96432$, computed as the product
+$\prod_q(1-k_q/q)$ from the proof of Lemma~\ref{lem:dying}, agrees with a Monte Carlo
+draw of $20{,}000$ points ($0.9646$); at each of four levels
+$N$ the first crossings of Lemma~\ref{lem:light} are pairwise
+disjoint with total measure equal to $\mu\{g>N\}$ exactly, and the light drift is below $N$; and the window
+survivor density agrees with the visible profinite measure to
+three decimals at $X=10^4,10^5,10^6$ and $4\times10^6$, which
+illustrates the theorem and proves nothing.  Finally, as a safeguard against
+misattribution, the catalogue of systems exhibited in this paper -- eleven of them, from the
+aligned residues of Theorem~\ref{thm:transl} to the pairwise
+products of Theorem~\ref{thm:overlap} -- was audited
+mechanically: for each, the finitely checkable hypotheses of
+the theorem the text cites for it are verified on a truncation,
+the infinitary ones -- divergence, distinctness, escape -- being
+checked by hand; the finite checks pass.  The saturation reduction of
+Theorem~\ref{thm:sat} was checked exactly on the finite systems
+described there.
+
+\begin{thebibliography}{9}
+
+\bibitem{Behrend} F.~Behrend,
+\emph{Generalization of an inequality of Heilbronn and
+Rohrbach}, Bull. Amer. Math. Soc. \textbf{54} (1948), 681--684.
+
+\bibitem{DE1936} H.~Davenport and P.~Erd\H{o}s,
+\emph{On sequences of positive integers},
+Acta Arith. \textbf{2} (1936), 147--151.
+
+\bibitem{DE1951} H.~Davenport and P.~Erd\H{o}s,
+\emph{On sequences of positive integers},
+J. Indian Math. Soc. \textbf{15} (1951), 19--24.
+
+\bibitem{Bloom} T.~F.~Bloom, \emph{Erd\H{o}s Problem \#25},
+\url{https://www.erdosproblems.com/25}, accessed 4 September 2026.
+
+\bibitem{Choj26} P.~Chojecki, \emph{Truncated congruence sieves
+and Erd\H{o}s Problem 25}, note, 19 March 2026,
+\url{https://www.ulam.ai/research/erdos25.pdf}.
+
+\bibitem{HaRo66} H.~Halberstam and K.~F.~Roth, \emph{Sequences},
+Vol.~I, Clarendon Press, Oxford, 1966.
+
+\bibitem{TaoRogers} T.~Tao, \emph{Rogers' theorem on sieving},
+blog post, 19 January 2026,
+\url{https://terrytao.wordpress.com/2026/01/19/rogers-theorem-on-sieving/}.
+
+\bibitem{TaoThread} T.~Tao, comment of 18 January 2026 quoting
+G.~Tenenbaum with permission,
+\url{https://www.erdosproblems.com/forum/thread/281#post-3370}.
+
+\bibitem{Williams} D.~Williams,
+\emph{Probability with Martingales},
+Cambridge University Press, 1991.
+
+\bibitem{KS} S.~Kochen and C.~Stone,
+\emph{A note on the Borel--Cantelli lemma},
+Illinois J. Math. \textbf{8} (1964), 248--251.
+
+\bibitem{Er36} P.~Erd\H{o}s, \emph{A generalization of a theorem of
+Besicovitch}, J. London Math. Soc. \textbf{11} (1936), 92--98.
+
+\bibitem{Er48} P.~Erd\H{o}s, \emph{On the density of some
+sequences of integers}, Bull. Amer. Math. Soc. \textbf{54} (1948),
+685--692.
+
+\bibitem{FFKPY} M.~Filaseta, K.~Ford, S.~Konyagin, C.~Pomerance
+and G.~Yu, \emph{Sieving by large integers and covering systems of
+congruences}, J. Amer. Math. Soc. \textbf{20} (2007), 495--517.
+
+\bibitem{Hough} R.~Hough, \emph{Solution of the minimum modulus
+problem for covering systems}, Ann. of Math. (2) \textbf{181}
+(2015), 361--382.
+
+\bibitem{HT92} R.~R.~Hall and G.~Tenenbaum, \emph{On Behrend
+sequences}, Math. Proc. Cambridge Philos. Soc. \textbf{112}
+(1992), 467--482.
+
+\bibitem{Ten96} G.~Tenenbaum, \emph{On block Behrend sequences},
+Math. Proc. Cambridge Philos. Soc. \textbf{120} (1996), 355--367.
+
+\bibitem{Hall} R.~R.~Hall,
+\emph{Sets of Multiples},
+Cambridge Tracts in Mathematics \textbf{118},
+Cambridge University Press, 1996.
+
+\bibitem{Heilbronn} H.~Heilbronn,
+\emph{On an inequality in the elementary theory of numbers},
+Proc. Cambridge Philos. Soc. \textbf{33} (1937), 207--209.
+
+\bibitem{Rohrbach} H.~Rohrbach,
+\emph{Beweis einer zahlentheoretischen Ungleichung},
+J. Reine Angew. Math. \textbf{177} (1937), 193--196.
+
+\bibitem{Tenenbaum} G.~Tenenbaum,
+\emph{Introduction to Analytic and Probabilistic Number
+Theory},
+Cambridge Studies in Advanced Mathematics \textbf{46},
+Cambridge University Press, 1995.
+
+\end{thebibliography}
+
+\end{document}
