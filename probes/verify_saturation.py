@@ -65,6 +65,7 @@ def main():
             if d%p==0 and d>p:
                 for c in range(d):
                     if c%p==r: mp.append((d,c))
+    print("  ambient modulus L = %d (finite systems modulo L)" % L)
     g,n0,n1=check(mp,L,"MP many-protector (fills 5,9)"); ok&=g and n1==2
     # SAT: coprime primes with one residue each - already maximal
     sat=[(2,1),(3,2),(5,4),(7,3)]

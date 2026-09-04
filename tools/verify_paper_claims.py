@@ -124,9 +124,20 @@ def phi(x):
             for c in range(M):
                 if (c-a)%ww==0: hit.add(c)
     return len(hit)/float(M)
-P=sum(phi(x)/x for x in range(2,XX+1))/log(XX)
-ck("F=0.2812 vs phi-mean=0.2871", abs(F-0.2812)<0.002 and abs(P-0.2871)<0.002,
-   "F=%.4f phi=%.4f"%(F,P))
+# exact limits: killed set periodic mod 210; phi (no threshold) periodic mod 70
+from fractions import Fraction as _Fr
+_kill=sum(1 for x in range(210) if any(x%nn==a for nn,a,_,_ in info))
+def _phi0(x):
+    hit=set()
+    for nn,a,uu,ww in info:
+        if x%uu==0:
+            for c in range(M):
+                if (c-a)%ww==0: hit.add(c)
+    return _Fr(len(hit),M)
+_pm=sum(_phi0(x) for x in range(70))/70
+ck("phi remark: lim F = 73/210 = 0.3476, log-mean of phi = 169/490 = 0.3449, different",
+   _Fr(_kill,210)==_Fr(73,210) and _pm==_Fr(169,490) and _pm!=_Fr(73,210),
+   "killed %s phi-mean %s"%(_Fr(_kill,210),_pm))
 
 print("6. Refuted-routes section claims")
 ck("HR extreme case: density 0.125 vs bound 0.328125",
@@ -157,7 +168,7 @@ _g40=_blockmeasure(40,False); _a40=_blockmeasure(40,True)
 ck("block [40,80]: general position 0.513, aligned 0.413, aligned below general",
    round(_g40,3)==0.513 and round(_a40,3)==0.413 and _a40<_g40, "general %.3f aligned %.3f"%(_g40,_a40))
 _gb={N:_blockmeasure(N,False) for N in (20,80)}; _ab={N:_blockmeasure(N,True) for N in (20,80)}
-ck("block [N,2N] at N=20,80: general 0.516, 0.507; aligned 0.426, 0.392",
+ck("block [N,2N] Haar measure on Zhat (MC over residues mod the relevant prime powers) at N=20,80: general 0.516, 0.507; aligned 0.426, 0.392",
    round(_gb[20],3)==0.516 and round(_gb[80],3)==0.507 and round(_ab[20],3)==0.426 and round(_ab[80],3)==0.392,
    "general %.3f %.3f aligned %.3f %.3f"%(_gb[20],_gb[80],_ab[20],_ab[80]))
 

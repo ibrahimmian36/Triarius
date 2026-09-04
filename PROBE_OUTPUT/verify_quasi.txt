@@ -12,7 +12,7 @@ semiprime system: p <= 150, 7174 classes, 582 primes q up to 4253
 [4] irreducible: induced moduli all prime: True ; max induced drift 0.886; min induced survivor 0.316 > 0: True
     misaligned (neither prime divides residue): 7048/7174 classes
 [5] mutation, sparse p=[11, 67, 97, 127]: sum mu(K_p)=0.061 < 1, so nu >= 0.939 > 0   [theorem's hypothesis fails as designed: True ]
-[6] MC survival of the truncation (illustration only):
+[6] MC survival of the truncation (illustration only; 3000 points of Zhat, i.e. residues drawn modulo every prime involved):
       general  survivors 0.364   (product heuristic exp(-sum mu(K_p)) = 0.405)
       aligned  survivors 0.524   (product heuristic exp(-sum mu(K_p)) = 0.451)
       protect  survivors 0.414   (product heuristic exp(-sum mu(K_p)) = 0.451)

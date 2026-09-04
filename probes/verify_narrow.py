@@ -102,8 +102,8 @@ def main():
     for p in sub: g*=(1.0-1.0/p)
     ws=windows(((p,0) for p in sub), X)
     rsub=[s/g for _,s in ws]
-    print("   sub-system r: %s"
-          % "  ".join("%.4f" % r for r in rsub[-5:]))
+    print("   sub-system r (all windows): %s"
+          % "  ".join("%.4f" % r for r in rsub))
     ck("sub-systems can exceed 1 substantially (so the "
        "one-sidedness is a property of FULL systems)",
        max(rsub) > 1.05, "max %.4f" % max(rsub))

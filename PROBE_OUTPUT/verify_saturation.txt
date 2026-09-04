@@ -1,3 +1,4 @@
+  ambient modulus L = 1260 (finite systems modulo L)
   MP many-protector (fills 5,9)      classes 1062 -> reduced   2  contains True  union True  idempotent True  saturated True
   SAT coprime primes                 classes   4 -> reduced   4  contains True  union True  idempotent True  saturated True
   RND 0                              classes  12 -> reduced  10  contains True  union True  idempotent True  saturated True

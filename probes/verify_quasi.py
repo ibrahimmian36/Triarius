@@ -182,7 +182,7 @@ def main():
           smu<1, "]")
 
     # 6. MC survival illustration, three schemes, plus sparse control
-    print("[6] MC survival of the truncation (illustration only):")
+    print("[6] MC survival of the truncation (illustration only; 3000 points of Zhat, i.e. residues drawn modulo every prime involved):")
     Pall=primes_upto(max(q for p in M for q in M[p]))
     def mc(classes_, small_, n=3000):
         surv=0

@@ -17,6 +17,7 @@
 4. does it satisfy the OLD hypotheses?
   [PASS] NOT bounded misalignment (parts unbounded)  max 23
      per-block drift s/q: q=3:0.0167  q=5:0.0100  q=7:0.0071  q=11:0.0045  q=13:0.0038  q=17:0.0029  q=19:0.0026  q=23:0.0022
+     sum over these 8 blocks: 0.0499
      the excluded drift is sum_{q>Q} s/q, divergent by Mertens - so for EVERY M the corollary's convergence hypothesis fails
   [PASS] NOT the corollary: each class's misaligned part IS its small prime q, so for any M the excluded classes are those with q not dividing M and their drift sum_{q>Q} s/q diverges by Mertens  misaligned parts [1, 3, 5, 7, 11, 13, 17, 19, 23] subset of small primes [3, 5, 7, 11, 13, 17, 19, 23]
 

@@ -67,6 +67,7 @@ def main():
         if p in bigset: sbig+=1.0/p
         else: ssmall+=S/p
     print("instance: %d protectors (%d big), %d classes" % (len(prot),len(bigset),ncls))
+    print("    layers: big protectors %s carry drift S = 0.40; the rest carry S = 1/(40 log^2 p)" % sorted(bigset))
     print("[1] nu = prod(1 - kappa_j/p_j) = %.5f ; drift of truncation %.4f" % (nu,drift))
     print("    forced split: sum_{big} 1/p_j = %.4f (sparse, summable); sum_{small} S_j/p_j = %.4f" % (sbig,ssmall))
     rng=random.Random(1); n=6000; surv=0

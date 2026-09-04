@@ -195,6 +195,7 @@ def main():
     tail = [(q, 0.05 / q) for q in smalls]
     print("     per-block drift s/q: %s"
           % "  ".join("q=%d:%.4f" % t for t in tail))
+    print("     sum over these %d blocks: %.4f" % (len(tail), sum(x for _,x in tail)))
     print("     the excluded drift is sum_{q>Q} s/q, divergent "
           "by Mertens - so for EVERY M the corollary's "
           "convergence hypothesis fails")

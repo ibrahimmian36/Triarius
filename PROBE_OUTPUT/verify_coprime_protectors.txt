@@ -1,4 +1,5 @@
 instance: 61 protectors (2 big), 125251 classes
+    layers: big protectors [11, 23] carry drift S = 0.40; the rest carry S = 1/(40 log^2 p)
 [1] nu = prod(1 - kappa_j/p_j) = 0.94479 ; drift of truncation 0.0657
     forced split: sum_{big} 1/p_j = 0.1344 (sparse, summable); sum_{small} S_j/p_j = 0.0120
     MC on Zhat (6000 samples): 0.9413   agree: True
