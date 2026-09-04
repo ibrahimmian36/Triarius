@@ -8,10 +8,11 @@ Independent verification of papers/erdos25/main.tex
   [PASS] Prop: 31 is killed and 62 is not (closure fails)  31 killed=True, 62 killed=False
   [PASS] Prop: Lemma 1 fails at n=42 with lhs 0 and rhs log2+log3+log7  lhs=0.000 rhs=3.738 expected 3.738
   [PASS] Theorem (bounded misalignment): cylinder reduction exact, misaligned parts [3, 5, 7, 3, 3], M=105  83/83 pairs exact
-  [INFO] HR sweep over all 3-class systems with moduli from {2..12}: 53130 systems, 29786 violate (56.1%)
-         worst: [(2, 0), (4, 1), (8, 3)] density 0.1250 vs bound 0.328125
+  [INFO] HR sweep over all 3-class systems with moduli from {2..12}: 53130 systems, 23034 strictly below the bound (43.4%), exact periodic densities
+         worst: [(2, 0), (4, 1), (8, 3)] density 1/8 vs bound 21/64
+  [PASS] HR: 23,034 of 53,130 systems (43.4%) fall strictly below the bound, exactly  23034 / 53130
   [PASS] HR: named counterexample (2,0),(4,1),(8,3)  density 0.1250 vs bound 0.328125
 
 All reproduced claims PASS.
-HR figures now in the paper: 53130 systems, 56.1%
+HR figures now in the paper: 53130 systems, 43.4%
 cross-check: in the FULL system (n,1) every x>=3 is killed -> True (this is why the paper now states the finite head)

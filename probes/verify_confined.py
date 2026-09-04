@@ -4,7 +4,7 @@ drift -- no cylinder dies -- covered by the SUMMABLE-PROTECTORS
 theorem (tail kills confined to cylinders of summable density,
 finite heads of convergent drift).
 
-Protectors p_j = least prime >= 8 j^{3/2}, so sum 1/p_j < 1/2.
+Protectors p_j = the ceil(4 j^{3/2})-th prime, so sum 1/p_j < 0.24 and sum sqrt(j)/p_j diverges (PNT).
 Group j: classes (p_j q, a) with q over primes not among the
 protectors, taken in order until sum 1/q >= S_j = sqrt(j), with
 a = 1 mod p_j and random mod q.
@@ -15,7 +15,7 @@ Exact checks:
      modulus, induced moduli distinct primes, induced survivor
      measure prod(1-1/l) > 0 -- computed exactly, minimum shown
   3. drift of the truncation = sum S_j/p_j; and the formula
-     sum sqrt(j)/(8 j^{3/2}) partial sums (analytic, diverges)
+     sum sqrt(j)/p_j ~ sum 1/(6 j log j) partial sums (analytic, diverges)
   4. misaligned residues (unbounded misaligned part)
   5. MUTATION (expected to escape): protectors = all primes,
      sum 1/p_j diverges; MC survivors fall as groups are added
@@ -79,15 +79,16 @@ def main():
     P=primes_upto(100000)
     prot=[]
     for j in range(1,J+1):
-        t=8*j**1.5; prot.append(next(p for p in P if p>=t))
+        prot.append(P[math.ceil(4*j**1.5)-1])   # the ceil(4 j^1.5)-th prime
     classes,groups=build(J,prot,P,rng)
-    print("protectors p_j = least prime >= 8 j^1.5:", prot)
+    print("protectors p_j = the ceil(4 j^1.5)-th prime:", prot)
     print("classes: %d;  group sizes: %s" % (len(classes),[len(groups[p]) for p in prot]))
 
     # 1. nu bound
     sp=sum(1.0/p for p in prot)
-    print("[1] sum 1/p_j = %.4f (truncation), analytic sum_{j} 1/(8 j^1.5) <= zeta(1.5)/8 = %.3f;  nu >= %.4f"
-          % (sp, 2.612/8, 1-sp))
+    tail=sum(1.0/(k*math.log(k)) for k in (math.ceil(4*j**1.5) for j in range(J+1,200000)))
+    print("[1] sum 1/p_j = %.4f (six terms); tail j>%d bounded via p_k > k log k by %.4f; total < %.3f;  nu >= %.4f"
+          % (sp, J, tail, sp+tail, 1-sp))
 
     # 2. irreducibility
     cyl=cylinders(classes)
@@ -108,8 +109,8 @@ def main():
 
     # 3. drift
     dr=sum(sum(1.0/q for q in groups[p])/p for p in prot)
-    part=[sum(math.sqrt(j)/(8*j**1.5) for j in range(1,N+1)) for N in (10,10**3,10**5,10**7)]
-    print("[3] drift of truncation = %.4f;  formula sum sqrt(j)/(8j^1.5) = (1/8) sum 1/j: partial sums %s"
+    part=[sum(1.0/(6*j*math.log(j+1)) for j in range(1,N+1)) for N in (10,10**3,10**5,10**7)]
+    print("[3] drift of truncation = %.4f;  asymptotic term sqrt(j)/p_j ~ 1/(6 j log j): partial sums %s"
           % (dr, ", ".join("%.2f"%x for x in part)), "(diverges as (1/8) log N)")
 
     # 4. misalignment

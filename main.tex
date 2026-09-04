@@ -54,14 +54,14 @@ martingale argument -- systems of divergent drift, positive
 survivor measure and unbounded misalignment whose classes are
 organised along nested protectors, pairwise coprime protectors,
 or protectors that are the pairwise products of a set of primes,
-each under explicit hypotheses on the layers.
+each under explicit and restrictive hypotheses on the layers.
 A second-moment condition, with a lemma restoring the zero--one
 law for families whose indices do not escape to infinity, gives
 a sufficient condition for $\nu=0$.  We exhibit the step of the
 Davenport--Erd\H{o}s argument that shifted residues break, refute
 four natural routes by explicit construction, bound a fifth, and show that every
 system is majorised by a saturated one whose classes are the
-maximal holes of its survivor set.  What remains is stated as
+maximal cylinders meeting its survivor set in a null set.  What remains is stated as
 a checklist that a counterexample must pass in full
 and, without congruences, as a question about a closed subset of
 $\Zhat$ of positive measure whose maximal holes have divergent
@@ -205,9 +205,11 @@ integer survivors at scales far below the period, and no
 estimate of that kind appears in this literature.  Erd\H{o}s's
 own criterion~\cite{Er48} for a set of multiples to have a
 natural density -- that integers whose least divisor in the set
-lies in $(n^{1-\varepsilon},n]$ be rare -- is the multiples-set
-form of the top-octave phenomenon that Proposition~\ref{prop:spike}
-controls here.  The theory of Behrend sequences -- sets of
+lies in $(n^{1-\varepsilon},n]$ be rare -- concerns the same
+top-of-range phenomenon of which Proposition~\ref{prop:spike}
+controls only the single dyadic window $(X/2,X]$, and only in
+logarithmic density; the range $(X^{1-\varepsilon},X/2]$ is
+exactly what remains uncontrolled here.  The theory of Behrend sequences -- sets of
 multiples of full density -- is the aligned case's version of
 the question when $\nu=0$, and it is instructive how hard even
 that is.  Hall and Tenenbaum~\cite{HT92} and
@@ -248,8 +250,12 @@ the classes of modulus at most $X$ ($\nu_X$), a set of classes
 or groups ($\nu_T$, $\nu_J$) -- and a prime marks a reduced
 system; for a cylinder, $\nu_c$ or $\nu_C$ is the survivor
 measure of the induced system there, that is, the measure
-relative to the cylinder.  A system is a
-\emph{set} of classes: no ball is listed twice,
+relative to the cylinder.  We fix once and for all an enumeration of the
+classes by non-decreasing modulus, ties in any fixed order;
+``the first $N$ classes'' refers to it.  Nothing below depends on
+the choice: finite heads enter only through limits over $N$, and
+the same quantities can be defined by a modulus cutoff instead.
+A system is a \emph{set} of classes: no ball is listed twice,
 a repetition killing nothing new.  Several classes may share a
 modulus, a slight widening of the problem in which Erd\H{o}s's
 case is that of strictly increasing moduli; the reductions of
@@ -384,7 +390,14 @@ Theorem~\ref{thm:bounded} through the third,
 Theorems~\ref{thm:exhaust}, \ref{thm:confined} and
 Lemma~\ref{lem:light} through the fourth, with the system's
 constant $M'$ in place of $1$, and Theorem~\ref{thm:H} through
-the fifth.  Induced systems arise in two
+the fifth -- with one exception, Theorem~\ref{thm:sat}, which is
+stated for standard systems and is false for threshold systems:
+the classes $(2^k,2^{k-1};2^{k-1})$, $k\ge1$, kill every positive
+integer, while their balls fill $2\Zhat$ up to the point $0$, so
+$\nu=\tfrac12$ and the saturated system $\{2\Zhat\}$ has integer
+survivors of logarithmic density $\tfrac12$.  Its proof uses
+that a class kills nothing below its modulus.  The theorem is
+applied only to the original system.  Induced systems arise in two
 ways only.  Theorems~\ref{thm:bounded}, \ref{thm:cyl}
 and~\ref{thm:cylapp} restrict to the cylinders of one fixed
 modulus $M$, and Lemma~\ref{lem:restrict} gives those induced
@@ -544,8 +557,13 @@ are non-negative, Karamata's Tauberian theorem for the
 Laplace--Stieltjes transform of the non-decreasing function
 $t\mapsto\sum_{\log n\le t}\varphi(n)/n$ (see
 \cite[Ch.~II.7]{Tenenbaum}) converts $(\sigma-1)F(\sigma)\to L$
-into $\sum_{n\le X}\varphi(n)/n\sim L\log X$, the stated
-logarithmic mean.  Note that
+into $\sum_{n\le X}\varphi(n)/n\sim L\log X$ when $L>0$, the
+stated logarithmic mean.  When $L=0$ the conclusion
+$\sum_{n\le X}\varphi(n)/n=o(\log X)$ follows from positivity
+alone: with $\alpha(t)=\sum_{\log n\le t}\varphi(n)/n$ one has
+$\alpha(t)\le e\,F(1+1/t)$, since every term with $\log n\le t$
+carries the factor $n^{-1/t}\ge e^{-1}$ in $F(1+1/t)$, so
+$\alpha(t)/t\le e\,t^{-1}F(1+1/t)\to0$.  Note that
 nothing beyond $0\le\varphi\le1$ and divisibility-monotonicity
 was used; in particular $\varphi$ need not be an indicator
 function, which is the case of Davenport--Erd\H{o}s.
@@ -808,7 +826,8 @@ the maximum defining $B(N)$ below.  Let $S_N$ be the survivor
 set of the finitely many classes of the channels whose moduli
 lie in the respective $D_j^{(N)}$, each channel being a set of
 classes and the classes assigned to it exhausted by modulus.  Being a finite union
-of residue classes, $S_N$ is periodic and has a density $d_N$
+of truncated residue classes, $S_N$ is periodic apart from
+finitely many integers and has a density $d_N$
 equal to its logarithmic density.
 
 We claim that for every $x$ exceeding
@@ -1298,7 +1317,7 @@ Exhaustion suggests a majorant that needs no partition into
 groups.
 
 \begin{theorem}[Saturation]\label{thm:sat}
-Let $\mathcal{P}$ be the family of cylinders $C$ with
+Let the system be standard ($t_i=n_i$), and let $\mathcal{P}$ be the family of cylinders $C$ with
 $\mu(\Ahat\cap C)=0$ that are maximal under inclusion.  Then every
 class lies inside a member of $\mathcal{P}$; the union of
 $\mathcal{P}$ is the union of the balls up to a null set, so the
@@ -1312,13 +1331,18 @@ logarithmic density equal to $\nu$, then so does $A$.
 \end{theorem}
 
 \begin{proof}
-A class $B_i$ has $\mu(\Ahat\cap B_i)=0$, and the cylinders
-containing it with null intersection form a family in which each
-coarsening divides the modulus, hence finite, so a maximal one
-exists.  Every member of $\mathcal{P}$ lies in the union of the
-balls up to a null set, meeting $\Ahat$ in a null set, which
-gives the union and the measure.  Saturation is maximality read
-twice.  The profinite survivor set of $\mathcal{P}$ is $\Ahat$ up
+The cylinders containing a given cylinder $c+d\Zhat$ are its
+coarsenings $c+d'\Zhat$ with $d'\mid d$, finitely many; so among
+the coarsenings of a null cylinder that are themselves null there
+is a maximal one, and it is maximal under inclusion among all
+null cylinders, hence a member of $\mathcal{P}$.  Applied to a
+class $B_i$, which is null since $\mu(\Ahat\cap B_i)=0$, this puts
+every class inside a member; applied to an arbitrary null
+cylinder it gives the second half of saturation, and the first
+half is the maximality of the members.  Every member of
+$\mathcal{P}$ meets $\Ahat$ in a null set and so lies in the union
+of the balls up to a null set, which gives the union and the
+measure.  The profinite survivor set of $\mathcal{P}$ is $\Ahat$ up
 to a null set, and a null cylinder for one set is a null cylinder
 for the other, since
 $|\mu(C\cap\Ahat)-\mu(C\cap\Ahat')|\le\mu(\Ahat\,\triangle\,\Ahat')$;
@@ -1339,8 +1363,10 @@ without nesting -- and the density statement is one-sided: the
 saturated system majorises the original, and a density for it
 passes down.  The consequence is that in proving $\dlog(A)=\nu$
 one may assume the system saturated: its classes are the maximal
-holes of its survivor set, no proper coarsening is null, and any
-cylinder that dies is already inside a class.  The
+cylinders meeting the survivor set in a null set -- ``holes'' up
+to measure zero, not necessarily disjoint from it -- no proper
+coarsening is null, and any cylinder that dies is already inside
+a class.  The
 converse direction, that a density for $A$ forces one for
 $A_{\mathcal{P}}$, we have not proved and do not need.  On
 finite systems modulo $1260$ the reduction was computed exactly:
@@ -1350,7 +1376,7 @@ random systems every class lies in a member, the union is
 reproduced, the reduction is idempotent and its output saturated.
 \end{remark}
 
-In the saturated form the classes are the holes of $A$, and
+In the saturated form the classes are the maximal null cylinders of $\Ahat$, and
 Lemma~\ref{lem:escape}, read backwards, says what positive
 survivor measure forces of them.
 
@@ -1530,14 +1556,31 @@ conditional measure of $E$ lies in $(\eta,1-\eta)$ -- the
 call the remaining cells \emph{dying} or \emph{alive} according
 as that measure is at least $1-\eta$ or at most $\eta$.
 
-Let $C$ be an alive cell, a residue class.  The classes
-attached to $C$'s node, to its
-ancestors and to its descendants form, in the index $t$, a
-coprime-layered system with the same branch drift -- for a gap
-there are no descendants, and (T4) keeps the attached primes
-coprime to the modulus of $C$ -- whose survivor set is the index
-set of $A\cap C$ and whose survivor measure is
-$\nu_C=\mu(C\cap\{\text{survivors}\})/\mu(C)$.
+Let $C$ be an alive cell, a residue class $c+d_C\mathbb{Z}$;
+either $C$ is a node of depth $D$, or $C$ is one of the residue
+classes composing the gap of a node $C_0$, in which case its
+modulus is a multiple of $d_{C_0}$ built from node moduli.  Write
+$x=c+d_Ct$.  The classes that meet $C$ are those attached to the
+nodes containing $C$ (its node and that node's ancestors) and,
+when $C$ is a node, those attached to its descendants.  By (T4)
+every attached prime $q$ is coprime to $d_C$, so a class
+$(d_{C'}q,a)$ attached to a node $C'\supseteq C$ becomes in $t$
+the class of modulus $q$, attached to the root, and a class
+attached to a descendant $C''\subset C$ becomes one of modulus
+$(d_{C''}/d_C)\,q$, attached to the node $C''$ of the subtree
+rooted at $C$.  This is a coprime-layered system on that subtree
+(a single root when $C$ is a gap class): (T1) and (T4) are
+inherited; (T2) holds with the induced node moduli; and (T3)
+holds because two root classes with the same prime $q$ and the
+same residue modulo $q$ would come from classes agreeing modulo
+$q$ and, both containing $C$, modulo their node moduli, so that
+one would contain the other, which (T3) for the original system
+forbids.  Its branch drifts are those of the original along the
+branches through $C$, its survivor set is the index set of
+$A\cap C$, and its survivor measure is
+$\nu_C=\mu(C\cap\{\text{survivors}\})/\mu(C)$.  By
+Lemma~\ref{lem:restrict} it is a threshold system, and
+Lemma~\ref{lem:light} applies to it by the fourth threshold fact.
 Lemma~\ref{lem:light} gives
 $\underline{\delta}_{\log}(A\cap C)\ge\mu(C)(\nu_C-\mu\{g>N\mid C\})$
 for every $N$, and letting $N\to\infty$,
@@ -1583,9 +1626,10 @@ $\gcd(d,d')=1$ makes one of them $1$.
 \end{proof}
 
 So the classes of a coprime-layered system hang off a family of
-cylinders any two of which share a factor: the moduli
-$2,10,170,\dots$ of the tree above, not the moduli
-$11,23,43,\dots$ of a family of protectors.
+cylinders any two of which share a factor: the node moduli
+$2,10,100,1700$ of the explicit tree described in
+Appendix~\ref{sec:verification}, not the moduli $7,37,73,\dots$
+of a family of protectors.
 Proposition~\ref{prop:irred2} is therefore \emph{not}
 coprime-layered -- its natural nodes are the distinct primes
 $p_j$, pairwise coprime -- and it is covered by
@@ -1593,8 +1637,8 @@ Theorem~\ref{thm:confined} instead.  Nor are the
 semiprimes, whose nodes would be the primes $p$; they are
 covered by Theorem~\ref{thm:quasi}.  Checked by exact search
 over the legal node assignments on truncations -- for the tree,
-its depth-two slice -- the tree above and the multiples of $6$
-are coprime-layered, while those two systems are not.
+its depth-two slice -- that explicit tree and the multiples of
+$6$ are coprime-layered, while those two systems are not.
 \end{remark}
 
 \begin{remark}\label{rem:circular}
@@ -1983,7 +2027,9 @@ Assume $\nu>0$.  For every $X$,
 \]
 so there is no excursion at all when $r(X)\ge1$.  Consequently
 $E_\delta\subseteq\{X:\ r(X)<1-\delta/\nu\}$, and $\dlog(A)$
-exists and equals $\nu$ as soon as $r\to1$ in logarithmic mean.
+exists and equals $\nu$ as soon as $(1-r)^{+}\to0$ in
+logarithmic mean; since $\limsup_Xr(X)\le1$ (shown below), this
+is the same as $r\to1$ in logarithmic mean.
 \end{proposition}
 
 \begin{proof}
@@ -2017,10 +2063,14 @@ conjecture.  (At finite $X$ the quantity $\nu_X$ is still
 $e^{-\gamma}/\log X$ and far from its limit, which is easy to
 confuse with $\nu$ itself.)
 
-Second, the deviation is one-sided.  For each $N$ the survivors
-of the whole system lie inside those of the first $N$ classes,
-whose window density tends to $\nu_N$; hence
-$\limsup_X s(X)\le\nu$ and so $\limsup_X r(X)\le1$.  Combining,
+Second, the deviation is one-sided.  For each fixed $N$ the
+survivors of the whole system lie inside those of the first $N$
+classes, whose window density tends to $\nu_N$; hence
+$\limsup_Xs(X)\le\nu_N$ for every $N$, and letting $N\to\infty$,
+$\limsup_Xs(X)\le\nu$.  Since $\nu_X\to\nu>0$, it follows that
+$\limsup_Xr(X)\le1$, which is what makes the signed and the
+one-sided logarithmic means in Proposition~\ref{prop:ratio}
+equivalent.  Combining,
 the entire remaining content of the problem is that
 \[
   r(X)\to1\ \text{ in logarithmic mean, for systems with }\nu>0 .
@@ -2273,14 +2323,17 @@ dying cylinder.
 \begin{proposition}[Irreducible with survivors]\label{prop:irred2}
 Let $p_1<p_2<\cdots$ be primes with $\sum_j1/p_j<1$, let
 $S_j\to\infty$ with $\sum_jS_j/p_j=\infty$ -- for instance $p_j$
-the least prime exceeding both $p_{j-1}$ and $8j^{3/2}$, and
-$S_j=\sqrt j$ -- and let
+the $\lceil4j^{3/2}\rceil$th prime and $S_j=\sqrt j$: then
+$\sum_j1/p_j<0.24$, using $p_k>k\log k$ beyond the first six
+terms, while $p_k\sim k\log k$ gives $\sqrt j/p_j\sim1/(6j\log j)$,
+whose sum diverges -- and let
 group $j$ consist of the classes $(p_jq,a)$ with
 $a\equiv1\pmod{p_j}$ and $a$ arbitrary modulo $q$, over primes
 $q$ outside $\{p_i\}$ taken in order until $\sum1/q$ reaches
 $S_j$.  Then the drift diverges, $\nu\ge1-\sum_j1/p_j>0$, no
 cylinder holding two or more classes has induced survivor
-measure $0$, so Theorem~\ref{thm:exhaust} admits no proper
+measure $0$ (for the cylinder $\Zhat$ itself this is $\nu>0$),
+so Theorem~\ref{thm:exhaust} admits no proper
 reduction of the system; and
 $\dlog(A)=\nu$ by Theorem~\ref{thm:confined}.
 \end{proposition}
@@ -2288,7 +2341,8 @@ $\dlog(A)=\nu$ by Theorem~\ref{thm:confined}.
 \begin{proof}
 The drift is $\sum_jS_j/p_j$.  All kills lie in $\bigcup_jC_j$
 with $C_j=\{x\equiv1\ (p_j)\}$, giving the bound on $\nu$.  A
-cylinder holding two classes has prime modulus: for $(p_j,1)$
+cylinder of modulus at least $2$ holding two classes has prime
+modulus: for $(p_j,1)$
 the induced classes have the distinct prime moduli $q$ of group
 $j$, with $\sum1/q<S_j+1$; for $(q,c)$ they have the distinct
 prime moduli $p_j$ of the groups using $q$ with $a\equiv c\pmod
@@ -2299,11 +2353,11 @@ drift $\sum_{j\le J}S_j/p_j<\infty$, so Theorem~\ref{thm:conv}
 covers it, and $\sum_j1/p_j<\infty$.
 \end{proof}
 
-With six groups the system has $5{,}964$ classes; every
+With six groups the system has $6{,}500$ classes; every
 cylinder holding two or more classes has prime modulus and
 distinct prime induced moduli, the least induced survivor
-measure is $0.0633$, the largest induced drift $2.449=\sqrt6$,
-$\sum_{j\le6}1/p_j=0.1908$, and $5{,}951$ classes are
+measure is $0.0637$, the largest induced drift $2.449=\sqrt6$,
+$\sum_{j\le6}1/p_j=0.1999$, and $6{,}490$ classes are
 misaligned, with misaligned parts growing without bound.
 Replacing the protectors by the first primes, so that
 $\sum1/p_j$ diverges, sends the survivors down through
@@ -2574,15 +2628,13 @@ moduli are a $3$-element subset of $\{2,\dots,12\}$ and whose
 residues range independently over all residues modulo those
 moduli gives
 $\sum_{\{a<b<c\}\subset\{2,\dots,12\}}abc=53{,}130$ systems;
-computing each survivor density on the window
-$[X/2,X]$ with $X=6\cdot10^4$ -- a window, not the exact periodic
-density, so these figures are indicative -- $56.1\%$ fall below
-the bound, and the displayed system, for which the periodic
-density $1/8$ is exact, is the extreme case.  The enumeration
-is stated here in full so that it may be reproduced directly.
+each is periodic modulo $\mathrm{lcm}(a,b,c)$, so its survivor
+density is an exact rational, and $23{,}034$ of them --
+$43.4\%$ -- fall strictly below the bound, the displayed system
+being the extreme case.  The enumeration is specified here so
+that it may be reproduced directly.
 
-\subsection*{Isolated transient spikes cannot make the logarithmic
-average oscillate}
+\subsection*{A bound for top-octave spikes}
 Since $\overline{\delta}_{\log}(A)\le\nu$ is unconditional
 (Theorem~\ref{thm:upper}), a counterexample would need the
 killed set to exceed its own measure in upper \emph{logarithmic}

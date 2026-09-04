@@ -261,21 +261,23 @@ ck("sparse-p control: sum mu = 0.061, survivors >= 0.939",
 # --- Proposition (irreducible with survivors), six groups ---
 import verify_confined as vc
 _P=vc.primes_upto(100000)
-_prot=[next(q for q in _P if q>=8*j**1.5) for j in range(1,7)]
+import math as _mth
+_prot=[_P[_mth.ceil(4*j**1.5)-1] for j in range(1,7)]
 _cl,_gr=vc.build(6,_prot,_P,_r.Random(7))
-ck("irreducible with survivors: protectors 11..127, 5,964 classes",
-   _prot==[11,23,43,67,97,127] and len(_cl)==5964)
+ck("irreducible with survivors: protectors 7..277 (the ceil(4j^1.5)-th primes), 6,500 classes",
+   _prot==[7,37,73,131,197,277] and len(_cl)==6500)
 _sp=sum(1.0/p for p in _prot)
-ck("sum 1/p_j = 0.1908 < 1/2", round(_sp,4)==0.1908)
+_tail=sum(1.0/(k*_mth.log(k)) for k in (_mth.ceil(4*j**1.5) for j in range(7,200000)))
+ck("sum 1/p_j = 0.1999 over six terms, whole sum < 0.24 (tail via p_k > k log k)", round(_sp,4)==0.1999 and _sp+_tail<0.24)
 _cy=vc.cylinders(_cl); _Ps=set(_P); _ms=1.0; _md=0.0; _ap=True
 for (l,c),mods in _cy.items():
     if len(mods)<2: continue
     _ap&=(l in _Ps) and all(m in _Ps for m in mods) and len(set(mods))==len(mods)
     _md=max(_md,sum(1.0/m for m in mods))
     _ms=min(_ms,__import__("functools").reduce(lambda x,m:x*(1-1.0/m),mods,1.0))
-ck("every multi-class cylinder prime with distinct prime induced moduli; min survivor 0.0633; max drift 2.449",
-   _ap and round(_ms,4)==0.0633 and round(_md,3)==2.449)
-ck("5,951 misaligned classes", sum(1 for (p,q),a in _cl.items() if a%p and a%q)==5951)
+ck("every multi-class cylinder prime with distinct prime induced moduli; min survivor 0.0637; max drift 2.449",
+   _ap and round(_ms,4)==0.0637 and round(_md,3)==2.449)
+ck("6,490 misaligned classes", sum(1 for (p,q),a in _cl.items() if a%p and a%q)==6490)
 
 # --- Theorem (coprime-layered trees): explicit tree of depth four ---
 import verify_tree as vt

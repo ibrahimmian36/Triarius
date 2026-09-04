@@ -204,32 +204,36 @@ def cylinder(X=40000):
 
 # ---------- Heilbronn-Rohrbach failure: RE-DERIVE ----------
 def hr(X=60000):
-    """the paper cites '42.4% of 55,770 systems'. The sweep's
-    parameter space was never recorded, so re-derive it here
-    over a STATED space and correct the paper to match."""
+    """exact enumeration: every 3-class system is periodic modulo
+    lcm(a,b,c), so its survivor density is an exact rational; count
+    those strictly below the Heilbronn-Rohrbach product bound."""
+    from fractions import Fraction as Fr
+    from math import lcm
     tri = list(combinations(range(2, 13), 3))
     total = viol = 0
     worst = None
     for (a, b, c) in tri:
+        L = lcm(a, b, c)
+        bound = Fr(a - 1, a) * Fr(b - 1, b) * Fr(c - 1, c)
         for ra in range(a):
             for rb in range(b):
                 for rc in range(c):
-                    cls = [(a, ra), (b, rb), (c, rc)]
                     total += 1
-                    bound = 1.0
-                    for n, _ in cls:
-                        bound *= (1 - 1.0 / n)
-                    d = density(cls, X)
-                    if d < bound - 1e-9:
+                    surv = sum(1 for x in range(L)
+                               if x % a != ra and x % b != rb and x % c != rc)
+                    d = Fr(surv, L)
+                    if d < bound:
                         viol += 1
                         if worst is None or d - bound < worst[0]:
-                            worst = (d - bound, cls, d, bound)
+                            worst = (d - bound, [(a, ra), (b, rb), (c, rc)], d, bound)
     pct = 100.0 * viol / total
     print("  [INFO] HR sweep over all 3-class systems with "
-          "moduli from {2..12}: %d systems, %d violate (%.1f%%)"
+          "moduli from {2..12}: %d systems, %d strictly below the bound (%.1f%%), exact periodic densities"
           % (total, viol, pct))
-    print("         worst: %s density %.4f vs bound %.6f"
+    print("         worst: %s density %s vs bound %s"
           % (worst[1], worst[2], worst[3]))
+    check("HR: 23,034 of 53,130 systems (43.4%) fall strictly below the bound, exactly",
+          total == 53130 and viol == 23034, "%d / %d" % (viol, total))
     named = [(2, 0), (4, 1), (8, 3)]
     dn = density(named, X)
     bn = 1.0

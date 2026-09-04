@@ -27,10 +27,10 @@
   [PASS] ratio 1.889 at N=149, falling from 2.159 at N=13, below 11.4  final 1.889
   [PASS] max induced drift 0.886, min induced survivor 0.316 > 0
   [PASS] sparse-p control: sum mu = 0.061, survivors >= 0.939
-  [PASS] irreducible with survivors: protectors 11..127, 5,964 classes
-  [PASS] sum 1/p_j = 0.1908 < 1/2
-  [PASS] every multi-class cylinder prime with distinct prime induced moduli; min survivor 0.0633; max drift 2.449
-  [PASS] 5,951 misaligned classes
+  [PASS] irreducible with survivors: protectors 7..277 (the ceil(4j^1.5)-th primes), 6,500 classes
+  [PASS] sum 1/p_j = 0.1999 over six terms, whole sum < 0.24 (tail via p_k > k log k)
+  [PASS] every multi-class cylinder prime with distinct prime induced moduli; min survivor 0.0637; max drift 2.449
+  [PASS] 6,490 misaligned classes
   [PASS] tree: 617 nodes, 23,361 classes
   [PASS] tree survivor measure 0.96432 by branch product
   [PASS] first crossings disjoint, measure = mu{g>N} to 1e-12, light drift <= N at four levels
