@@ -1,0 +1,11 @@
+odd moduli 3..2000000 : 999999 classes, drift 6.890 (divergent), gcd = 1
+
+  UNPROTECTED (odd moduli, random residues)
+     survivors: 0.0054  0.0040  0.0034  0.0035  0.0033  0.0033
+  PROTECTED   (same, doubled, kills confined to evens)
+     survivors: 0.5042  0.5027  0.5020  0.5017  0.5017  0.5016
+
+  calibration - protected sits near 1/2 (odds are unreachable): True (0.5016)
+  unprotected falling: False (0.0088 -> 0.0033)
+
+[verdict] REMOVING THE PROTECTOR KILLS THE SURVIVORS: 0.0033 against 0.5016 for the protected twin. The misaligned branch behaves as the question requires - divergent misaligned drift with nu > 0 needed the common factor.

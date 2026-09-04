@@ -1,0 +1,17 @@
+average induced drift per cylinder vs original drift
+
+  aligned 2..60    original drift 3.663204   identity holds for all 10 moduli
+  even moduli      original drift 2.126772   identity holds for all 10 moduli
+  prime moduli     original drift 1.661647   identity holds for all 10 moduli
+  random 2..60     original drift 3.663204   identity holds for all 10 moduli
+  shifted 2..60    original drift 3.663204   identity holds for all 10 moduli
+
+  [PASS] average induced drift equals the original drift, for every tested M and every system  5 systems x 10 moduli
+  [PASS] control with hand-computed drift 1/2+1/3+1/5  = 31/30
+
+  Consequence: refinement does NOT dilute drift.  A
+  cylinder decomposition cannot resolve cylinders by
+  starving them, and divergent drift remains
+  divergent on the typical cylinder.
+
+[verdict] identity confirmed exactly; the starvation mechanism behind iterated cylinder decomposition is closed off.

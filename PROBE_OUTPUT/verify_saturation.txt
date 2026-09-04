@@ -1,0 +1,10 @@
+  MP many-protector (fills 5,9)      classes 1062 -> reduced   2  contains True  union True  idempotent True  saturated True
+  SAT coprime primes                 classes   4 -> reduced   4  contains True  union True  idempotent True  saturated True
+  RND 0                              classes  12 -> reduced  10  contains True  union True  idempotent True  saturated True
+  RND 1                              classes  12 -> reduced  11  contains True  union True  idempotent True  saturated True
+  RND 2                              classes  12 -> reduced   6  contains True  union True  idempotent True  saturated True
+  RND 3                              classes  12 -> reduced  12  contains True  union True  idempotent True  saturated True
+  RND 4                              classes  12 -> reduced   5  contains True  union True  idempotent True  saturated True
+  RND 5                              classes  12 -> reduced  12  contains True  union True  idempotent True  saturated True
+
+[verdict] PASS: maximal null cylinders contain every class, reproduce the union, are idempotent and saturated; many-protector collapses to its protectors.

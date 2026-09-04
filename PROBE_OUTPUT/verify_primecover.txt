@@ -1,0 +1,13 @@
+CONTROLS
+   aligned evens (nu=1/2)         0.5000  0.5000  0.5000  0.5000  0.5000   [falling]  prime cover: {2}
+   all moduli, random (nu=0)      0.0000  0.0000  0.0000  0.0000  0.0000   [mixed]  prime cover: none
+   controls discriminate: True
+
+CANDIDATES: divergent drift, UNBOUNDED prime support
+   semiprimes p*q: 24976 moduli, drift 2.745 (grows like (loglog)^2)
+   semiprimes, random residues    0.0567  0.0544  0.0538  0.0533  0.0528   [falling]  prime cover: unbounded
+   odd semiprimes: 24753 moduli, drift 1.623
+   odd semiprimes, random         0.2057  0.1999  0.1970  0.1943  0.1933   [falling]  prime cover: unbounded, no prime 2
+   odd semiprimes, ALIGNED        0.4207  0.4349  0.4444  0.4503  0.4530   [mixed]  prime cover: unbounded
+
+[verdict] CANDIDATE HARD INSTANCE: odd semiprimes aligned sustains survivors with unbounded prime support and divergent drift. Needs nu computed properly before any claim.

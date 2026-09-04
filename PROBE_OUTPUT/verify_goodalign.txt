@@ -1,0 +1,13 @@
+1. aligned evens (nu = 1/2, divergent drift)
+  aligned evens (mod 2):
+     c=0:  39998 induced classes, TRUE survivor measure 0.000, aligned share 1.000
+     c=1:      0 induced classes, TRUE survivor measure 1.000, aligned share 1.000   <-- good
+  [PASS] good cylinders of the aligned evens are empty or aligned-dominated  good cylinders: [(1, 0, 1.0)]
+
+2. doubled construction (nu = 1/2, divergent drift)
+  doubled (mod 2):
+     c=0:    194 induced classes, TRUE survivor measure 0.000, aligned share 0.248
+     c=1:      0 induced classes, TRUE survivor measure 1.000, aligned share 1.000   <-- good
+  [PASS] good cylinders of the doubled construction are empty or aligned-dominated  good cylinders: [(1, 0, 1.0)]
+
+[verdict] ROUTE OPEN in the tested systems: every good cylinder is empty or aligned-dominated. That is two examples, not a theorem.

@@ -1,0 +1,13 @@
+instance: 61 protectors (2 big), 125251 classes
+[1] nu = prod(1 - kappa_j/p_j) = 0.94479 ; drift of truncation 0.0657
+    forced split: sum_{big} 1/p_j = 0.1344 (sparse, summable); sum_{small} S_j/p_j = 0.0120
+    MC on Zhat (6000 samples): 0.9413   agree: True
+[2] mutation: S = 1.5 on EVERY protector; exact partial products of prod(1 - kappa/p):
+      N=     100  product 0.3389
+      N=    1000  product 0.2492
+      N=   10000  product 0.1997
+      N=  100000  product 0.1680
+      N= 1000000  product 0.1459
+    falling toward 0 (like (log N)^-0.78): True
+
+[verdict] PASS

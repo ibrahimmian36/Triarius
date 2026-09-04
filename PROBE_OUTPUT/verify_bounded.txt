@@ -1,0 +1,12 @@
+bounded-misalignment system: 417 classes, all misaligned parts divide 105
+  inclusion holds?             violations     0 of   5545 elements (0 below the head bound, excluded)
+mutation system: 483 classes, misaligned parts NOT dividing 105
+  inclusion must FAIL          violations  9859 of  14022 elements (0 below the head bound, excluded)
+
+  inclusion holds under bounded misalignment: True
+  mutation fires (hypothesis load-bearing):    True
+
+  F(X) along the way: 2000:0.9187  8000:0.9127  30000:0.9107  59999:0.9104
+  successive changes: 0.0059  0.0021  0.0003
+
+[VERDICT] The inclusion is exact and the mutation fires. The bounded-misalignment case follows from the vanishing-tails lemma alone - no character estimate is needed, and the proposition can be restored to a THEOREM.

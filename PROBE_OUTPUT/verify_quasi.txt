@@ -1,0 +1,21 @@
+semiprime system: p <= 150, 7174 classes, 582 primes q up to 4253
+[1] S_p in [1/2, 1/2+1/p) for all p: True  (min 0.5000 max 0.5333)
+[2] mu(K_p) >= (1-e^-1/2)/p = 0.3935/p for all p: True  (min p*mu 0.4815, max 0.5333; sum_p mu(K_p)=0.948)
+[3] second-moment ratio R(N), exact:
+      N=  13  sum mu=0.678  R=2.159
+      N=  37  sum mu=0.802  R=2.017
+      N=  61  sum mu=0.862  R=1.961
+      N=  89  sum mu=0.901  R=1.927
+      N= 113  sum mu=0.930  R=1.904
+      N= 149  sum mu=0.948  R=1.889
+    R stays below the analytic 11.4: True  (max after 3 primes 2.295, final 1.889)
+[4] irreducible: induced moduli all prime: True ; max induced drift 0.886; min induced survivor 0.316 > 0: True
+    misaligned (neither prime divides residue): 7048/7174 classes
+[5] mutation, sparse p=[11, 67, 97, 127]: sum mu(K_p)=0.061 < 1, so nu >= 0.939 > 0   [theorem's hypothesis fails as designed: True ]
+[6] MC survival of the truncation (illustration only):
+      general  survivors 0.364   (product heuristic exp(-sum mu(K_p)) = 0.405)
+      aligned  survivors 0.524   (product heuristic exp(-sum mu(K_p)) = 0.451)
+      protect  survivors 0.414   (product heuristic exp(-sum mu(K_p)) = 0.451)
+      sparse-p control survivors 0.941  (bound 1-sum mu = 0.939)
+
+[verdict] PASS: every quantity the proof uses holds exactly on the truncation; the mutation escapes as designed.

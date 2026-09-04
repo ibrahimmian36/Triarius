@@ -1,0 +1,7 @@
+pairwise compatible chain of 40 classes: 0 violations (must be 0)
+unique common residue mod 2^40 is 35
+integers in [-2000,2000] aligning the whole chain: [35]
+common residue at levels 6,11,21,31,40: [35, 35, 35, 35, 35]
+integers the diagonalisation set out to exclude: [0, 1, -1, 2, -2, 3, -3, 4] ...
+of those, still aligning the chain: NONE (must be empty)
+-> gauntlet FATAL NOT confirmed by this run

@@ -1,0 +1,12 @@
+candidate layers (a layer = the classes on one cylinder):
+  C1 2q aligned-odd      drift   0.709  nu~0.609  bounded-w False mixed True  reducible True  sum mu(K_p)~0.71
+  C2 sparse protectors   drift   0.027  nu~0.974  bounded-w False mixed True  reducible False sum mu(K_p)~0.03
+  C3 distinct primes     drift   2.291  nu~0.071  bounded-w False mixed True  reducible False sum mu(K_p)~2.29
+  K1 pq general          drift   0.517  nu~0.586  bounded-w False mixed True  reducible False sum mu(K_p)~0.52
+  K2 prime squares       drift   0.452  nu~0.597  bounded-w False mixed True  reducible False sum mu(K_p)~0.45
+  K3 pq near-diagonal    drift   0.644  nu~0.504  bounded-w False mixed True  reducible False sum mu(K_p)~0.64
+
+reading: a composite layer with divergent drift keeps survivors
+only when it is reducible (C1) or confined (C2); the general
+position candidates K1,K3 lose their survivors, K2 has
+convergent drift.  Controls behaved as designed.

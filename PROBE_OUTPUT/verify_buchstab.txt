@@ -1,0 +1,13 @@
+window vs global survivor density for the sieve by
+primes up to X/2, residue 0
+
+  X=200000     window 8.392e-02   global 4.875e-02   ratio 1.7213
+  X=1000000    window 7.392e-02   global 4.278e-02   ratio 1.7278
+  X=4000000    window 6.711e-02   global 3.870e-02   ratio 1.7342
+  X=16000000   window 6.142e-02   global 3.532e-02   ratio 1.7388
+
+  e^gamma = 1.7811
+  [PASS] window over-represents survivors by ~e^gamma  ratios 1.7213, 1.7278, 1.7342, 1.7388
+  [PASS] the discrepancy is a genuine constant factor, not a vanishing artifact  min ratio 1.7213
+
+[verdict] window sampling fails for the intermediate range by a constant factor e^gamma, in the most natural example. The obstruction is real, not an artifact of the crude bounds.

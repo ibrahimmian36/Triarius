@@ -1,0 +1,21 @@
+the mechanism: window density -> d(Y), error O(L_Y/X)
+
+  Y=5    4 classes, period L_Y=60       exact d(Y)=0.733333
+       X=100000    window density 0.733340  error 6.67e-06   L_Y/X = 6.00e-04
+       X=1000000   window density 0.733334  error 6.67e-07   L_Y/X = 6.00e-05
+       X=4000000   window density 0.733333  error 1.67e-07   L_Y/X = 1.50e-05
+  [PASS] Y=5: window density matches d(Y) within O(L_Y/X)  errors 6.7e-06, 6.7e-07, 1.7e-07
+  Y=8    7 classes, period L_Y=840      exact d(Y)=0.771429
+       X=100000    window density 0.771420  error 8.57e-06   L_Y/X = 8.40e-03
+       X=1000000   window density 0.771430  error 1.43e-06   L_Y/X = 8.40e-04
+       X=4000000   window density 0.771428  error 7.14e-08   L_Y/X = 2.10e-04
+  [PASS] Y=8: window density matches d(Y) within O(L_Y/X)  errors 8.6e-06, 1.4e-06, 7.1e-08
+  Y=12   11 classes, period L_Y=27720    exact d(Y)=0.792208
+       X=100000    window density 0.792220  error 1.22e-05   L_Y/X = 2.77e-01
+       X=1000000   window density 0.792210  error 2.21e-06   L_Y/X = 2.77e-02
+       X=4000000   window density 0.792207  error 2.92e-07   L_Y/X = 6.93e-03
+  [PASS] Y=12: window density matches d(Y) within O(L_Y/X)  errors 1.2e-05, 2.2e-06, 2.9e-07
+
+  As Y grows, d(Y) increases to 1-nu; the lemma follows by fixing Y, letting X -> infinity, then letting Y -> infinity.  The convergence in Y is governed by d(log X) and is far too slow to observe directly - the same boundary as sessions 77, 80, 88.
+
+[verdict] the periodicity mechanism behind the lemma is confirmed where it is testable.

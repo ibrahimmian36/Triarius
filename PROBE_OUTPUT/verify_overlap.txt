@@ -1,0 +1,14 @@
+dense: all primes 3..N (protectors = all pairs)
+   N=     1000     167 primes  A=1.698  sum mu(C_e)=   1.341  ratio R=3.7216  nu_prot=0.4811
+   N=    10000    1228 primes  A=1.983  sum mu(C_e)=   1.865  ratio R=3.2884  nu_prot=0.3965
+   N=   100000    9591 primes  A=2.205  sum mu(C_e)=   2.330  ratio R=3.0348  nu_prot=0.3392
+   N=  1000000   78497 primes  A=2.387  sum mu(C_e)=   2.749  ratio R=2.8650  nu_prot=0.2975
+   N= 10000000  664578 primes  A=2.541  sum mu(C_e)=   3.128  ratio R=2.7418  nu_prot=0.2658
+   MC nu_prot at N=1000: 0.4767
+sparse: p_i = least prime >= i^2, i = 2..I
+   I= 20   19 primes  A=0.512  sum mu(C_e)=0.1039  ratio R=16.3980  nu_prot=0.9167
+   I= 50   49 primes  A=0.541  sum mu(C_e)=0.1191  ratio R=15.0703  nu_prot=0.9070
+   MC nu_prot at I=50: 0.9044
+   fit (R-1)A/4, should fall toward 1: [1.1553, 1.1345, 1.1217, 1.1129, 1.1065]
+
+[verdict] PASS: (R-1)A/4 falls to the predicted 1; dense protectors lose the survivors, sparse keep them with summable measure.

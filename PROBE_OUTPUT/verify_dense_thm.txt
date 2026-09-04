@@ -1,0 +1,14 @@
+1. induced-system construction
+  [PASS] induced systems computed exactly  240 pairs
+
+2. ALIGNED families must FAIL the hypothesis (they survive) - checked first
+   evens, residue 0           c=0: coprime drift 2.617 (4000 classes)  c=1: coprime drift 0.000 (0 classes)
+   multiples of 3, residue 0  c=0: coprime drift 2.617 (4000 classes)  c=1: coprime drift 0.000 (0 classes)  c=2: coprime drift 0.000 (0 classes)
+  [PASS] aligned families fail the hypothesis  evens pass=False, mult3 pass=False
+
+3. MISALIGNED dense families should SATISFY it
+   evens, random residues     c=0: coprime drift 1.098 (4000 classes)  c=1: coprime drift 1.918 (4000 classes)
+   multiples of 3, random     c=0: coprime drift 0.601 (2188 classes)  c=1: coprime drift 0.743 (2299 classes)  c=2: coprime drift 1.597 (2227 classes)
+  [PASS] misaligned dense families satisfy the hypothesis  evens=True, mult3=True
+
+[verdict] the hypothesis separates exactly as the corollary requires: satisfied by the misaligned dense families that die, failed by the aligned ones that survive.

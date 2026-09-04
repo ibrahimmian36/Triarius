@@ -1,0 +1,13 @@
+1. coprime system with EXACT nu (Theorem B applies)
+   303 classes, drift 0.45219 (convergent), EXACT nu = 0.607963, so 1-nu = 0.392037
+   w(X): 0.39111  0.39209  0.39209  0.39221  0.39197  0.39203  0.39214  0.39207  0.39206  0.39207
+   excursions with delta=0.01: 0 of 10 windows
+   excursions with delta=0.05: 0 of 10 windows
+  [PASS] excursion set vanishes on a system Theorem B covers  max w = 0.39221 vs 1-nu = 0.39204
+
+2. CONTROL: a system that MUST show excursions
+   2752509 classes, drift 2.0794
+   w(X): 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.5833  0.5274  0.6958
+  [PASS] control shows large window densities (measurement can detect excursions)  3 windows above 0.3, max 0.6958
+
+[verdict] on a system where nu is exact and the theorem is known, the excursion set is empty; the control confirms the measurement can see excursions when they exist.

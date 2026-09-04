@@ -1,0 +1,14 @@
+[setup] sup over X in [4096, 3999999], 11 checkpoints
+
+[control] a system with a finite, emptying tail:
+   8 classes total            k=2:0.1666  k=4:0.0589  k=6:0.0214  k=8:0.0000
+   -> sup reaches 0.0000 at full head: measurement valid
+
+   blocks at N = [8, 40, 200, 1000]; predicted bursts at N^2 = [64, 1600, 40000, 1000000] (window ends at 4000000)
+[aligned block system] 1248 classes; D-E GUARANTEES its log density exists
+   sup_X (F - F_k)            k=8:0.2148  k=48:0.1042  k=248:0.0429  k=1248:0.0000
+
+   sup by head size: 0.2148  0.1042  0.0429  0.0000
+   halved across the range: True
+
+[verdict] the criterion's sup does decay here (0.2148 -> 0.0000); the vacuity worry is not borne out on this family.

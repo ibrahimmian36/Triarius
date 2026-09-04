@@ -1,0 +1,24 @@
+system: moduli p^2 (pairwise coprime, so nu is the EXACT product)
+   exact nu = 0.607950
+
+   X          s(X)      r=s/nu    excess=nu-s   bound nu(1-r)+
+   8192       0.607910  0.999935  +0.000039     0.000039
+   16384      0.607910  0.999935  +0.000039     0.000039
+   32768      0.607788  0.999734  +0.000162     0.000162
+   65536      0.608032  1.000136  -0.000083     0.000000
+   131072     0.607971  1.000035  -0.000022     0.000000
+   262144     0.607857  0.999847  +0.000093     0.000093
+   524288     0.607925  0.999960  +0.000024     0.000024
+   1048576    0.607943  0.999988  +0.000007     0.000007
+   2097152    0.607926  0.999962  +0.000023     0.000023
+  [PASS] excess <= nu*(1-r)+ in every window
+  [PASS] both directions of r exercised (r>1 gives negative excess, r<1 gives the bound)  2 windows with r>1, 7 with r<1
+  [PASS] r>1 windows have NEGATIVE excess (no excursion)  max excess where r>1: -2.16e-05
+
+   window-contribution counts (the budget argument):
+      a class of modulus 1000000  appears in 2 of the 9 windows
+      a class of modulus 62500    appears in 6 of the 9 windows
+      a class of modulus 1000     appears in 9 of the 9 windows
+   -> near-X moduli touch O(1) windows (budgeted); small moduli touch all of them (not budgeted)
+
+[verdict] the excess is controlled by the Buchstab ratio; the problem reduces to r -> 1 in logarithmic mean.

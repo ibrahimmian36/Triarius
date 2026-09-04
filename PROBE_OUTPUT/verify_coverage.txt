@@ -1,0 +1,14 @@
+  system                                     claimed by     verdict
+  aligned residues c=3                       thm:transl     PASS
+  moduli k^2, random residues                thm:conv       PASS
+  nested dyadic, pairwise incompatible       thm:H          PASS
+  all primes, random residues                thm:D          PASS
+  misaligned parts in {3,5,7}                thm:bounded    PASS
+  many-protector (sparse p_j, all m inside)  thm:exhaust    PASS
+  irreducible semiprimes pq (S_p = 1/2)      thm:quasi      PASS
+  sparse protectors, finite S_j (prop:irred2) thm:confined   PASS
+  depth-4 tree (slice)                       thm:tree       PASS
+  all pairs pp', all primes                  thm:overlap    PASS
+  all pairs pp', p_i >= i^2                  thm:confined   PASS
+
+[verdict] PASS: every catalogued system satisfies the checkable hypotheses of the theorem the paper cites for it.

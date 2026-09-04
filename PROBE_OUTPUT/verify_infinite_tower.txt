@@ -1,0 +1,23 @@
+family: moduli 2^a * q, unbounded a; level K has moduli 2^(a-K) q for a > K
+
+  sparse q (sum 1/q < inf): 12 primes, sum 1/q = 0.093
+     level 0:   192 classes, drift 0.093, nu = 0.9535
+     level 2:   168 classes, drift 0.093, nu = 0.9535
+     level 4:   144 classes, drift 0.093, nu = 0.9535
+     level 6:   120 classes, drift 0.093, nu = 0.9535
+
+  dense q  (sum 1/q -> inf): 400 primes, sum 1/q = 2.334
+     level 0:  6400 classes, drift 2.334, nu = 0.2917
+     level 2:  5600 classes, drift 2.333, nu = 0.2917
+     level 4:  4800 classes, drift 2.333, nu = 0.2917
+     level 6:  4000 classes, drift 2.331, nu = 0.2917
+
+  at EVERY level the drift is ~ sum 1/q, and nu is prod(1-1/2q):
+     sparse q: nu > 0 but drift CONVERGENT -> tower terminates (Theorem B at the top)
+     dense q : drift divergent but nu -> 0 -> closed by the nu=0 corollary
+
+  the two cannot be had together in this family. The
+  heuristic reason - coarsening divides out shared
+  structure until the top's moduli are coprime, where
+  Theorem D forces the dichotomy - is a HEURISTIC, not
+  a proof.

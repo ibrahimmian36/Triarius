@@ -1,0 +1,19 @@
+protectors p_j = [11, 197, 439, 691, 977, 1259], sum 1/p_j = 0.1015, prod(1-1/p_j) = 0.8995
+  186452 classes, gcd of moduli = 1, drift 1.166 (divergent per group)
+
+  survivor density in [X/2,X]: 0.8995   vs   prod(1-1/p_j) = 0.8995
+     cylinder x=1 mod 11  : survivor share 0.0000 (should -> 0)
+     cylinder x=1 mod 197 : survivor share 0.0000 (should -> 0)
+     cylinder x=1 mod 439 : survivor share 0.0000 (should -> 0)
+     complement of all C_j: survivor share 1.0000 (should be 1.0)
+
+  gcd 1: True | survivors ~ product: True | complement untouched: True
+
+  coverage against existing theorems:
+     finite prime cover?  NO - p_j alone is a modulus in group j, divisible by no other protector
+     aligned?             NO - residues random mod m
+     convergent drift?    NO - each group diverges
+     divergent coprime?   NO - one class per group at most, drift <= sum 1/p_j < inf  (so nu>0, consistent)
+     bounded misalign?    NO - misaligned parts ~ p_j*m
+
+[verdict] THE QUESTION AS STATED IS FALSE: this system has nu > 0, divergent drift, gcd 1, no finite prime cover and misaligned residues. It is NOT a counterexample to Erdos 25 - its density exists by CYLINDER EXHAUSTION - but it is a counterexample to the case analysis, and exposes a theorem the paper is missing.

@@ -1,0 +1,17 @@
+aligned to the integer c = 37  (bound c+1 = 38):
+       50 classes ->  20 distinct exceptional integers
+      200 classes ->  20 distinct exceptional integers
+     1000 classes ->  20 distinct exceptional integers
+     5000 classes ->  20 distinct exceptional integers
+    20000 classes ->  20 distinct exceptional integers
+
+MUTATION - residues a_n = n-1, genuinely varying:
+       50 classes ->     50 distinct exceptional integers
+      200 classes ->    200 distinct exceptional integers
+     1000 classes ->   1000 distinct exceptional integers
+     5000 classes ->   5000 distinct exceptional integers
+    20000 classes ->  20000 distinct exceptional integers
+
+aligned set is bounded and constant: True
+mutation set grows without bound:    True
+-> integer alignment is LOAD-BEARING for the finiteness claim

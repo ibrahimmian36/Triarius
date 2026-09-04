@@ -1,0 +1,11 @@
+top: q_i = [11, 197, 439], prod(1-1/q_i) = 0.9024
+  level-1 cylinders: 172, misaligned as a family: True
+  bottom classes: 20488, gcd 1, drift 2.260
+
+  bottom survivors: 0.9024   vs   top product 0.9024
+  survivor share in first level-1 cylinders: 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+  complement of top cylinders untouched: 1.0000
+
+  coverage: one-level exhaustion needs ALIGNED cylinders - level-1 family aligned? False -> theorem does NOT apply
+
+[verdict] TWO-LEVEL TOWER VERIFIED: evades the one-level exhaustion theorem (cylinders misaligned), yet survivors equal the top product by TWO reductions. The recursive form of the theorem covers it; the one-level form does not.

@@ -1,0 +1,13 @@
+classes = primes in [X^a, X^b], residue 0; window [X/2, X];  X = 8000000
+global survivor density is the exact product prod(1-1/p)
+
+  moduli in [X^0.05, X^0.15]      4 primes   window 0.22857  global 0.22857  ratio 1.0000
+  moduli in [X^0.10, X^0.25]     14 primes   window 0.40824  global 0.40826  ratio 1.0000   <-- OVER-KILLS
+  moduli in [X^0.15, X^0.35]     51 primes   window 0.43513  global 0.43734  ratio 0.9949   <-- OVER-KILLS
+  moduli in [X^0.20, X^0.45]    197 primes   window 0.48680  global 0.47848  ratio 1.0174
+  moduli in [X^0.25, X^0.50]    395 primes   window 0.53578  global 0.50791  ratio 1.0549
+  moduli in [X^0.05, X^0.50]    410 primes   window 0.06416  global 0.07045  ratio 0.9107   <-- OVER-KILLS
+
+  control, full prime sieve to X/2: ratio 1.7371 (expect ~e^gamma = 1.7811)
+
+[verdict] OVER-KILLING OCCURS: the ratio drops below 1 for 3 of 6 ranges (min 0.9107). Intermediate classes CAN create excursions, so the spike bound alone does not control the excess. Measured, not proved.

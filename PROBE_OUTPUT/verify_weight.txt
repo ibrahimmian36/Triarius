@@ -1,0 +1,13 @@
+phi takes 7 distinct values in [0.000, 1.000] -- an indicator would take 2, so this genuinely exercises the weighted case
+
+   X =      1000   logarithmic mean = 0.201030
+   X =     10000   logarithmic mean = 0.206777
+   X =    100000   logarithmic mean = 0.210220
+   X =   1000000   logarithmic mean = 0.212517
+   X =   4000000   logarithmic mean = 0.213565
+
+   successive changes: 0.005747  0.003443  0.002297  0.001047
+   changes shrinking monotonically: True
+   predicted limit (mean of phi) = 0.224004, last value 0.213565, gap 0.010439
+
+-> consistent with the lemma

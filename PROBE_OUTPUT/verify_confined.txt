@@ -1,0 +1,16 @@
+protectors p_j = least prime >= 8 j^1.5: [11, 23, 43, 67, 97, 127]
+classes: 5964;  group sizes: [3, 9, 35, 155, 783, 4979]
+[1] sum 1/p_j = 0.1908 (truncation), analytic sum_{j} 1/(8 j^1.5) <= zeta(1.5)/8 = 0.327;  nu >= 0.8092
+[2] irreducible: 19 cylinders hold >=2 classes; all prime with distinct prime induced moduli: True;
+    max induced drift 2.449 (= S_J = sqrt(6) = 2.449 expected at (p_J,1)); min induced survivor 0.0633 > 0: True
+[3] drift of truncation = 0.2686;  formula sum sqrt(j)/(8j^1.5) = (1/8) sum 1/j: partial sums 0.37, 0.94, 1.51, 2.09 (diverges as (1/8) log N)
+[4] misaligned classes 5951/5964; largest misaligned part 6156071 (grows with the truncation)
+[5] mutation, protectors = first primes (sum 1/p diverges), S_j = sqrt(j):
+      J= 5  sum 1/p_j=1.267  survivors 0.487
+      J=10  sum 1/p_j=1.533  survivors 0.432
+      J=20  sum 1/p_j=1.743  survivors 0.391
+      J=40  sum 1/p_j=1.917  survivors 0.359
+    survivors fall as protectors accumulate: True
+[6] MC survivors 0.848 >= bound 0.809 (within MC error): True
+
+[verdict] PASS: irreducible, nu > 0, misaligned, drift diverging by the formula; the divergent-protector mutation collapses as designed.

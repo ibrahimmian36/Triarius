@@ -1,0 +1,17 @@
+tree: 617 nodes, 618 cells, 23361 classes; black holes per depth: {1: 0, 2: 0, 3: 2, 4: 43}
+depth-4 cylinder measure prod(1-1/m_k) = 0.3388; gaps 0.6612
+[1] nu (exact branch product) = 0.96432;  drift of truncation 0.038
+    MC on Zhat (20000 samples) = 0.9646   agree: True
+[2] first-crossing cylinders at level N:
+      N=0.05   45 cylinders, disjoint True, measure 0.38118 = mu{g>N} 0.38118, light drift 0.0223 <= N: True
+      N=0.20   43 cylinders, disjoint True, measure 0.04412 = mu{g>N} 0.04412, light drift 0.0273 <= N: True
+      N=0.50    2 cylinders, disjoint True, measure 0.00118 = mu{g>N} 0.00118, light drift 0.0375 <= N: True
+      N=1.00    0 cylinders, disjoint True, measure 0.00000 = mu{g>N} 0.00000, light drift 0.0377 <= N: True
+[4] every branch finite: min branch survival 0.5819 > 0; a branch with g=inf would have product 0
+[5] window [X/2,X] survivors s(X) vs nu_X of the visible system (illustration only):
+      X=   10000  s(X)=0.9736  nu_X=0.9735  ratio 1.000
+      X=  100000  s(X)=0.9694  nu_X=0.9689  ratio 1.001
+      X= 1000000  s(X)=0.9681  nu_X=0.9680  ratio 1.000
+      X= 4000000  s(X)=0.9675  nu_X=0.9667  ratio 1.001
+
+[verdict] PASS: exact nu matches MC, first-crossing cylinders disjoint with measure mu{g>N}, light drift <= N.

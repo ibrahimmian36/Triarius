@@ -1,0 +1,9 @@
+bounded-misaligned system: 5 classes, misaligned parts all divide 105
+phi takes 6 distinct values in [0.000, 0.771] -- it must NOT be saturated at 1, or the test is vacuous
+
+  phi, divisibility applicability    violations     0 of   6285 divisor pairs
+  MUTATION: non-divisibility rule    violations  1420 of   6285 divisor pairs   witness phi(7)=14.0000 > phi(0)=0.0000
+
+phi is divisibility-monotone: True
+mutation fires (non-vacuous):  True
+-> monotone-weight route is SOUND; Theorem 5.2's proof should use it rather than appeal to D-E cylinderwise

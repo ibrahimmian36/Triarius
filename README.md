@@ -47,7 +47,19 @@ bounded-misalignment theorem, exactly on all 83 non-empty
 cylinder-class pairs; the numbers showing why the
 divisibility-monotone weight does not bridge to F; and the
 Heilbronn–Rohrbach enumeration over all 53,130 three-class
-systems with moduli from {2,…,12}.
+systems with moduli from {2,…,12}; the block measures at N = 20,
+40, 80 and the transient-spike display.
+
+Every other number in the paper — the Monte Carlo and window
+measurements quoted in remarks as illustration — is produced by
+the individually named program in `probes/`, run without
+arguments.  The recorded output of every probe is in
+`PROBE_OUTPUT/` (one file per program, from a single run of all
+36 programs), so the full numerical record of the paper can be
+checked against this repository without executing anything.  One
+program, `verify_approx_cyl.py`, belongs to a route the paper
+does not use and fails its own check; it is kept for the record
+and is cited nowhere.
 
 ## Contact
 

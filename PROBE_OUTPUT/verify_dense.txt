@@ -1,0 +1,16 @@
+dense modulus families (c = harmonic density):
+   all integers       999998 moduli, c ~ 0.923
+   evens              499999 moduli, c ~ 0.472
+   multiples of 3     333333 moduli, c ~ 0.305
+
+1. ALIGNED controls - these must SURVIVE at their known densities
+   evens (res 0)            survivor density 0.5000 (predicted 0.5000)
+   multiples of 3 (res 0)   survivor density 0.6667 (predicted 0.6667)
+  [PASS] aligned controls survive at the arithmetic prediction
+
+2. the same families with NON-ALIGNED residues
+   all integers     survivor density: 0.0001  0.0000  0.0000  0.0000  0.0000  0.0000   NOT monotone
+   evens            survivor density: 0.0013  0.0005  0.0003  0.0003  0.0002  0.0001   NOT monotone
+   multiples of 3   survivor density: 0.0355  0.0303  0.0224  0.0186  0.0147  0.0116   falling
+
+[verdict] DEATH in every dense non-aligned family tested (all integers, evens, multiples of 3). Density plus misalignment appears to force the survivors to 0, which would close the c > 0 regime by triviality. MEASURED, not proved.

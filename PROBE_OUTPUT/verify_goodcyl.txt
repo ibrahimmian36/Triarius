@@ -1,0 +1,13 @@
+1. a nu > 0 system: moduli p^2 (nu exact)
+   exact nu = 0.607963 > 0
+   cylinders mod 6                c=0: coprime drift 0.091  c=1: coprime drift 0.924  c=2: coprime drift 0.091  c=3: coprime drift 0.591  c=4: coprime drift 0.424  c=5: coprime drift 0.591
+  [PASS] nu > 0: induced coprime drifts are BOUNDED on every cylinder  max 0.924
+
+2. a nu = 0 system: all integers, random residues
+   cylinders mod 6                c=0: coprime drift 2.336  c=1: coprime drift 2.364  c=2: coprime drift 2.290  c=3: coprime drift 2.586  c=4: coprime drift 1.816  c=5: coprime drift 2.290
+  [PASS] nu = 0: induced coprime drifts are LARGE (Theorem D applies there, which is why those systems die)  min 1.816
+
+3. the statement must SEPARATE the two regimes
+  [PASS] separation: every nu>0 cylinder drift below every nu=0 cylinder drift  0.924 < 1.816
+
+[verdict] nu > 0 forces bounded induced coprime drift on the cylinders carrying the survivors; that is precisely why Theorem D cannot reach the open case.

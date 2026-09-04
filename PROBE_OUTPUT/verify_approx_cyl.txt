@@ -1,0 +1,18 @@
+1. the epsilon argument, instantiated
+  [PASS] density gap is at most the unresolved measure  gap 0.0294, unresolved measure 0.1667
+
+2. is the relaxation SUBSTANTIVE?
+   The eps=0 theorem needs EVERY cylinder resolved.
+   The relaxed one needs all but a set of density eps.
+   A system satisfying the new but not the old must
+   have, for each M, some unresolved cylinder - yet
+   their total density must tend to 0 as M grows.
+
+   messy subsystem of 118 classes; fraction of cylinders it touches as M grows:
+      M=6     at most 1.0000 of cylinders touched
+      M=30    at most 1.0000 of cylinders touched
+      M=210   at most 1.0000 of cylinders touched
+      M=2310  at most 1.0000 of cylinders touched
+  [FAIL] unresolved share shrinks as M grows (so the relaxed hypothesis is reachable where the strict one is not)  1.0000 -> 1.0000
+
+FAILED: unresolved share shrinks as M grows (so the relaxed hypothesis is reachable where the strict one is not)
