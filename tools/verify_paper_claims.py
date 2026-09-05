@@ -165,10 +165,10 @@ def _blockmeasure(N, aligned, seed=5, T=20000):
         k+=any(all(r[q]%(q**e)==res[n]%(q**e) for q,e in F[n].items()) for n in mods)
     return k/float(T)
 _g40=_blockmeasure(40,False); _a40=_blockmeasure(40,True)
-ck("block [40,80]: general position 0.513, aligned 0.413, aligned below general",
+ck("block [40,80] Haar measure on Zhat (MC, 20000 points): general position 0.513, aligned 0.413, aligned below general",
    round(_g40,3)==0.513 and round(_a40,3)==0.413 and _a40<_g40, "general %.3f aligned %.3f"%(_g40,_a40))
 _gb={N:_blockmeasure(N,False) for N in (20,80)}; _ab={N:_blockmeasure(N,True) for N in (20,80)}
-ck("block [N,2N] Haar measure on Zhat (MC over residues mod the relevant prime powers) at N=20,80: general 0.516, 0.507; aligned 0.426, 0.392",
+ck("block [N,2N] Haar measure on Zhat (MC, 20000 points each, residues mod the relevant prime powers) at N=20,80: general 0.516, 0.507; aligned 0.426, 0.392",
    round(_gb[20],3)==0.516 and round(_gb[80],3)==0.507 and round(_ab[20],3)==0.426 and round(_ab[80],3)==0.392,
    "general %.3f %.3f aligned %.3f %.3f"%(_gb[20],_gb[80],_ab[20],_ab[80]))
 

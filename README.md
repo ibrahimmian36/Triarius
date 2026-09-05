@@ -57,13 +57,15 @@ arguments.  The recorded output of every probe is in
 `PROBE_OUTPUT/` (one file per program, from a single run of all
 36 programs), so the full numerical record of the paper can be
 checked against this repository without executing anything.  One
-program, `verify_approx_cyl.py`, tests whether the unresolved
-share of cylinders shrinks as the modulus grows for a fixed
-finite obstruction, and records that it does not (its check line
-reads FAILED); the paper's remark on the relaxed cylinder
-decomposition states exactly that — the share is bounded but
-never vanishes — so the recorded failure is the expected outcome,
-not a defect. It is kept for the record.
+program, `verify_approx_cyl.py`, tests, on a 118-class
+subsystem and moduli that are not multiples of its obstruction's
+lcm, whether the unresolved share of cylinders shrinks as the
+modulus grows, and records that it does not (its check line reads
+FAILED). The instance lies outside the hypothesis of the paper's
+remark on the relaxed decomposition (which needs M a multiple of
+the obstruction's lcm and small Σ1/n_j), so the recorded failure is
+uninformative rather than contradictory; the paper cites no number
+from it. It is kept for the record.
 
 ## Contact
 

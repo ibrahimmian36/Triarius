@@ -352,7 +352,12 @@ and logarithmic densities are non-negative.
 \end{proof}
 
 \medskip\noindent\textbf{Thresholds.}
-Passing to a cylinder, as we shall do repeatedly, changes the
+A \emph{cylinder} $c+d\mathbb{Z}$ is a residue class of
+integers; its \emph{ball} is $c+d\Zhat$, and $\mu(C)$ for a
+cylinder $C$ always means the Haar measure of its ball, so that
+statements mixing $\mu(C)$ with integer densities on $C$ refer to
+the ball and the residue class respectively.  Passing to a
+cylinder, as we shall do repeatedly, changes the
 point at which a class begins to kill.  A \emph{threshold
 system} consists of classes $(n_i,a_i;t_i)$, the class killing
 the integers $x\ge t_i$ with $x\equiv a_i\pmod{n_i}$, where
@@ -483,7 +488,7 @@ $\dlog(A)=\nu$.
 \section{Two lemmas on sets of multiples}\label{sec:lemmas}
 
 We isolate two facts: the first is used in
-Sections~\ref{sec:regimes}--\ref{sec:reductions}, the second only
+Sections~\ref{sec:regimes} and~\ref{sec:cyl}, the second only
 in Remark~\ref{rem:gap} of Section~\ref{sec:cyl}.  Write $M(D)$
 for the set of positive multiples of members of $D$, and
 $D^{(N)}$ for the $N$ smallest members of $D$.
@@ -1138,10 +1143,13 @@ distinctness.
 
 Theorem~\ref{thm:cyl} is not vacuous, and covers a system the earlier
 results do not.  Take the doubled construction of Section~\ref{sec:routes}: its
-misaligned parts are the small primes $q$ and so are unbounded,
+misaligned parts are the small primes $q$ (apart from the aligned
+classes at the positions $j\equiv0\pmod q$) and so are unbounded,
 and for any $M$ the classes excluded from
-Corollary~\ref{cor:mixed} are those with $q\nmid M$, whose drift
-$\sum_{q>Q}s/q$ diverges by Mertens -- so neither
+Corollary~\ref{cor:mixed} include those with $q\nmid M$ at the
+other positions, whose drift is at least
+$\sum_{q\nmid M}\bigl((1-1/q)S_q/q-1/\min P_q\bigr)$ and diverges by
+Mertens -- so neither
 Theorem~\ref{thm:bounded} nor Corollary~\ref{cor:mixed}
 applies.  But at $M=2$ the odd cylinder carries no classes at
 all, and the even cylinder's induced system has profinite
@@ -1219,7 +1227,7 @@ and writing $x=2y$ its condition becomes $y\equiv b\pmod m$, so
 on the even cylinder the induced moduli run over \emph{all}
 integers $m$ and contain the primes.  The classes with $a$ odd do
 the same on the odd cylinder.  Both cylinders then satisfy the
-hypothesis and the survivors vanish, as measured.
+hypothesis and the survivors vanish.
 
 The hypothesis also correctly excludes the aligned families,
 which survive: for the even moduli at residue $0$ the odd
@@ -1270,7 +1278,7 @@ for every $k$.  Letting $k\to\infty$ matches the upper bound.
 \end{proof}
 
 \begin{remark}
-The aligned case -- all $c_j\equiv c$ for one integer
+The aligned case -- all $c_j\equiv c\pmod{d_j}$ for one integer
 $c\ge0$ -- is the reduced system of Theorem~\ref{thm:transl};
 the sparse case $\sum1/d_j<\infty$ is that of
 Theorem~\ref{thm:conv}.  The theorem may be iterated: the
@@ -1279,7 +1287,7 @@ reducing further.  A \emph{tower} of depth two is exhibited
 below, evading the single-level form.
 \end{remark}
 
-\begin{remark}
+\begin{remark}\label{rem:manyprot}
 This theorem is not a curiosity: it covers a system that
 \emph{none} of the others reach, and which refutes the naive
 reduction discussed in Section~\ref{sec:reduction}.  Take sparse primes $p_j$ with
@@ -1463,7 +1471,7 @@ confined to its own ball, and Theorem~\ref{thm:exhaust} with
 summable protectors is the case of dying groups.  The point is
 that the groups need not die: Proposition~\ref{prop:irred2}
 below has divergent drift, positive survivor measure and no
-dying cylinder whatever, and this theorem covers it.
+non-trivial dying cylinder, and this theorem covers it.
 \end{remark}
 
 Both reductions are instances of one structure, and that
@@ -2089,8 +2097,10 @@ the entire remaining content of the problem is that
 \]
 Numerically, on a system with $\nu$ known exactly the ratio sits
 at $1$ to three decimals across every window, the largest value
-being $1.000136$; by contrast the \emph{sub}-systems of
-Remark~\ref{rem:intermediate} reach $1.3297$, so the
+being $1.000136$; by contrast \emph{sub}-systems -- the primes in
+$(X^{1/20},X^{1/2}]$ at residue $0$, in the same program -- reach
+$1.3297$, and those of Remark~\ref{rem:intermediate} reach
+$1.7388$, so the
 one-sidedness is a property of full systems and not of
 sieving in general.
 
@@ -2142,8 +2152,8 @@ covered by the single prime $2$.
 The naive reduction -- that divergent drift with $\nu>0$ should
 force the moduli to be covered, up to a subfamily of convergent
 drift, by finitely many primes, or the residues to be aligned --
-fails: the many-protector system of the remark following
-Theorem~\ref{thm:exhaust} has $\nu>0$, divergent drift, no finite
+fails: the many-protector system of Remark~\ref{rem:manyprot}
+has $\nu>0$, divergent drift, no finite
 prime cover and misaligned residues, and its density exists by
 cylinder exhaustion.  The question that would close the problem
 is therefore the following.
@@ -2247,8 +2257,8 @@ subfamily is a matching on the primes and the best matching
 $6,35,143,\dots$ converges.  Whatever closes the problem must
 come from coarsening, not from the shape of one level.  The
 following system has divergent drift, misaligned residues and
-no proper exhaustion step, and Theorem~\ref{thm:quasi} settles
-it.
+no proper exhaustion step on any cylinder of modulus at least
+$2$, and Theorem~\ref{thm:quasi} settles it.
 
 \begin{proposition}[Irreducible semiprimes]\label{prop:irred}
 For each prime $p$ let $M_p$ consist of the primes above $p$
@@ -2260,9 +2270,10 @@ with arbitrary residues.  Then:
 or more classes has $d=p$ prime, its induced moduli are distinct
 primes, its induced drift is bounded, and its induced survivor
 measure is positive; so no group of two or more classes dies
-in the sense of Theorem~\ref{thm:exhaust}, and the system admits
-no proper exhaustion step, only the trivial ones in which a
-class is its own group;
+in the sense of Theorem~\ref{thm:exhaust}, and on cylinders of
+modulus at least $2$ the system admits no proper exhaustion step,
+only the trivial ones in which a class is its own group (on
+$\Zhat$ itself the whole system is a dying group, by (iii));
 \item[(ii)] the drift diverges;
 \item[(iii)] $\nu=0$ for every choice of residues.
 \end{enumerate}
@@ -2598,8 +2609,9 @@ so that $s\le S_q<s+1/\min P_q<s+1$, the cutoff large enough
 that every block holds at least $q$ primes; take as moduli the products $qp$ for $p\in P_q$, list each
 block in increasing order and give the class of modulus $qp_j$
 the residue $\equiv j\pmod q$ and $\equiv0\pmod{p_j}$, so that its
-misaligned part is $q$ and the residue groups are the arithmetic
-progressions of positions modulo $q$.  Classes from different
+misaligned part is $q$ except at the positions $j\equiv0\pmod q$,
+where the class is aligned, and the residue groups are the
+arithmetic progressions of positions modulo $q$.  Classes from different
 blocks are coprime, since the block primes lie in $R$ and the
 indexing primes in $Q$, hence always compatible; classes within
 a block have $\gcd=q$ exactly.  Hence a channel contains at most one residue
@@ -2621,8 +2633,7 @@ of the $k$th block to exceed $\exp(e^{ks})$ up to a constant,
 so that $\sum_q1/(q\min P_q)$ is dominated by a doubly
 exponentially decaying series.  The
 total drift, meanwhile, is $\sum_q S_q/q\ge\sum_q s/q$, which
-diverges by Mertens.  (The cruder bound $s\,P(2)\approx0.45s$ alone is not correct:
-the block at $q=2$ contributes about $S_2/2\ge s/2$ on its own.)
+diverges by Mertens.
 
 \subsection*{Bounded channels need not force death}
 Double every modulus in the previous construction and force even
@@ -2736,8 +2747,9 @@ window occurrence counts of Remark~\ref{rem:ratiowin} by
 Heilbronn--Rohrbach enumeration by \path{verify_paper.py}; the
 eight-block drift sum of Section~\ref{sec:reduction} by
 \path{verify_cylinder_thm.py}; the spike display of
-Section~\ref{sec:routes} and the block measures of the
-excursion remark by the claims script;
+Section~\ref{sec:routes}, the exact limits of Remark~\ref{rem:gap}
+and the block measures of the excursion remark by the claims
+script;
 and the catalogue audit of the eleven exhibited systems by
 \path{verify_coverage.py}.  The
 values that enter hypotheses or explicit assertions are
@@ -2800,8 +2812,9 @@ to explore and draft arguments, to draft and revise the text, to
 write the programs in the artifact, and, in separate sessions
 without access to earlier reviews, to review the manuscript for
 errors.  The authors directed the work, checked every proof, and
-take full responsibility for the content.  Every number quoted in the paper is reproduced by a named
-program of the artifact, whose recorded outputs it contains.
+take full responsibility for the content.  Every number quoted in the paper that arises from our own
+computations is reproduced by a named program of the artifact,
+whose recorded outputs it contains.
 
 \begin{thebibliography}{9}
 
