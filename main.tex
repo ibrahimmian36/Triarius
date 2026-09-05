@@ -2,7 +2,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{amsmath,amssymb,amsthm}
-\usepackage[margin=1.1in]{geometry}
+\usepackage[margin=1.2in]{geometry}
 \usepackage{microtype}
 \usepackage{url}
 \usepackage[hidelinks]{hyperref}
@@ -24,7 +24,7 @@
 \newcommand{\Ahat}{\widehat{A}}
 \newcommand{\Kh}{\widehat{K}}
 
-\title{A profinite reduction of Erd\H{o}s Problem 25}
+\title{A Profinite Reduction of Erd\H{o}s Problem 25}
 \author{Ibrahim Mian \qquad Shayaan Siddique\\[2pt]
 \normalsize Millennium Research\\[2pt]
 \normalsize \texttt{\{ibby,shayaan\}@millenniumresearch.ai}\\
@@ -232,7 +232,7 @@ Problem~25 concerns $\nu>0$, a case which for sets of multiples
 is entirely Davenport--Erd\H{o}s's and has no counterpart in
 that literature.
 
-\section{The profinite framework}\label{sec:profinite}
+\section{The Profinite Framework}\label{sec:profinite}
 
 Write $\Zhat=\varprojlim \mathbb{Z}/m\mathbb{Z}$ for the
 profinite integers with normalised Haar measure $\mu$.
@@ -319,7 +319,7 @@ Theorem~\ref{thm:transl} requires an integer, so it applies to
 aligned channels only.
 \end{remark}
 
-\section{The unconditional half}\label{sec:upper}
+\section{The Unconditional Half}\label{sec:upper}
 
 \begin{theorem}\label{thm:upper}
 For every system, $\overline{\delta}_{\log}(A)\le\nu$.  No
@@ -485,7 +485,7 @@ Section~\ref{sec:reductions} and the criteria of
 Section~\ref{sec:reduction} are stated for its conclusion,
 $\dlog(A)=\nu$.
 
-\section{Two lemmas on sets of multiples}\label{sec:lemmas}
+\section{Two Lemmas on Sets of Multiples}\label{sec:lemmas}
 
 We isolate two facts: the first is used in
 Sections~\ref{sec:regimes} and~\ref{sec:cyl}, the second only
@@ -580,7 +580,7 @@ was used; in particular $\varphi$ need not be an indicator
 function, which is the case of Davenport--Erd\H{o}s.
 \end{proof}
 
-\section{Five regimes in which the reverse inequality holds}\label{sec:regimes}
+\section{Five Regimes in which the Reverse Inequality Holds}\label{sec:regimes}
 
 \begin{theorem}[Convergent drift]\label{thm:conv}
 If $\sum_i 1/n_i<\infty$ then $\dlog(A)$ exists and equals
@@ -896,7 +896,7 @@ residue class that actually occurs, so divergent drift for the
 family forces divergent drift for one of them, carrying at least
 $1/d$ of the total.
 
-\section{Where Davenport--Erd\H{o}s stops}\label{sec:destop}
+\section{Where Davenport--Erd\H{o}s Stops}\label{sec:destop}
 
 The engine of the Davenport--Erd\H{o}s argument
 \cite{DE1936} is the inequality
@@ -929,7 +929,7 @@ heads that \eqref{eq:lemma1} must hold, and exactly there that
 misalignment breaks it.
 \end{remark}
 
-\section{Bounded misalignment and cylinder decompositions}\label{sec:cyl}
+\section{Bounded Misalignment and Cylinder Decompositions}\label{sec:cyl}
 
 What survives is a splitting.
 
@@ -1236,7 +1236,7 @@ subfamily of divergent drift, and the corollary does not apply --
 as it must not, since those survivors have density $1/2$.
 \end{remark}
 
-\section{Reduction theorems}\label{sec:reductions}
+\section{Reduction Theorems}\label{sec:reductions}
 
 The results so far resolve a system cylinder by cylinder.  The
 theorems of this section reduce a system to another one instead,
@@ -1835,7 +1835,7 @@ measure $0.9070$ against a Monte Carlo value of $0.9044$: there the sums
 converge and confinement, not this theorem, is what applies.
 \end{remark}
 
-\section{The reduction}\label{sec:reduction}
+\section{The Reduction}\label{sec:reduction}
 
 Recall $U=\bigcup_i K_i\subseteq\N$.  For $k\ge1$ let
 $U_k=\bigcup_{i\le k}K_i$ and
@@ -2592,7 +2592,7 @@ not work as stated, but neither is it refuted, and we do not
 claim this settles necessity.
 \end{remark}
 
-\section{Four refuted routes, and a bound on a fifth}\label{sec:routes}
+\section{Four Refuted Routes, and a Bound on a Fifth}\label{sec:routes}
 
 We record, with constructions, four natural approaches that do
 not work, and a bound on a fifth.  These appear to us more useful
@@ -2600,7 +2600,7 @@ to a reader attacking the problem than the positive results.
 The fifth is an attempt to \emph{refute} the conjecture rather
 than prove it.
 
-\subsection*{Divergence need not lie in a single channel}
+\subsection*{Divergence Need Not Lie in a Single Channel}
 Split the primes into two sets $Q$ and $R$, each of divergent
 reciprocal sum, say by alternating; partition $R$ into
 consecutive blocks $P_q$, one per $q\in Q$, each the shortest
@@ -2635,18 +2635,18 @@ exponentially decaying series.  The
 total drift, meanwhile, is $\sum_q S_q/q\ge\sum_q s/q$, which
 diverges by Mertens.
 
-\subsection*{Bounded channels need not force death}
+\subsection*{Bounded Channels Need Not Force Death}
 Double every modulus in the previous construction and force even
 residues.  Every kill set then lies in the even numbers, so every
 odd number survives and the survivor density is at least
 $1/2$, while the drift still diverges and the channels remain
 bounded.
 
-\subsection*{The $\varepsilon$-split fails}
+\subsection*{The $\varepsilon$-Split Fails}
 The same doubled construction shows that no finite family of
 channels captures all but $\varepsilon$ of a divergent drift.
 
-\subsection*{Heilbronn--Rohrbach fails for shifted classes}
+\subsection*{Heilbronn--Rohrbach Fails for Shifted Classes}
 The inequality $\delta\ge\prod(1-1/n_i)$ of Heilbronn and
 Rohrbach \cite{Heilbronn,Rohrbach}, generalised by Behrend
 \cite{Behrend} and available for sets of multiples, is false for
@@ -2663,7 +2663,7 @@ $43.4\%$ -- fall strictly below the bound, the displayed system
 being the extreme case.  The enumeration is specified here so
 that it may be reproduced directly.
 
-\subsection*{A bound for top-octave spikes}
+\subsection*{A Bound for Top-Octave Spikes}
 Since $\overline{\delta}_{\log}(A)\le\nu$ is unconditional
 (Theorem~\ref{thm:upper}), a counterexample would need the
 killed set to exceed its own measure in upper \emph{logarithmic}
@@ -2721,6 +2721,7 @@ the explicit examples and counterexamples, and in
 Remark~\ref{rem:gap} to show why two plausible routes fail.  The programs, their recorded outputs and this paper form the
 public, versioned artifact at that address.
 
+{\sloppy
 \medskip\noindent\textbf{Provenance of the illustrative measurements.}
 Each measurement quoted in a remark is produced by one named
 program in the artifact's \texttt{probes} directory, run without
@@ -2735,8 +2736,8 @@ semiprime, protector, tree and overlapping-protector instances
 by \path{verify_quasi.py}, \path{verify_confined.py},
 \path{verify_coprime_protectors.py}, \path{verify_tree.py}
 and \path{verify_overlap.py}; the node assignments of the
-chain constraint by \path{verify_organizable.py}; the
-saturation reduction by \path{verify_saturation.py}; the
+chain constraint by the program \path{verify_organizable.py};
+the saturation reduction by \path{verify_saturation.py}; the
 spike inequalities and the small-window excursions by
 \path{verify_spike_bound.py} and \path{verify_excursion2.py}; the
 protector test and the tower dichotomy of
@@ -2803,7 +2804,7 @@ Theorem~\ref{thm:coprot} is checked separately by
 \path{verify_coprime_protectors.py} (distinct attached primes,
 the product formula, the split).  The saturation reduction of
 Theorem~\ref{thm:sat} was checked exactly on the finite systems
-described there.
+described there.\par}
 
 \medskip\noindent\textbf{Declaration of generative AI use.}
 Large language models -- Anthropic's Claude (most recently Claude

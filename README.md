@@ -1,4 +1,4 @@
-# Computational artifact — *A profinite reduction of Erdős Problem 25*
+# Computational artifact — *A Profinite Reduction of Erdős Problem 25*
 
 This repository contains the paper and the programs behind every
 numerical assertion in it.
