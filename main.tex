@@ -25,7 +25,7 @@
 \newcommand{\Kh}{\widehat{K}}
 
 \title{A Profinite Reduction of Erd\H{o}s Problem 25}
-\author{Ibrahim Mian \qquad Shayaan Siddique\\[2pt]
+\author{Ibrahim Mian\thanks{Corresponding author. Email: \texttt{ibrahimnmian@gmail.com}.} \qquad Shayaan Siddique\\[2pt]
 \normalsize Millennium Research\\[2pt]
 \normalsize \texttt{\{ibby,shayaan\}@millenniumresearch.ai}\\
 \normalsize \texttt{ibrahimnmian@gmail.com}, \texttt{shayaansiddique02@gmail.com}}
@@ -39,33 +39,19 @@ Let $1\le n_1<n_2<\cdots$ be integers with residues $a_i$, and
 let $A$ be the set of integers $n$ such that for every $i$ either
 $n<n_i$ or $n\not\equiv a_i\pmod{n_i}$.  Erd\H{o}s asked whether
 $A$ must have a logarithmic density.  We recast the question in
-the profinite completion $\Zhat$, where each class is a ball of
-Haar measure $1/n_i$ and the survivors have a Haar measure $\nu$
-that always exists, and prove unconditionally that the upper
-logarithmic density of $A$ is at most $\nu$, so that the reverse
-inequality would settle the problem.  We prove the reverse inequality in
-a series of regimes: convergent drift;
-pairwise incompatible, pairwise coprime, aligned and boundedly
-misaligned systems; systems admitting a cylinder decomposition;
-and, through reduction theorems -- exhaustion of dying
-cylinders, confinement to protectors of summable measure, and a
-theorem for coprime-layered trees of cylinders proved by a
-martingale argument -- systems of divergent drift, positive
-survivor measure and unbounded misalignment whose classes are
-organised along nested protectors, pairwise coprime protectors,
-or protectors that are the pairwise products of a set of primes,
-each under explicit and restrictive hypotheses on the layers.
-A second-moment condition, with a lemma restoring the zero--one
-law for families whose indices do not escape to infinity, gives
-a sufficient condition for $\nu=0$.  We exhibit the step of the
+the profinite completion $\Zhat$, where the survivors have a Haar
+measure $\nu$ that always exists, and prove unconditionally that
+the upper logarithmic density of $A$ is at most $\nu$, so that
+the reverse inequality would settle the problem.  We prove the
+reverse inequality in a series of regimes -- convergent drift,
+incompatible, coprime, aligned and boundedly misaligned systems,
+cylinder decompositions, and three reduction theorems for
+systems organized along protectors -- and give a second-moment
+criterion for $\nu=0$.  We exhibit the step of the
 Davenport--Erd\H{o}s argument that shifted residues break, refute
-four natural routes by explicit construction, bound a fifth, and show that every
-system is majorised by a saturated one whose classes are the
-maximal cylinders meeting its survivor set in a null set.  What remains is stated as
-a checklist that a counterexample must pass in full
-and, without congruences, as a question about a closed subset of
-$\Zhat$ of positive measure whose maximal holes have divergent
-total measure.  The problem is not resolved here.
+four natural routes by explicit construction, and state what
+remains as a checklist a counterexample must pass.  The problem
+is not resolved here.
 \end{abstract}
 
 {\small\noindent\textit{2020 Mathematics Subject Classification.}
@@ -145,19 +131,19 @@ suffices for the rest (Theorem~\ref{thm:reduction}), its
 excursion form, and the checklist and closed-set question in
 which we leave the problem.  Section~\ref{sec:routes} refutes
 four routes by construction and bounds a fifth;
-Appendix~\ref{sec:verification} describes the verification.  We emphasise at the
+Appendix~\ref{sec:verification} describes the verification.  We emphasize at the
 outset that the problem is \emph{not} resolved here.
 
-\medskip\noindent\textbf{The problem in the literature.}
+\paragraph{The problem in the literature.}
 The question is Problem~25 on the Erd\H{o}s problems
 site~\cite{Bloom}, listed as open, and as
 a special case of Problem~486, in which several residues may be
-excluded modulo each $n$; its statement has been formalised in
+excluded modulo each $n$; its statement has been formalized in
 Lean.  Tenenbaum has recorded that Erd\H{o}s was much interested
 in whether the Davenport--Erd\H{o}s theorem extends to non-zero
 residues, and that he himself has thought about it without
 finding a promising starting point~\cite{TaoThread}.  A
-neighbouring question, Problem~281, asks: if $n_1<n_2<\cdots$ is
+neighboring question, Problem~281, asks: if $n_1<n_2<\cdots$ is
 such that for every choice of residues the integers avoiding all
 the classes have density $0$, must there be, for every
 $\varepsilon>0$, a $k$ such that for every choice of residues the
@@ -192,7 +178,7 @@ theorems we have found no prior source for the results below;
 the weighted Davenport--Erd\H{o}s lemma in particular is an
 elementary variant of the classical Dirichlet-series proof and
 we claim no more for it than its use here.  We note also
-where the neighbouring literature stops.  The lower bounds on
+where the neighboring literature stops.  The lower bounds on
 the density of integers left uncovered by a system of congruences
 -- the inequality of Filaseta, Ford, Konyagin, Pomerance and
 Yu~\cite{FFKPY}, a product term less a pairwise-dependence
@@ -235,7 +221,7 @@ that literature.
 \section{The Profinite Framework}\label{sec:profinite}
 
 Write $\Zhat=\varprojlim \mathbb{Z}/m\mathbb{Z}$ for the
-profinite integers with normalised Haar measure $\mu$.
+profinite integers with normalized Haar measure $\mu$.
 
 \begin{definition}
 To the class $(n,a)$ associate the ball
@@ -351,7 +337,7 @@ By Theorem~\ref{thm:upper}, $\overline{\delta}_{\log}(A)\le\nu=0$,
 and logarithmic densities are non-negative.
 \end{proof}
 
-\medskip\noindent\textbf{Thresholds.}
+\paragraph{Thresholds.}
 A \emph{cylinder} $c+d\mathbb{Z}$ is a residue class of
 integers; its \emph{ball} is $c+d\Zhat$, and $\mu(C)$ for a
 cylinder $C$ always means the Haar measure of its ball, so that
@@ -814,7 +800,7 @@ class contributes a fresh exception and the symmetric difference
 is infinite.  Note also that an infinite aligned channel
 determines $c$ uniquely, since two aligning integers would
 differ by a multiple of arbitrarily large moduli; so $c$ cannot
-be normalised to be nonnegative.  Theorem~\ref{thm:chan} is
+be normalized to be nonnegative.  Theorem~\ref{thm:chan} is
 therefore proved below without appealing to this theorem.
 \end{remark}
 
@@ -1376,7 +1362,7 @@ Theorem~\ref{thm:upper} for the other inequality.
 Unlike Theorem~\ref{thm:exhaust}, no partition of the classes
 into groups is involved -- the members of $\mathcal{P}$ may meet
 without nesting -- and the density statement is one-sided: the
-saturated system majorises the original, and a density for it
+saturated system majorizes the original, and a density for it
 passes down.  The consequence is that in proving $\dlog(A)=\nu$
 one may assume the system saturated: its classes are the maximal
 cylinders meeting the survivor set in a null set -- ``holes'' up
@@ -1433,7 +1419,7 @@ anchored classes -- an infinite system confined to finitely many
 prime cylinders, possibly of divergent drift -- fail the
 covering hypothesis of Theorem~\ref{thm:confined} there.  We
 have not been able to convert either into one of the
-organisations covered above.
+organizations covered above.
 \end{remark}
 
 Exhaustion asks the groups to die.  They need not, if the
@@ -1628,7 +1614,7 @@ survivors lies at infinite depth: the case that
 Theorems~\ref{thm:exhaust} and~\ref{thm:confined} both miss.
 Its reach is nevertheless limited, and in a way that is easy to
 misjudge: being coprime-layered is a strong hypothesis on the
-moduli, not a normalisation.
+moduli, not a normalization.
 
 \begin{proposition}[Chain constraint]\label{prop:chain}
 In a coprime-layered system, any two nodes carrying classes have
@@ -1663,7 +1649,7 @@ $6$ are coprime-layered, while those two systems are not.
 Lemma~\ref{lem:dying} is the only place where primality of the
 attached moduli is used, which invites the thought that allowing
 a node to carry a layer of composite moduli would extend the
-theorem.  It would not: the lemma's analogue for composite layers
+theorem.  It would not: the lemma's analog for composite layers
 is false.  Proposition~\ref{prop:irred2} below is a system on the
 single cylinder $\Zhat$, with composite moduli, divergent
 drift and no proper reduction, whose survivor measure is
@@ -1825,7 +1811,7 @@ Corollary~\ref{cor:nuzero} finishes.
 The ratio's approach to $1$ is genuinely slow, since
 $H_N\asymp\log\log N$: over all odd primes up to
 $10^3,10^4,10^5,10^6,10^7$ the exact ratios are 3.72, 3.29, 3.03, 2.87, 2.74, while the
-normalised quantity $(R-1)H/4$ falls through 1.1553, 1.1345, 1.1217, 1.1129, 1.1065 toward the
+normalized quantity $(R-1)H/4$ falls through 1.1553, 1.1345, 1.1217, 1.1129, 1.1065 toward the
 predicted $1$.  Over the same range the measure of the points
 lying in no protector at all falls through 0.4811, 0.3965, 0.3392, 0.2975, 0.2658, and at $N=10^3$
 agrees with a Monte Carlo value of $0.4767$.  The sparse
@@ -2158,13 +2144,12 @@ prime cover and misaligned residues, and its density exists by
 cylinder exhaustion.  The question that would close the problem
 is therefore the following.
 
-\medskip\noindent\textbf{Question (refined).}
+\paragraph{Question (refined).}
 \emph{Can a system with divergent drift and $\nu>0$ pass the
 checklist below in full -- that is, satisfy the hypotheses of
 none of the theorems it names, nor reduce by finitely many
 applications of Theorem~\ref{thm:exhaust} to one that does?}
 
-\medskip\noindent
 One kind of counterexample would be an \emph{infinite tower}: a
 system each of whose reductions has divergent drift, positive
 survivor measure and misaligned residues, never terminating in a
@@ -2420,16 +2405,16 @@ and coprime layers for the trees, distinct attached primes for
 the coprime protectors, every pair of the prime set with kills
 bounded below for the overlapping ones.
 What is not closed is the passage from these regimes to an
-arbitrary system.  Each theorem assumes a given organisation of
+arbitrary system.  Each theorem assumes a given organization of
 the classes into groups with a stated relation between their
-moduli, and no result here produces such an organisation from
+moduli, and no result here produces such an organization from
 nothing.  That is
-too generous to the organisation theorems, whose hypotheses are
+too generous to the organization theorems, whose hypotheses are
 strong: Theorem~\ref{thm:coprot} wants its attached primes
 distinct across all classes, so even Proposition~\ref{prop:irred2},
 which reuses them, is covered by confinement rather than by it;
 and the semiprimes are covered by Theorem~\ref{thm:quasi} without
-any organisation at all.  The final form is therefore the
+any organization at all.  The final form is therefore the
 refined Question itself, read as a checklist.
 A counterexample to the existence of the logarithmic density
 would have to satisfy all of the following at once.
@@ -2648,7 +2633,7 @@ channels captures all but $\varepsilon$ of a divergent drift.
 
 \subsection*{Heilbronn--Rohrbach Fails for Shifted Classes}
 The inequality $\delta\ge\prod(1-1/n_i)$ of Heilbronn and
-Rohrbach \cite{Heilbronn,Rohrbach}, generalised by Behrend
+Rohrbach \cite{Heilbronn,Rohrbach}, generalized by Behrend
 \cite{Behrend} and available for sets of multiples, is false for
 shifted systems: for moduli $2,4,8$ with
 residues $0,1,3$ the survivor density is $0.125$ against a bound
@@ -2703,6 +2688,115 @@ intermediate moduli interact.  What is proved is
 Proposition~\ref{prop:spike}: isolated spikes cannot move the
 logarithmic average when $h=0$.
 
+\section*{Disclosure statement}
+The authors report there are no competing interests to declare.
+
+\section*{Funding}
+No funding was received for this work.
+
+\section*{Data availability statement}
+The programs behind every computation reported in this paper,
+their recorded outputs, and the claims script that reproduces the
+values quoted in the text are openly available in the repository
+Triarius at \url{https://github.com/ibrahimmian36/Triarius}.
+
+\section*{Declaration of generative AI use}
+Large language models -- Anthropic's Claude (most recently Claude
+Fable 5.1) and OpenAI's GPT-5.6 -- were used throughout this work:
+to explore and draft arguments, to draft and revise the text, to
+write the programs in the artifact, and, in separate sessions
+without access to earlier reviews, to review the manuscript for
+errors.  The authors directed the work, checked every proof, and
+take full responsibility for the content.  Every number quoted in
+the paper that arises from our own computations is reproduced by
+a named program of the artifact, whose recorded outputs it
+contains.
+
+\begin{thebibliography}{99}
+
+\bibitem{Behrend} Behrend, F. (1948). Generalization of an
+inequality of Heilbronn and Rohrbach. Bull. Amer. Math. Soc. 54:
+681--684. DOI: 10.1090/S0002-9904-1948-09056-5
+
+\bibitem{Bloom} Bloom, T. F. (2026). Erd\H{o}s Problem \#25.
+Available at: \url{https://www.erdosproblems.com/25} (accessed
+4 September 2026).
+
+\bibitem{Choj26} Chojecki, P. (2026). Truncated congruence sieves
+and Erd\H{o}s Problem 25. Unpublished note, 19 March 2026.
+Available at: \url{https://www.ulam.ai/research/erdos25.pdf}
+
+\bibitem{DE1936} Davenport, H., Erd\H{o}s, P. (1936). On sequences
+of positive integers. Acta Arith. 2: 147--151. DOI:
+10.4064/aa-2-1-147-151
+
+\bibitem{DE1951} Davenport, H., Erd\H{o}s, P. (1951). On sequences
+of positive integers. J. Indian Math. Soc. (N.S.) 15: 19--24.
+
+\bibitem{Er36} Erd\H{o}s, P. (1936). A generalization of a theorem
+of Besicovitch. J. London Math. Soc. 11: 92--98. DOI:
+10.1112/jlms/s1-11.2.92
+
+\bibitem{Er48} Erd\H{o}s, P. (1948). On the density of some
+sequences of integers. Bull. Amer. Math. Soc. 54: 685--692. DOI:
+10.1090/S0002-9904-1948-09057-7
+
+\bibitem{FFKPY} Filaseta, M., Ford, K., Konyagin, S., Pomerance,
+C., Yu, G. (2007). Sieving by large integers and covering systems
+of congruences. J. Amer. Math. Soc. 20: 495--517. DOI:
+10.1090/S0894-0347-06-00549-2
+
+\bibitem{HaRo66} Halberstam, H., Roth, K. F. (1966).
+\emph{Sequences}, Vol.~I. Oxford, UK: Clarendon Press.
+
+\bibitem{Hall} Hall, R. R. (1996). \emph{Sets of Multiples}.
+Cambridge Tracts in Mathematics, Vol.~118. Cambridge, UK:
+Cambridge University Press. DOI: 10.1017/CBO9780511566011
+
+\bibitem{HT92} Hall, R. R., Tenenbaum, G. (1992). On Behrend
+sequences. Math. Proc. Cambridge Philos. Soc. 112: 467--482. DOI:
+10.1017/S0305004100071140
+
+\bibitem{Heilbronn} Heilbronn, H. (1937). On an inequality in the
+elementary theory of numbers. Proc. Cambridge Philos. Soc. 33:
+207--209. DOI: 10.1017/S030500410001954X
+
+\bibitem{Hough} Hough, R. (2015). Solution of the minimum modulus
+problem for covering systems. Ann. of Math. (2) 181: 361--382.
+DOI: 10.4007/annals.2015.181.1.6
+
+\bibitem{KS} Kochen, S., Stone, C. (1964). A note on the
+Borel--Cantelli lemma. Illinois J. Math. 8: 248--251. DOI:
+10.1215/ijm/1256059668
+
+\bibitem{Rohrbach} Rohrbach, H. (1937). Beweis einer
+zahlentheoretischen Ungleichung. J. Reine Angew. Math. 177:
+193--196. DOI: 10.1515/crll.1937.177.193
+
+\bibitem{TaoRogers} Tao, T. (2026). Rogers' theorem on sieving.
+Blog post, 19 January 2026. Available at:
+\url{https://terrytao.wordpress.com/2026/01/19/rogers-theorem-on-sieving/}
+
+\bibitem{TaoThread} Tao, T. (2026). Comment of 18 January 2026 on
+Erd\H{o}s Problem 281, quoting G.~Tenenbaum with permission.
+Available at:
+\url{https://www.erdosproblems.com/forum/thread/281#post-3370}
+
+\bibitem{Tenenbaum} Tenenbaum, G. (1995). \emph{Introduction to
+Analytic and Probabilistic Number Theory}. Cambridge Studies in
+Advanced Mathematics, Vol.~46. Cambridge, UK: Cambridge University
+Press.
+
+\bibitem{Ten96} Tenenbaum, G. (1996). On block Behrend sequences.
+Math. Proc. Cambridge Philos. Soc. 120: 355--367. DOI:
+10.1017/S0305004100074910
+
+\bibitem{Williams} Williams, D. (1991). \emph{Probability with
+Martingales}. Cambridge, UK: Cambridge University Press. DOI:
+10.1017/CBO9780511813658
+
+\end{thebibliography}
+
 \appendix
 \section{Verification}\label{sec:verification}
 
@@ -2722,7 +2816,7 @@ Remark~\ref{rem:gap} to show why two plausible routes fail.  The programs, their
 public, versioned artifact at that address.
 
 {\sloppy
-\medskip\noindent\textbf{Provenance of the illustrative measurements.}
+\paragraph{Provenance of the illustrative measurements.}
 Each measurement quoted in a remark is produced by one named
 program in the artifact's \texttt{probes} directory, run without
 arguments: the many-protector and two-level-tower measurements
@@ -2751,7 +2845,7 @@ eight-block drift sum of Section~\ref{sec:reduction} by
 Section~\ref{sec:routes}, the exact limits of Remark~\ref{rem:gap}
 and the block measures of the excursion remark by the claims
 script;
-and the catalogue audit of the eleven exhibited systems by
+and the catalog audit of the eleven exhibited systems by
 \path{verify_coverage.py}.  The
 values that enter hypotheses or explicit assertions are
 re-derived by \path{tools/verify_paper_claims.py} in one run,
@@ -2806,98 +2900,5 @@ the product formula, the split).  The saturation reduction of
 Theorem~\ref{thm:sat} was checked exactly on the finite systems
 described there.\par}
 
-\medskip\noindent\textbf{Declaration of generative AI use.}
-Large language models -- Anthropic's Claude (most recently Claude
-Fable 5.1) and OpenAI's GPT-5.6 -- were used throughout this work:
-to explore and draft arguments, to draft and revise the text, to
-write the programs in the artifact, and, in separate sessions
-without access to earlier reviews, to review the manuscript for
-errors.  The authors directed the work, checked every proof, and
-take full responsibility for the content.  Every number quoted in the paper that arises from our own
-computations is reproduced by a named program of the artifact,
-whose recorded outputs it contains.
-
-\begin{thebibliography}{9}
-
-\bibitem{Behrend} F.~Behrend,
-\emph{Generalization of an inequality of Heilbronn and
-Rohrbach}, Bull. Amer. Math. Soc. \textbf{54} (1948), 681--684.
-
-\bibitem{DE1936} H.~Davenport and P.~Erd\H{o}s,
-\emph{On sequences of positive integers},
-Acta Arith. \textbf{2} (1936), 147--151.
-
-\bibitem{DE1951} H.~Davenport and P.~Erd\H{o}s,
-\emph{On sequences of positive integers},
-J. Indian Math. Soc. \textbf{15} (1951), 19--24.
-
-\bibitem{Bloom} T.~F.~Bloom, \emph{Erd\H{o}s Problem \#25},
-\url{https://www.erdosproblems.com/25}, accessed 4 September 2026.
-
-\bibitem{Choj26} P.~Chojecki, \emph{Truncated congruence sieves
-and Erd\H{o}s Problem 25}, note, 19 March 2026,
-\url{https://www.ulam.ai/research/erdos25.pdf}.
-
-\bibitem{HaRo66} H.~Halberstam and K.~F.~Roth, \emph{Sequences},
-Vol.~I, Clarendon Press, Oxford, 1966.
-
-\bibitem{TaoRogers} T.~Tao, \emph{Rogers' theorem on sieving},
-blog post, 19 January 2026,
-\url{https://terrytao.wordpress.com/2026/01/19/rogers-theorem-on-sieving/}.
-
-\bibitem{TaoThread} T.~Tao, comment of 18 January 2026 quoting
-G.~Tenenbaum with permission,
-\url{https://www.erdosproblems.com/forum/thread/281#post-3370}.
-
-\bibitem{Williams} D.~Williams,
-\emph{Probability with Martingales},
-Cambridge University Press, 1991.
-
-\bibitem{KS} S.~Kochen and C.~Stone,
-\emph{A note on the Borel--Cantelli lemma},
-Illinois J. Math. \textbf{8} (1964), 248--251.
-
-\bibitem{Er36} P.~Erd\H{o}s, \emph{A generalization of a theorem of
-Besicovitch}, J. London Math. Soc. \textbf{11} (1936), 92--98.
-
-\bibitem{Er48} P.~Erd\H{o}s, \emph{On the density of some
-sequences of integers}, Bull. Amer. Math. Soc. \textbf{54} (1948),
-685--692.
-
-\bibitem{FFKPY} M.~Filaseta, K.~Ford, S.~Konyagin, C.~Pomerance
-and G.~Yu, \emph{Sieving by large integers and covering systems of
-congruences}, J. Amer. Math. Soc. \textbf{20} (2007), 495--517.
-
-\bibitem{Hough} R.~Hough, \emph{Solution of the minimum modulus
-problem for covering systems}, Ann. of Math. (2) \textbf{181}
-(2015), 361--382.
-
-\bibitem{HT92} R.~R.~Hall and G.~Tenenbaum, \emph{On Behrend
-sequences}, Math. Proc. Cambridge Philos. Soc. \textbf{112}
-(1992), 467--482.
-
-\bibitem{Ten96} G.~Tenenbaum, \emph{On block Behrend sequences},
-Math. Proc. Cambridge Philos. Soc. \textbf{120} (1996), 355--367.
-
-\bibitem{Hall} R.~R.~Hall,
-\emph{Sets of Multiples},
-Cambridge Tracts in Mathematics \textbf{118},
-Cambridge University Press, 1996.
-
-\bibitem{Heilbronn} H.~Heilbronn,
-\emph{On an inequality in the elementary theory of numbers},
-Proc. Cambridge Philos. Soc. \textbf{33} (1937), 207--209.
-
-\bibitem{Rohrbach} H.~Rohrbach,
-\emph{Beweis einer zahlentheoretischen Ungleichung},
-J. Reine Angew. Math. \textbf{177} (1937), 193--196.
-
-\bibitem{Tenenbaum} G.~Tenenbaum,
-\emph{Introduction to Analytic and Probabilistic Number
-Theory},
-Cambridge Studies in Advanced Mathematics \textbf{46},
-Cambridge University Press, 1995.
-
-\end{thebibliography}
 
 \end{document}
